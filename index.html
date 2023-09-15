@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>震度3の地震で揺れる10階建てマンション</title>
+    <style>
+        .building {
+            width: 100px;
+            height: 300px;
+            background: url('building.png') no-repeat;
+            background-size: cover;
+            position: relative;
+            animation: shake 0.5s infinite;
+        }
+        .info {
+            margin-top: 20px;
+        }
+        @keyframes shake {
+            0% { left: 0; }
+            25% { left: 10px; }
+            50% { left: 0; }
+            75% { left: -10px; }
+            100% { left: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="building"></div>
+    <div class="info">
+        <h2>震度3の地震で揺れる10階建てマンション</h2>
+        <p>一般的には、地震が発生したとき、低層階よりも高層階の方が揺れ幅は大きくなる傾向があります。特に高層マンションでは、「長周期地震動」と呼ばれる大きくて長い揺れが続く特性があります。そのため、家具の転倒や移動の防止対策にしっかりと力を入れる必要があります。</p>
+        <p>また、地震によってエレベーターが停止すると、地上階への移動が困難になる可能性もあります。そのため、高層階では災害時の備蓄品を十分に準備しておくことが重要です。</p>
+    </div>
+    <script>
+        var building = document.querySelector('.building');
+        building.addEventListener('click', function() {
+            this.style.animationPlayState = this.style.animationPlayState === 'running' ? 'paused' : 'running';
+        });
+    </script>
+</body>
+</html>
