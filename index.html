@@ -1,47 +1,117 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>震度3の地震で揺れる3階建てマンション</title>
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="地震の揺れ具合に関するシュミレーション"
+    />
+    <meta
+      property="og:description"
+      content="このサイトは当たり前ですがHtml,CSS,jsを使用していますそれと自作なのでコードが汚いです（笑）"
+    />
     <style>
-         .container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+      .test {
+        display: flex;
+        justify-content: space-around;/*モデルをくっつかないように間隔を空ける用 9/20とりあえず完成した*/
+        align-items: center;
+        height: 100vh;
+      }
+      .main {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+      }
+      .Model3 {
+        width: 300px;
+        height: 400px;
+        background: url("https://1.bp.blogspot.com/--ZAAHGGjCUE/VdLrudx3BdI/AAAAAAAAwwY/sORWn7gaMKM/s800/house_danmen_3kai.png")
+          no-repeat;
+        background-size: cover;
+        position: relative;
+      }
+      .Model5 {
+        width: 300px;
+        height: 400px;
+        background: url("https://1.bp.blogspot.com/--ZAAHGGjCUE/VdLrudx3BdI/AAAAAAAAwwY/sORWn7gaMKM/s800/house_danmen_3kai.png")
+          no-repeat;
+        background-size: cover;
+        position: relative;
+      }
+      .info {
+        margin-top: 20px;
+      }
+      @keyframes shake3 {/*モデルの揺れ具合震度3用*/
+        0% {
+          left: 0;
         }
-        .building {
-            width: 300px;
-            height: 400px;
-            background: url('https://1.bp.blogspot.com/--ZAAHGGjCUE/VdLrudx3BdI/AAAAAAAAwwY/sORWn7gaMKM/s800/house_danmen_3kai.png') no-repeat;
-            background-size: cover;
-            position: relative;
-            animation: shake 0.5s infinite;
+        25% {
+          left: 10px;
         }
-        .info {
-            margin-top: 1px;
+        50% {
+          left: 0;
         }
-        @keyframes shake {
-            0% { left: 0; }
-            25% { left: 10px; }
-            50% { left: 0; }
-            75% { left: -10px; }
-            100% { left: 0; }
+        75% {
+          left: -10px;
         }
+        100% {
+          left: 0;
+        }
+      }
+      @keyframes shake5 {/*モデルの揺れ具合震度５用*/
+        0% {
+          left: 0;
+        }
+        25% {
+          left: 20px;
+        }
+        50% {
+          left: 0;
+        }
+        75% {
+          left: -20px;
+        }
+        100% {
+          left: 0;
+        }
+      }
     </style>
-</head>
-<body>
-    <div calss="container">
-    <div class="building"></div></div>
-    <div class="info">
-        <h2>マンションで震度3の地震が起きた際の揺れ具合☝</h2>
-        <p>シュミレーション。参照元：https://1.bp.blogspot.com/--ZAAHGGjCUE/VdLrudx3BdI/AAAAAAAAwwY/sORWn7gaMKM/s800/house_danmen_3kai.png</p>
-        <p>v0.1。</p>
+  </head>
+  <body>
+    <div class="test">
+      <div class="Model3" id="Model3" style="animation: shake3 0.5s infinite">
+        震度3
+      </div>
+      <div class="Model5" id="Model5" style="animation: shake5 0.2s infinite">
+        震度5
+      </div>
     </div>
-    <script>
-        var building = document.querySelector('.building');
-        building.addEventListener('click', function() {
-            this.style.animationPlayState = this.style.animationPlayState === 'running' ? 'paused' : 'running';
-        });
+    <div class="info">
+      <h2>マンションで地震が起きた際の揺れ具合☝左が震度3で右が震度5です</h2>
+      <p>
+        この実験で分かる事は震度が高くなるにつれてマンションの揺れ具合も比例して上がっていくことが分かった<br />//////////////////////////////////<br />
+
+        参照元：<a
+          href="https://1.bp.blogspot.com/--ZAAHGGjCUE/VdLrudx3BdI/AAAAAAAAwwY/sORWn7gaMKM/s800/house_danmen_3kai.png"
+          >クリックしてね</a>
+      </p>
+      <p>
+        v1.1
+        :このサイトはマンションの揺れ具合に関するシュミレーションですので実際にこうなるかは分かりませんが揺れ具合のデーターは気象庁の物を参考にしてます<br />またこのサイト自体に参考元以外著作権はありません
+      </p>
+    </div>
+    <script>/*クリックしたらどうなるか関係：テスト段階、9/18*/
+      var test3 = document.querySelector("#Model3");
+      var test5 = document.querySelector("#Model5");
+      test3.addEventListener("click", function () {
+        this.style.animationPlayState =
+          this.style.animationPlayState === "running" ? "paused" : "running";
+      });
+      test5.addEventListener("click", function () {
+        this.style.animationPlayState =
+          this.style.animationPlayState === "running" ? "paused" : "running";
+      });
     </script>
-</body>
+  </body>
 </html>
