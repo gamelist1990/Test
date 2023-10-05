@@ -8,14 +8,14 @@
 <link href="https://sushida.net/css/play.css" rel="stylesheet" type="text/css">
 
 <link href="https://sushida.net/css/style_menu.css" rel="stylesheet" type="text/css">
-<script type="text/javascript" src="https://sushida.net/js/parts.js"></script>
+<script type="text/javascript" src="js/parts.js"></script>
 
 <link rel="stylesheet" href="https://sushida.net/TemplateData/style.css">
 <script src="TemplateData/UnityProgress.js"></script>
 <script src="https://sushida.net/files/v1_0/UnityLoader.js?id=1126"></script>
 <script>
 	function game() {
-      var gameInstance = UnityLoader.instantiate("gameContainer", "files/v1_0/Web.json", {onProgress: UnityProgress});
+      var gameInstance = UnityLoader.instantiate("gameContainer", "files/v1/Web.json", {onProgress: UnityProgress});
 	  document.getElementsByTagName('canvas')[0].ondragstart = function() { return false; };
 	}
 </script>
