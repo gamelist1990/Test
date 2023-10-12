@@ -1,0 +1,50 @@
+
+var ftGUID_4181706="55009629ECD918";
+var ftConfID_4181706="0";
+var ftParams_4181706="ftOBA=1&ft_agentEnv=0&ft_referrer=https%3A%2F%2Fgoogleads.g.doubleclick.net%2Fpagead%2Fhtml%2Fr20231003%2Fr20110914%2Fzrt_lookup.html%3Ffsb%3D1%23RS-1-%26adk%3D1812271803%26client%3Dca-pub-6704482765513404%26fa%3D3%26ifi%3D6%26uci%3Da!6%26btvi%3D2%26xpc%3Do9SdnpskTf%26p%3Dhttps%253A%2F%2Fwww.spitz8823.com&us_privacy=${US_PRIVACY}&cachebuster=568323.0235974748&ft_dv=%5B%25ft_dv%25%5D";
+var ftKeyword_4181706="";
+var ftCustom_4181706="";
+var ftSection_4181706="";
+var ftSegment_4181706="aixd,ajv1,ajun,akhc,akhq,akow,aklq,akua,aklr,akt7,afr5,akt3,ak9o";
+var ftSegmentList_4181706=[{s:'aixd'},{s:'ajv1'},{s:'ajun'},{s:'akhc'},{s:'akhq'},{s:'akow'},{s:'aklq'},{s:'akua'},{s:'aklr'},{s:'akt7'},{s:'afr5'},{s:'akt3'},{s:'ak9o'}];
+var ftRuleMatch_4181706="0";
+var ftTimestamp_4181706="1696464755";
+var ftGeoC2_4181706="jp";
+var ftGeoState_4181706="04";
+var ftGeoCity_4181706="sendai";
+var ftISP_4181706="arteria networks corporation";
+var ftSpeed_4181706="broadband";
+var ftConnType_4181706="wifi";
+var ftDMA_4181706="392007";
+var ftLong_4181706="140.9";
+var ftLat_4181706="38.26";
+var ftPostal_4181706="983-0045";
+var ftTimeZone_4181706="+900";
+var ftMobileCarrier_4181706="";
+var ftImp4181706 = {};
+ftImp4181706.privacy = "x";
+ftImp4181706.guidAge = "256";
+ftImp4181706.impID = "E060EAC0-83E5-7D16-2150-0C16E41CA580";
+ftImp4181706.duid = "FT:55009629ECD918";
+
+ftImp4181706.ft_tpplid = "";
+ftImp4181706.ft_c = {};
+ftImp4181706.gdpr = "";
+ftImp4181706.gdpr_consent = "";
+ftImp4181706.gdpr_pd = "";
+ftImp4181706.oob_consent = "";
+ftImp4181706.gdprStoredConsent = "";
+ftImp4181706.us_privacy = "!!US_PRIVACY!";
+ftImp4181706.gpc = "";
+
+ftImp4181706.jsAppend = "1";
+(function(){
+    var tag = document.getElementById('ft_servedby_4181706') || (function(s){
+    	return s[s.length-1];
+    }(document.getElementsByTagName('script'))),
+           js = document.createElement('script');
+    js.src =
+"https://cdn.flashtalking.com/xre/418/4181706/4469430/js/j-4181706-4469430.js";
+    js.id = "ftscript_m4181706";
+    tag.parentNode.insertBefore(js, tag);
+}());

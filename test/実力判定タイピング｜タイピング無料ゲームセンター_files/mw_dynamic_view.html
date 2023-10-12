@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<!-- saved from url=(1572)https://static.affiliate.rakuten.co.jp/widget/html/mw_dynamic_view.html?rakuten_design=slide&rakuten_affiliateId=0e4dd153.7fdc7f18.0e4dd154.329cf8af&rakuten_items=ctsmatch&rakuten_genreId=0&rakuten_size=336x280&rakuten_pattern=H2D&rakuten_target=_blank&rakuten_theme=gray&rakuten_border=off&rakuten_auto_mode=on&rakuten_genre_title=off&rakuten_pointbackId=_RTmtlk20000152&rakuten_no_link=off&rakuten_no_afl=off&rakuten_no_logo=off&rakuten_undispGenre=off&rakuten_wmode=off&rakuten_noScrollButton=off&rakuten_bgColor=FFFFFF&rakuten_txtColor=1D54A7&rakuten_captionColor=000000&rakuten_moverColor=C00000&rakuten_recommend=on&rakuten_service_flag=ichiba&rakuten_adNetworkId=&rakuten_adNetworkUrl=&rakuten_searchKeyword=&rakuten_disableLogo=&rakuten_moverItembgColor=&rakuten_moverCaptionColor=&rakuten_slideSpeed=250&rakuten_moreInfoColor=red&rakuten_subTxtColor=&rakuten_loadingImage=auto&rakuten_imageDisplay=auto&rakuten_txtDisplay=auto&rakuten_captionDisplay=auto&rakuten_moreInfoDisplay=auto&rakuten_txtRow=auto&rakuten_captionRow=auto&rakuten_auto_interval=6000&rakuten_imageSize=auto&rakuten_slideCell=auto&rakuten_slideDirection=auto&rakuten_order=0,1,2,3&rakuten_loadingTimeout=0&rakuten_mediaId=&rakuten_measurementId=-_ver-%2Dnew_18_-&rakuten_pointSiteId=&rakuten_isAdvanced=false&rakuten_isIE=false&rakuten_deviceType=PC&rakuten_itemAmount=20&rakuten_tLogFrequency=10&rakuten_timestamp=1696464403615&rakuten_optout=off&rakuten_deeplink=on&rakuten_pUrl=https%3A%2F%2Fwww.spitz8823.com%2Ftyping%2Fkentei%2F01%2Ftype.cgi&rakuten_version=20230106&rakuten_datatype=json -->
+<html lang="ja"><head id="mw_head"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>楽天モーションウィジェット</title>
+<script>
+	var iframe = this;
+	var optout = 'off';
+	iframe.param = location.search;
+	iframe.isAlive = true;
+	iframe.loadingStatus = 'waiting';
+	iframe.optoutChecked = false;
+	iframe.waitingCount = 0;
+
+	iframe.styling_version = "20140611";
+	iframe.scripting_version = "20230106";
+
+	iframe.styling = "//static.affiliate.rakuten.co.jp/widget/html/stylesheets/pc_pcview_all.css?" + iframe.styling_version;
+	iframe.scripting = "//static.affiliate.rakuten.co.jp/widget/html/javascripts/front_merged.js?" + iframe.scripting_version;
+
+	iframe.backrampApi = '//mtwidget04.affiliate.rakuten.co.jp/';
+	iframe.contentApi = '//mtwidget03.affiliate.ashiato.rakuten.co.jp/';
+	iframe.target = null;
+
+	iframe.errorBeacons = []; 
+
+	iframe.addBeacon = function(url) {
+		var _window = this;
+		_window.errorBeacons.push(url);
+	};
+
+	iframe.addErrorBeacons = function(res) {
+		var _window = this;
+		if(res && res.indexOf('rakuten_data') != -1) {
+			(new Function(res))();
+			if(rakuten_data && Array.isArray(rakuten_data.extraData.param.errorlog)) {
+				for(var i = 0;i < rakuten_data.extraData.param.errorlog.length;i++) {
+					_window.addBeacon(rakuten_data.extraData.param.errorlog[i]);
+				}
+			}
+		}
+	};
+
+	function getParams(){
+		var tmp = [],
+			result = {};
+		var items = location.search.substr(1).split("&");
+		var param_identifier = 'rakuten_';
+
+		for (var index = 0; index < items.length; index++) {
+			tmp = items[index].split("=");
+			if(tmp[0].indexOf(param_identifier) === 0){ //check if parameter name starts with 'rakuten_'
+				var param_name = tmp[0].substr(param_identifier.length);
+				result[param_name]=tmp[1];
+			}
+		}
+		return result;
+	}
+	iframe.rakuten = getParams();
+
+	iframe.makeAjax = function(url, callback) {
+		var _window = this;
+		var script;
+		script = _window.document.createElement('script');
+		setTimeout(function() {
+			script.src = url;
+			_window.document.body.appendChild(script);
+		}, 0);
+		return function(data) {
+			callback(data);
+			if(script.parentNode) {
+				script.parentNode.removeChild(script);
+			}
+		};
+	};
+
+	iframe.getJson = function(url, callback){
+		// make ajax call, vanilla style
+		var xhr = new XMLHttpRequest();
+		xhr.onreadystatechange = function() {
+			// check if resulting is okay
+			if(xhr.status == 200 && xhr.readyState == 4){
+				try {
+					var backrampJson = JSON.parse(xhr.responseText);
+					return callback(backrampJson);
+				} catch (e) {
+					return callback(false);
+				}
+			}
+		}
+
+		xhr.open('GET', url);
+		xhr.send();
+	}
+
+	iframe.replaceResources = function(backrampJson, callback){
+		var is_styling_change = false;
+		// if defined, replace contentApi with viewApi
+		if(backrampJson.viewapi && backrampJson.viewapi.length > 0) iframe.contentApi = backrampJson.viewapi;
+
+		// replace other resources
+		if(backrampJson.query && backrampJson.query.length > 0) iframe.param = backrampJson.query;
+		if(backrampJson.styling && backrampJson.styling.length > 0) {
+			var styling = backrampJson.styling;
+			if(backrampJson.styling.indexOf("?") == -1) {
+				styling += "?" + iframe.styling_version;
+			} else {
+				styling += "&" + iframe.styling_version;
+			}
+			if (styling != iframe.styling) {
+				is_styling_change = true;
+				iframe.styling = backrampJson.styling;
+			}
+		}
+		if(backrampJson.scripting && backrampJson.scripting.length > 0) {
+			var scripting = backrampJson.scripting;
+			if(backrampJson.scripting.indexOf("?") == -1) {
+				scripting += "?" + iframe.scripting_version;
+			} else {
+				scripting += "&" + iframe.scripting_version;
+			}
+			if (scripting != iframe.scripting) {
+				is_styling_change = true
+				iframe.scripting = scripting;
+			}
+		}
+
+		if (is_styling_change) {
+			iframe.destroyPreLoadMW(iframe.preLoadMW);
+		}
+		return callback();
+	}
+
+	iframe.replaceAndLoad = function(backrampJson){
+		if(backrampJson) {
+			iframe.replaceResources(backrampJson, iframe.loadMW);
+		} else {
+			// backramp result can't be parsed as JSON. set status to failed, so observe() will generate client-side MW in the next 100ms
+			if(iframe.loadingStatus == 'waiting') iframe.loadingStatus == 'failed';
+		}
+	}
+
+	iframe.loadMW = function() {
+		var _window = this;
+		_window.rakuten_mw_callback = iframe.makeAjax(iframe.contentApi + iframe.param, function(res){
+			_window.afterLoadingMW(res);
+                });
+	};
+
+	// make remove() function on element to delete the DOM
+	Element.prototype.remove = function() {
+		this.parentElement.removeChild(this);
+	}
+
+	iframe.destroyPreLoadMW = function(callback){
+		document.getElementById("mw_stylesheet").remove();
+		document.getElementById("mw_front_script").remove();
+		callback();
+	}
+
+	iframe.preLoadMW = function(){
+		var _window = this;
+		var header = window.document.getElementById("mw_head");
+		var css = window.document.createElement("link");
+		css.id = "mw_stylesheet";
+		css.rel = "stylesheet";
+		css.href += iframe.styling;
+		header.appendChild(css);
+		var front = window.document.createElement("script");
+		front.id = "mw_front_script";
+		front.src = iframe.scripting;
+		header.appendChild(front);
+	}
+
+	iframe.processMW = function() {
+		var RTmtlk_id = iframe.rakuten.pointbackId ? iframe.rakuten.pointbackId.match(/^_RTmtlk([0-9]{8})/) : null;
+		iframe.preLoadMW();
+		// if pointback match backramp criteria, send to backramp(04). else call contentApi(03) or viewApi(05)
+		if(RTmtlk_id){
+			iframe.getJson(iframe.backrampApi + iframe.param , iframe.replaceAndLoad);
+		}else{
+			iframe.loadMW();
+		}
+	}
+ 
+	iframe.afterLoadingMW = function(res) {
+		var _window = this;
+		if(res && res != '' && res.status && res.status == 'Success') {
+			var makeView = function() {
+				if(_window.isAlive) {
+					if(_window.optoutChecked && optout == 'on' && res.optout != 'on') {
+						return;
+					} else if(_window.optoutChecked && _window.rakuten_mw_afterLoading) {
+						iframe.waitingCount -= 2000;
+						_window.rakuten_mw_afterLoading(res);
+					} else {
+						setTimeout(makeView, 20);
+					}
+				}
+			}
+			makeView();
+		} else {
+			_window.addErrorBeacons(res);
+			_window.loadingStatus = 'failed';
+		}
+	};
+
+	iframe.getConf = function() {
+		var _window = this;
+	 	if(optout == 'off') {
+	 		_window.rakuten_mw_setOptout = iframe.makeAjax('//xml.affiliate.rakuten.co.jp/widget/conf/getMWConf.php?time=' + (new Date().getTime()), function(res) {
+				if(res != 'off') {
+					optout = res;
+					iframe.param = iframe.param.replace(/\&rakuten_optout=off/, '&rakuten_optout=on');
+					_window.processMW();
+				}
+				_window.optoutChecked = true;
+			});
+	 	} else {
+			_window.optoutChecked = true;
+	 	}
+	};
+
+	iframe.trigger = function() {
+		if(window && window.document.body && typeof(window.makeAjax) != "undefined" && typeof(window.loadMW) != "undefined" && typeof(window.processMW) != "undefined" && typeof(window.afterLoadingMW) != "undefined" && typeof(window.getConf) != "undefined" && typeof(window.optoutChecked) != undefined) {
+			window.processMW();
+			window.getConf();
+		} else {
+			setTimeout(trigger, 10);
+		}
+	};
+	
+	trigger();
+
+	iframe.createOldMW = function(errors, param) {
+		var oldIframe = window.document.getElementById('rakuten_mw_root_id');
+		var size = param.match(/rakuten_size=(\d+x\d+)/);
+		if(!size) {
+			size = '120x120';
+		}
+		var sizeArray = size[1].split("x");
+	 	var width = sizeArray[0];
+		var height = sizeArray[1];
+	
+		if(errors) {
+			for(var i = 0; i < errors.length; i++) {
+				var image = new Image();
+				image.src = errors[i];
+			}
+		}
+
+		var url = '//static.affiliate.rakuten.co.jp/widget/html/pc_pcview_all.html?20230106';
+		var replacedParam = param.replace('_ver--new_', '_ver--replaced_');
+	
+		var _iframe = document.createElement('IFRAME');
+	        _iframe.width = width;
+	        _iframe.height = height;
+	        _iframe.frameBorder = "0";
+	        _iframe.scrolling = "no";
+	        _iframe.allowtransparency="true";
+		_iframe.src = url + replacedParam;
+        	oldIframe.parentNode.replaceChild(_iframe, oldIframe);
+	};
+
+	iframe.createFallbackMW = function(){
+		iframe.isAlive = false;
+		iframe.createOldMW(iframe.errorBeacons, iframe.param);
+	}
+
+	var observe = function() {
+		if(iframe) {
+			switch(iframe.loadingStatus) {
+				case 'failed':
+					iframe.createFallbackMW();
+					break;
+
+				case 'success':
+					break;
+
+				case 'waiting':
+					iframe.waitingCount += 100;
+					if(iframe.waitingCount > 4000) {
+						iframe.createFallbackMW();
+					} else {
+						setTimeout(observe, 100)
+					}
+					break;
+			}
+		}
+	};
+
+	observe();
+</script>
+
+<link id="mw_stylesheet" rel="stylesheet" href="./pc_pcview_all.css"><script id="mw_front_script" src="./front_merged.js.ダウンロード"></script></head><body><div class="rakuten_motionWidget design-image direction-horizontal pattern-image-H2D loading-A" id="rakuten_mw_root_id" style="border-width: 0px; width: 336px; height: 280px;"><div class="rakuten_motionWidget-loading" style="display: none;"></div><div class="rakuten_motionWidget-main" style="visibility: visible; width: 330px; height: 242px; opacity: 1; display: none;"><div class="rakuten_motionWidget-itemList"><!-- /.rakuten_motionWidget-itemList --></div></div><div class="rakuten_motionWidget-sub" style="visibility: visible; opacity: 1; display: none;"><p class="rakuten_motionWidget-ads"><a href="https://www.rakuten.co.jp/" target="_blank">Ads by Rakuten</a></p><ul class="rakuten_motionWidget-nav"><li class="rakuten_motionWidget-nav-item rakuten_motionWidget-nav-prev"><a href="https://static.affiliate.rakuten.co.jp/widget/html/mw_dynamic_view.html?rakuten_design=slide&amp;rakuten_affiliateId=0e4dd153.7fdc7f18.0e4dd154.329cf8af&amp;rakuten_items=ctsmatch&amp;rakuten_genreId=0&amp;rakuten_size=336x280&amp;rakuten_pattern=H2D&amp;rakuten_target=_blank&amp;rakuten_theme=gray&amp;rakuten_border=off&amp;rakuten_auto_mode=on&amp;rakuten_genre_title=off&amp;rakuten_pointbackId=_RTmtlk20000152&amp;rakuten_no_link=off&amp;rakuten_no_afl=off&amp;rakuten_no_logo=off&amp;rakuten_undispGenre=off&amp;rakuten_wmode=off&amp;rakuten_noScrollButton=off&amp;rakuten_bgColor=FFFFFF&amp;rakuten_txtColor=1D54A7&amp;rakuten_captionColor=000000&amp;rakuten_moverColor=C00000&amp;rakuten_recommend=on&amp;rakuten_service_flag=ichiba&amp;rakuten_adNetworkId=&amp;rakuten_adNetworkUrl=&amp;rakuten_searchKeyword=&amp;rakuten_disableLogo=&amp;rakuten_moverItembgColor=&amp;rakuten_moverCaptionColor=&amp;rakuten_slideSpeed=250&amp;rakuten_moreInfoColor=red&amp;rakuten_subTxtColor=&amp;rakuten_loadingImage=auto&amp;rakuten_imageDisplay=auto&amp;rakuten_txtDisplay=auto&amp;rakuten_captionDisplay=auto&amp;rakuten_moreInfoDisplay=auto&amp;rakuten_txtRow=auto&amp;rakuten_captionRow=auto&amp;rakuten_auto_interval=6000&amp;rakuten_imageSize=auto&amp;rakuten_slideCell=auto&amp;rakuten_slideDirection=auto&amp;rakuten_order=0,1,2,3&amp;rakuten_loadingTimeout=0&amp;rakuten_mediaId=&amp;rakuten_measurementId=-_ver--new_18_-&amp;rakuten_pointSiteId=&amp;rakuten_isAdvanced=false&amp;rakuten_isIE=false&amp;rakuten_deviceType=PC&amp;rakuten_itemAmount=20&amp;rakuten_tLogFrequency=10&amp;rakuten_timestamp=1696464403615&amp;rakuten_optout=off&amp;rakuten_deeplink=on&amp;rakuten_pUrl=https%3A%2F%2Fwww.spitz8823.com%2Ftyping%2Fkentei%2F01%2Ftype.cgi&amp;rakuten_version=20230106&amp;rakuten_datatype=json#">prev</a></li><li class="rakuten_motionWidget-nav-item rakuten_motionWidget-nav-next"><a href="https://static.affiliate.rakuten.co.jp/widget/html/mw_dynamic_view.html?rakuten_design=slide&amp;rakuten_affiliateId=0e4dd153.7fdc7f18.0e4dd154.329cf8af&amp;rakuten_items=ctsmatch&amp;rakuten_genreId=0&amp;rakuten_size=336x280&amp;rakuten_pattern=H2D&amp;rakuten_target=_blank&amp;rakuten_theme=gray&amp;rakuten_border=off&amp;rakuten_auto_mode=on&amp;rakuten_genre_title=off&amp;rakuten_pointbackId=_RTmtlk20000152&amp;rakuten_no_link=off&amp;rakuten_no_afl=off&amp;rakuten_no_logo=off&amp;rakuten_undispGenre=off&amp;rakuten_wmode=off&amp;rakuten_noScrollButton=off&amp;rakuten_bgColor=FFFFFF&amp;rakuten_txtColor=1D54A7&amp;rakuten_captionColor=000000&amp;rakuten_moverColor=C00000&amp;rakuten_recommend=on&amp;rakuten_service_flag=ichiba&amp;rakuten_adNetworkId=&amp;rakuten_adNetworkUrl=&amp;rakuten_searchKeyword=&amp;rakuten_disableLogo=&amp;rakuten_moverItembgColor=&amp;rakuten_moverCaptionColor=&amp;rakuten_slideSpeed=250&amp;rakuten_moreInfoColor=red&amp;rakuten_subTxtColor=&amp;rakuten_loadingImage=auto&amp;rakuten_imageDisplay=auto&amp;rakuten_txtDisplay=auto&amp;rakuten_captionDisplay=auto&amp;rakuten_moreInfoDisplay=auto&amp;rakuten_txtRow=auto&amp;rakuten_captionRow=auto&amp;rakuten_auto_interval=6000&amp;rakuten_imageSize=auto&amp;rakuten_slideCell=auto&amp;rakuten_slideDirection=auto&amp;rakuten_order=0,1,2,3&amp;rakuten_loadingTimeout=0&amp;rakuten_mediaId=&amp;rakuten_measurementId=-_ver--new_18_-&amp;rakuten_pointSiteId=&amp;rakuten_isAdvanced=false&amp;rakuten_isIE=false&amp;rakuten_deviceType=PC&amp;rakuten_itemAmount=20&amp;rakuten_tLogFrequency=10&amp;rakuten_timestamp=1696464403615&amp;rakuten_optout=off&amp;rakuten_deeplink=on&amp;rakuten_pUrl=https%3A%2F%2Fwww.spitz8823.com%2Ftyping%2Fkentei%2F01%2Ftype.cgi&amp;rakuten_version=20230106&amp;rakuten_datatype=json#">next</a></li></ul><p class="rakuten_motionWidget-about"><a href="https://xml.affiliate.rakuten.co.jp/personalize/" target="_blank">このリンクについて</a></p><!-- /.rakuten_motionWidget-sub --></div><!-- /.rakuten_motionWidget --><style>@import 'https://static.affiliate.rakuten.co.jp/widget/view/css/outer_base.css';
+
+#outer {
+width: 336px;
+height: 280px;
+}
+#mwc {
+height: 240px;
+}
+.border-gray {
+border: 1px solid #cbcbcb;
+}
+.page {
+width: 336px;
+height: 280px;
+}
+.item-col {
+padding-left:5px !important;
+padding-right:5px !important;
+}
+.img-item {
+height: 240px;
+max-width: 95%;
+padding: 1px;
+margin: 0 auto;
+}
+.img-text-logo {
+height: 28px;
+margin: 7px auto;
+}
+.row {
+margin-top: 0px;
+margin-bottom: 0px;
+}
+#control.container {
+width: 336px;
+height: 40px;
+}
+#control .row {
+height: 36px;
+}
+.carousel-control:hover {
+background-image: none !important;
+text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+color: #7F7F7F;
+}
+.carousel-control:focus {
+background-image: none !important;
+text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+color: #7F7F7F;
+}
+.carousel-control.left {
+top: 8px;
+left: 5px;
+}
+.carousel-control.right {
+top: 8px;
+right: 30px;
+}
+.glyphicon.glyphicon-chevron-left, .glyphicon.glyphicon-chevron-right {
+font-size: 80%;
+height: 20px;
+top: -2px;
+}
+.info-link {
+position: absolute;
+top: 12px;
+right: 5px;
+}
+.p-2 {
+padding: 0 2px;
+}</style><div id="outer">
+
+<div id="mwc" class="carousel slide" data-ride="carousel">
+
+<div class="carousel-inner" role="listbox">
+<div class="item next left">
+<div class="page container">
+<div class="row">
+<div class="col-12 item-col border-gray">
+<a href="https://hb.afl.rakuten.co.jp/ichiba/0e4dd153.7fdc7f18.0e4dd154.329cf8af.c=mtlk.m=-_ver--new_18__pbid--20000152__size--336x280__imode--ichiba_contents_match__dt--PC__dp--true__uniqid--0bb58118631ae495675043fec0ba96cba613cab5197__frame--0__cimode--ichiba_contents_match_-/_RTmtlk20000152?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fatcontact%2Fk_kz_cm30z0_02_m%2F&amp;itemMode=ichiba_contents_match&amp;ashiatoCount=0&amp;itemCode=atcontact:10002164&amp;genreId=563999&amp;loadTime=5&amp;time=1696464412890" rel="nofollow" target="_blank">
+<img class="lozad img-item center-block loaded" data-src="https://thumbnail.image.rakuten.co.jp/@0_mall/atcontact/cabinet/thumb17/creo/creouvms/creo_a_2p_nai01-.jpg?_ex=128x128" src="./creo_a_2p_nai01-.jpg" data-loaded="true">
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="item">
+<div class="page container">
+<div class="row">
+<div class="col-12 item-col border-gray">
+<a href="https://hb.afl.rakuten.co.jp/ichiba/0e4dd153.7fdc7f18.0e4dd154.329cf8af.c=mtlk.m=-_ver--new_18__pbid--20000152__size--336x280__imode--ichiba_contents_match__dt--PC__dp--true__uniqid--0bb58118631ae495675043fec0ba96cba613cab5197__frame--1__cimode--ichiba_contents_match_-/_RTmtlk20000152?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F17574910%2F&amp;itemMode=ichiba_contents_match&amp;ashiatoCount=0&amp;itemCode=book:21021953&amp;genreId=300011&amp;loadTime=5&amp;time=1696464412890" rel="nofollow" target="_blank">
+<img class="lozad img-item center-block loaded" data-src="https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/3528/2100013493528_2_2.jpg?_ex=128x128" src="./2100013493528_2_2.jpg" data-loaded="true">
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="item">
+<div class="page container">
+<div class="row">
+<div class="col-12 item-col border-gray">
+<a href="https://hb.afl.rakuten.co.jp/ichiba/0e4dd153.7fdc7f18.0e4dd154.329cf8af.c=mtlk.m=-_ver--new_18__pbid--20000152__size--336x280__imode--ichiba_contents_match__dt--PC__dp--true__uniqid--0bb58118631ae495675043fec0ba96cba613cab5197__frame--2__cimode--ichiba_contents_match_-/_RTmtlk20000152?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F17623219%2F&amp;itemMode=ichiba_contents_match&amp;ashiatoCount=0&amp;itemCode=book:21056029&amp;genreId=300011&amp;loadTime=5&amp;time=1696464412890" rel="nofollow" target="_blank">
+<img class="lozad img-item center-block loaded" data-src="https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/9402/2100013519402.jpg?_ex=128x128" src="./2100013519402.jpg" data-loaded="true">
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="item">
+<div class="page container">
+<div class="row">
+<div class="col-12 item-col border-gray">
+<a href="https://hb.afl.rakuten.co.jp/ichiba/0e4dd153.7fdc7f18.0e4dd154.329cf8af.c=mtlk.m=-_ver--new_18__pbid--20000152__size--336x280__imode--ichiba_contents_match__dt--PC__dp--true__uniqid--0bb58118631ae495675043fec0ba96cba613cab5197__frame--3__cimode--ichiba_contents_match_-/_RTmtlk20000152?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fbook%2F17639692%2F&amp;itemMode=ichiba_contents_match&amp;ashiatoCount=0&amp;itemCode=book:21069892&amp;genreId=300011&amp;loadTime=5&amp;time=1696464412890" rel="nofollow" target="_blank">
+<img class="lozad img-item center-block" data-src="https://thumbnail.image.rakuten.co.jp/@0_mall/book/cabinet/8442/2100013528442.gif?_ex=128x128">
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="item">
+<div class="page container">
+<div class="row">
+<div class="col-12 item-col border-gray">
+<a href="https://hb.afl.rakuten.co.jp/ichiba/0e4dd153.7fdc7f18.0e4dd154.329cf8af.c=mtlk.m=-_ver--new_18__pbid--20000152__size--336x280__imode--ichiba_contents_match__dt--PC__dp--true__uniqid--0bb58118631ae495675043fec0ba96cba613cab5197__frame--4__cimode--ichiba_contents_match_-/_RTmtlk20000152?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fchuoshuhan%2F110401%2F&amp;itemMode=ichiba_contents_match&amp;ashiatoCount=0&amp;itemCode=chuoshuhan:10012282&amp;genreId=204449&amp;loadTime=5&amp;time=1696464412890" rel="nofollow" target="_blank">
+<img class="lozad img-item center-block" data-src="https://thumbnail.image.rakuten.co.jp/@0_mall/chuoshuhan/cabinet/01/110401_11.jpg?_ex=128x128">
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="item">
+<div class="page container">
+<div class="row">
+<div class="col-12 item-col border-gray">
+<a href="https://hb.afl.rakuten.co.jp/ichiba/0e4dd153.7fdc7f18.0e4dd154.329cf8af.c=mtlk.m=-_ver--new_18__pbid--20000152__size--336x280__imode--ichiba_contents_match__dt--PC__dp--true__uniqid--0bb58118631ae495675043fec0ba96cba613cab5197__frame--5__cimode--ichiba_contents_match_-/_RTmtlk20000152?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fearth-contact%2F1doa90-02%2F&amp;itemMode=ichiba_contents_match&amp;ashiatoCount=0&amp;itemCode=earth-contact:10000641&amp;genreId=563999&amp;loadTime=5&amp;time=1696464412890" rel="nofollow" target="_blank">
+<img class="lozad img-item center-block loaded" data-src="https://thumbnail.image.rakuten.co.jp/@0_gold/earth-contact/img/item/temp400/1day/1doa/1doa90-02.jpg?_ex=128x128" src="./1doa90-02.jpg" data-loaded="true">
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="item">
+<div class="page container">
+<div class="row">
+<div class="col-12 item-col border-gray">
+<a href="https://hb.afl.rakuten.co.jp/ichiba/0e4dd153.7fdc7f18.0e4dd154.329cf8af.c=mtlk.m=-_ver--new_18__pbid--20000152__size--336x280__imode--ichiba_contents_match__dt--PC__dp--true__uniqid--0bb58118631ae495675043fec0ba96cba613cab5197__frame--6__cimode--ichiba_contents_match_-/_RTmtlk20000152?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fearth-contact%2Fm1p90-02%2F&amp;itemMode=ichiba_contents_match&amp;ashiatoCount=0&amp;itemCode=earth-contact:10000791&amp;genreId=563999&amp;loadTime=5&amp;time=1696464412890" rel="nofollow" target="_blank">
+<img class="lozad img-item center-block" data-src="https://thumbnail.image.rakuten.co.jp/@0_gold/earth-contact/img/item/temp/1day/m1p/m1p90-02.jpg?_ex=128x128">
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="item">
+<div class="page container">
+<div class="row">
+<div class="col-12 item-col border-gray">
+<a href="https://hb.afl.rakuten.co.jp/ichiba/0e4dd153.7fdc7f18.0e4dd154.329cf8af.c=mtlk.m=-_ver--new_18__pbid--20000152__size--336x280__imode--ichiba_contents_match__dt--PC__dp--true__uniqid--0bb58118631ae495675043fec0ba96cba613cab5197__frame--7__cimode--ichiba_contents_match_-/_RTmtlk20000152?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fearth-contact%2Foam90-02-0pt%2F&amp;itemMode=ichiba_contents_match&amp;ashiatoCount=0&amp;itemCode=earth-contact:10000845&amp;genreId=563999&amp;loadTime=5&amp;time=1696464412890" rel="nofollow" target="_blank">
+<img class="lozad img-item center-block loaded" data-src="https://thumbnail.image.rakuten.co.jp/@0_gold/earth-contact/img/item/temp/1day/oam/oam90-02-a.jpg?_ex=128x128" src="./oam90-02-a.jpg" data-loaded="true">
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="item">
+<div class="page container">
+<div class="row">
+<div class="col-12 item-col border-gray">
+<a href="https://hb.afl.rakuten.co.jp/ichiba/0e4dd153.7fdc7f18.0e4dd154.329cf8af.c=mtlk.m=-_ver--new_18__pbid--20000152__size--336x280__imode--ichiba_contents_match__dt--PC__dp--true__uniqid--0bb58118631ae495675043fec0ba96cba613cab5197__frame--8__cimode--ichiba_contents_match_-/_RTmtlk20000152?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fearth-contact%2Foate90-02%2F&amp;itemMode=ichiba_contents_match&amp;ashiatoCount=0&amp;itemCode=earth-contact:10001048&amp;genreId=563999&amp;loadTime=5&amp;time=1696464412890" rel="nofollow" target="_blank">
+<img class="lozad img-item center-block loaded" data-src="https://thumbnail.image.rakuten.co.jp/@0_gold/earth-contact/img/item/temp400/1day/oate/oate90-02.jpg?_ex=128x128" src="./oate90-02.jpg" data-loaded="true">
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="item">
+<div class="page container">
+<div class="row">
+<div class="col-12 item-col border-gray">
+<a href="https://hb.afl.rakuten.co.jp/ichiba/0e4dd153.7fdc7f18.0e4dd154.329cf8af.c=mtlk.m=-_ver--new_18__pbid--20000152__size--336x280__imode--ichiba_contents_match__dt--PC__dp--true__uniqid--0bb58118631ae495675043fec0ba96cba613cab5197__frame--9__cimode--ichiba_contents_match_-/_RTmtlk20000152?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fjoshin-cddvd%2F4580128896595%2F&amp;itemMode=ichiba_contents_match&amp;ashiatoCount=0&amp;itemCode=joshin-cddvd:11024308&amp;genreId=300011&amp;loadTime=5&amp;time=1696464412890" rel="nofollow" target="_blank">
+<img class="lozad img-item center-block loaded" data-src="https://thumbnail.image.rakuten.co.jp/@0_mall/joshin-cddvd/cabinet/495/xscl-75-6.jpg?_ex=128x128" src="./xscl-75-6.jpg" data-loaded="true">
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="item">
+<div class="page container">
+<div class="row">
+<div class="col-12 item-col border-gray">
+<a href="https://hb.afl.rakuten.co.jp/ichiba/0e4dd153.7fdc7f18.0e4dd154.329cf8af.c=mtlk.m=-_ver--new_18__pbid--20000152__size--336x280__imode--ichiba_contents_match__dt--PC__dp--true__uniqid--0bb58118631ae495675043fec0ba96cba613cab5197__frame--10__cimode--ichiba_contents_match_-/_RTmtlk20000152?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkeitai%2F41-907%2F&amp;itemMode=ichiba_contents_match&amp;ashiatoCount=0&amp;itemCode=keitai:10801623&amp;genreId=560271&amp;loadTime=5&amp;time=1696464412890" rel="nofollow" target="_blank">
+<img class="lozad img-item center-block loaded" data-src="https://thumbnail.image.rakuten.co.jp/@0_mall/keitai/cabinet/item/41_7/41-907_2023fhrank_s.jpg?_ex=128x128" src="./41-907_2023fhrank_s.jpg" data-loaded="true">
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="item">
+<div class="page container">
+<div class="row">
+<div class="col-12 item-col border-gray">
+<a href="https://hb.afl.rakuten.co.jp/ichiba/0e4dd153.7fdc7f18.0e4dd154.329cf8af.c=mtlk.m=-_ver--new_18__pbid--20000152__size--336x280__imode--ichiba_contents_match__dt--PC__dp--true__uniqid--0bb58118631ae495675043fec0ba96cba613cab5197__frame--11__cimode--ichiba_contents_match_-/_RTmtlk20000152?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkouragumi%2F200240%2F&amp;itemMode=ichiba_contents_match&amp;ashiatoCount=0&amp;itemCode=kouragumi:10000207&amp;genreId=110409&amp;loadTime=5&amp;time=1696464412890" rel="nofollow" target="_blank">
+<img class="lozad img-item center-block" data-src="https://thumbnail.image.rakuten.co.jp/@0_mall/kouragumi/cabinet/07495043/07842125/imgrc0096853506.jpg?_ex=128x128">
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="item">
+<div class="page container">
+<div class="row">
+<div class="col-12 item-col border-gray">
+<a href="https://hb.afl.rakuten.co.jp/ichiba/0e4dd153.7fdc7f18.0e4dd154.329cf8af.c=mtlk.m=-_ver--new_18__pbid--20000152__size--336x280__imode--ichiba_contents_match__dt--PC__dp--true__uniqid--0bb58118631ae495675043fec0ba96cba613cab5197__frame--12__cimode--ichiba_contents_match_-/_RTmtlk20000152?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fkouragumi%2F200109%2F&amp;itemMode=ichiba_contents_match&amp;ashiatoCount=0&amp;itemCode=kouragumi:10000855&amp;genreId=200904&amp;loadTime=5&amp;time=1696464412890" rel="nofollow" target="_blank">
+<img class="lozad img-item center-block" data-src="https://thumbnail.image.rakuten.co.jp/@0_mall/kouragumi/cabinet/item_image/image1_200109.jpg?_ex=128x128">
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="item">
+<div class="page container">
+<div class="row">
+<div class="col-12 item-col border-gray">
+<a href="https://hb.afl.rakuten.co.jp/ichiba/0e4dd153.7fdc7f18.0e4dd154.329cf8af.c=mtlk.m=-_ver--new_18__pbid--20000152__size--336x280__imode--ichiba_contents_match__dt--PC__dp--true__uniqid--0bb58118631ae495675043fec0ba96cba613cab5197__frame--13__cimode--ichiba_contents_match_-/_RTmtlk20000152?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flens-1%2F1pureup96p_02%2F&amp;itemMode=ichiba_contents_match&amp;ashiatoCount=0&amp;itemCode=lens-1:10002142&amp;genreId=563999&amp;loadTime=5&amp;time=1696464412890" rel="nofollow" target="_blank">
+<img class="lozad img-item center-block" data-src="https://thumbnail.image.rakuten.co.jp/@0_mall/lens-1/cabinet/product_detail/cp/1pureup96p_02_cp400.jpg?_ex=128x128">
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="item">
+<div class="page container">
+<div class="row">
+<div class="col-12 item-col border-gray">
+<a href="https://hb.afl.rakuten.co.jp/ichiba/0e4dd153.7fdc7f18.0e4dd154.329cf8af.c=mtlk.m=-_ver--new_18__pbid--20000152__size--336x280__imode--ichiba_contents_match__dt--PC__dp--true__uniqid--0bb58118631ae495675043fec0ba96cba613cab5197__frame--14__cimode--ichiba_contents_match_-/_RTmtlk20000152?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Flifedrinkcompany%2Fzaosoda-500-48%2F&amp;itemMode=ichiba_contents_match&amp;ashiatoCount=0&amp;itemCode=lifedrinkcompany:10000022&amp;genreId=506536&amp;loadTime=5&amp;time=1696464412890" rel="nofollow" target="_blank">
+<img class="lozad img-item center-block" data-src="https://thumbnail.image.rakuten.co.jp/@0_mall/lifedrinkcompany/cabinet/08451002/ra-48.jpg?_ex=128x128">
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="item">
+<div class="page container">
+<div class="row">
+<div class="col-12 item-col border-gray">
+<a href="https://hb.afl.rakuten.co.jp/ichiba/0e4dd153.7fdc7f18.0e4dd154.329cf8af.c=mtlk.m=-_ver--new_18__pbid--20000152__size--336x280__imode--ichiba_contents_match__dt--PC__dp--true__uniqid--0bb58118631ae495675043fec0ba96cba613cab5197__frame--15__cimode--ichiba_contents_match_-/_RTmtlk20000152?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fotsuyocontactlens%2Fmedalist_1day_plus_a2%2F&amp;itemMode=ichiba_contents_match&amp;ashiatoCount=0&amp;itemCode=otsuyocontactlens:10000008&amp;genreId=563999&amp;loadTime=5&amp;time=1696464412890" rel="nofollow" target="_blank">
+<img class="lozad img-item center-block" data-src="https://thumbnail.image.rakuten.co.jp/@0_mall/otsuyocontactlens/cabinet/04013890/imgrc0073938818.gif?_ex=128x128">
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="item">
+<div class="page container">
+<div class="row">
+<div class="col-12 item-col border-gray">
+<a href="https://hb.afl.rakuten.co.jp/ichiba/0e4dd153.7fdc7f18.0e4dd154.329cf8af.c=mtlk.m=-_ver--new_18__pbid--20000152__size--336x280__imode--ichiba_contents_match__dt--PC__dp--true__uniqid--0bb58118631ae495675043fec0ba96cba613cab5197__frame--16__cimode--ichiba_contents_match_-/_RTmtlk20000152?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fscope%2Fiitteep23_wh%2F&amp;itemMode=ichiba_contents_match&amp;ashiatoCount=0&amp;itemCode=scope:10003548&amp;genreId=566130&amp;loadTime=5&amp;time=1696464412890" rel="nofollow" target="_blank">
+<img class="lozad img-item center-block" data-src="https://thumbnail.image.rakuten.co.jp/@0_mall/scope/cabinet/iittala/iia14c11_a_im05.jpg?_ex=128x128">
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="item">
+<div class="page container">
+<div class="row">
+<div class="col-12 item-col border-gray">
+<a href="https://hb.afl.rakuten.co.jp/ichiba/0e4dd153.7fdc7f18.0e4dd154.329cf8af.c=mtlk.m=-_ver--new_18__pbid--20000152__size--336x280__imode--ichiba_contents_match__dt--PC__dp--true__uniqid--0bb58118631ae495675043fec0ba96cba613cab5197__frame--17__cimode--ichiba_contents_match_-/_RTmtlk20000152?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fscope%2F18635%2F&amp;itemMode=ichiba_contents_match&amp;ashiatoCount=0&amp;itemCode=scope:10005909&amp;genreId=566130&amp;loadTime=5&amp;time=1696464412890" rel="nofollow" target="_blank">
+<img class="lozad img-item center-block loaded" data-src="https://thumbnail.image.rakuten.co.jp/@0_mall/scope/cabinet/iittala/iia16a11171_a_im01.jpg?_ex=128x128" src="./iia16a11171_a_im01.jpg" data-loaded="true">
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="item">
+<div class="page container">
+<div class="row">
+<div class="col-12 item-col border-gray">
+<a href="https://hb.afl.rakuten.co.jp/ichiba/0e4dd153.7fdc7f18.0e4dd154.329cf8af.c=mtlk.m=-_ver--new_18__pbid--20000152__size--336x280__imode--ichiba_contents_match__dt--PC__dp--true__uniqid--0bb58118631ae495675043fec0ba96cba613cab5197__frame--18__cimode--ichiba_contents_match_-/_RTmtlk20000152?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fscope%2Fiitteep15%2F&amp;itemMode=ichiba_contents_match&amp;ashiatoCount=0&amp;itemCode=scope:10032439&amp;genreId=566130&amp;loadTime=5&amp;time=1696464412890" rel="nofollow" target="_blank">
+<img class="lozad img-item center-block" data-src="https://thumbnail.image.rakuten.co.jp/@0_mall/scope/cabinet/iittala/iia14b11_a_im01.jpg?_ex=128x128">
+</a>
+</div>
+</div>
+</div>
+</div>
+
+<div class="item active left">
+<div class="page container">
+<div class="row">
+<div class="col-12 item-col border-gray">
+<a href="https://hb.afl.rakuten.co.jp/ichiba/0e4dd153.7fdc7f18.0e4dd154.329cf8af.c=mtlk.m=-_ver--new_18__pbid--20000152__size--336x280__imode--ichiba_contents_match__dt--PC__dp--true__uniqid--0bb58118631ae495675043fec0ba96cba613cab5197__frame--19__cimode--ichiba_contents_match_-/_RTmtlk20000152?pc=https%3A%2F%2Fitem.rakuten.co.jp%2Fsoukaidrink%2F4901777403291%2F&amp;itemMode=ichiba_contents_match&amp;ashiatoCount=0&amp;itemCode=soukaidrink:10014635&amp;genreId=101795&amp;loadTime=5&amp;time=1696464412890" rel="nofollow" target="_blank">
+<img class="lozad img-item center-block" data-src="https://thumbnail.image.rakuten.co.jp/@0_mall/soukaidrink/cabinet/291/4901777403291.jpg?_ex=128x128">
+</a>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+</div>
+
+<div id="control" class="container">
+<div class="row">
+<div class="col-xs-2">
+<a class="carousel-control left" href="https://static.affiliate.rakuten.co.jp/widget/html/mw_dynamic_view.html?rakuten_design=slide&amp;rakuten_affiliateId=0e4dd153.7fdc7f18.0e4dd154.329cf8af&amp;rakuten_items=ctsmatch&amp;rakuten_genreId=0&amp;rakuten_size=336x280&amp;rakuten_pattern=H2D&amp;rakuten_target=_blank&amp;rakuten_theme=gray&amp;rakuten_border=off&amp;rakuten_auto_mode=on&amp;rakuten_genre_title=off&amp;rakuten_pointbackId=_RTmtlk20000152&amp;rakuten_no_link=off&amp;rakuten_no_afl=off&amp;rakuten_no_logo=off&amp;rakuten_undispGenre=off&amp;rakuten_wmode=off&amp;rakuten_noScrollButton=off&amp;rakuten_bgColor=FFFFFF&amp;rakuten_txtColor=1D54A7&amp;rakuten_captionColor=000000&amp;rakuten_moverColor=C00000&amp;rakuten_recommend=on&amp;rakuten_service_flag=ichiba&amp;rakuten_adNetworkId=&amp;rakuten_adNetworkUrl=&amp;rakuten_searchKeyword=&amp;rakuten_disableLogo=&amp;rakuten_moverItembgColor=&amp;rakuten_moverCaptionColor=&amp;rakuten_slideSpeed=250&amp;rakuten_moreInfoColor=red&amp;rakuten_subTxtColor=&amp;rakuten_loadingImage=auto&amp;rakuten_imageDisplay=auto&amp;rakuten_txtDisplay=auto&amp;rakuten_captionDisplay=auto&amp;rakuten_moreInfoDisplay=auto&amp;rakuten_txtRow=auto&amp;rakuten_captionRow=auto&amp;rakuten_auto_interval=6000&amp;rakuten_imageSize=auto&amp;rakuten_slideCell=auto&amp;rakuten_slideDirection=auto&amp;rakuten_order=0,1,2,3&amp;rakuten_loadingTimeout=0&amp;rakuten_mediaId=&amp;rakuten_measurementId=-_ver--new_18_-&amp;rakuten_pointSiteId=&amp;rakuten_isAdvanced=false&amp;rakuten_isIE=false&amp;rakuten_deviceType=PC&amp;rakuten_itemAmount=20&amp;rakuten_tLogFrequency=10&amp;rakuten_timestamp=1696464403615&amp;rakuten_optout=off&amp;rakuten_deeplink=on&amp;rakuten_pUrl=https%3A%2F%2Fwww.spitz8823.com%2Ftyping%2Fkentei%2F01%2Ftype.cgi&amp;rakuten_version=20230106&amp;rakuten_datatype=json#mwc" role="button" data-slide="prev">
+<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="28" height="28" viewBox="0 0 24 24" stroke-width="3" stroke="#919191" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path stroke="none" d="M0 0h24v24H0z"></path>
+<polyline points="15 6 9 12 15 18"></polyline>
+</svg>
+<span class="sr-only">前</span>
+</a>
+</div>
+<div class="col-xs-8 p-2">
+<a href="https://www.rakuten.co.jp/?scid=af_mw_ab_s_20200914" target="_blank">
+<img class="img-responsive img-text-logo" src="./rakuten_logo.png">
+</a>
+<a href="https://xml.affiliate.rakuten.co.jp/personalize/" class="info-link" target="_blank">
+<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-info-circle" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke="#c1c1c1">
+<path stroke="none" d="M0 0h24v24H0z"></path>
+<circle cx="12" cy="12" r="9"></circle>
+<line x1="12" y1="8" x2="12.01" y2="8"></line>
+<polyline points="11 12 12 12 12 16 13 16 11 16"></polyline>
+</svg>
+</a>
+</div>
+<div class="col-xs-2">
+<a class="carousel-control right" href="https://static.affiliate.rakuten.co.jp/widget/html/mw_dynamic_view.html?rakuten_design=slide&amp;rakuten_affiliateId=0e4dd153.7fdc7f18.0e4dd154.329cf8af&amp;rakuten_items=ctsmatch&amp;rakuten_genreId=0&amp;rakuten_size=336x280&amp;rakuten_pattern=H2D&amp;rakuten_target=_blank&amp;rakuten_theme=gray&amp;rakuten_border=off&amp;rakuten_auto_mode=on&amp;rakuten_genre_title=off&amp;rakuten_pointbackId=_RTmtlk20000152&amp;rakuten_no_link=off&amp;rakuten_no_afl=off&amp;rakuten_no_logo=off&amp;rakuten_undispGenre=off&amp;rakuten_wmode=off&amp;rakuten_noScrollButton=off&amp;rakuten_bgColor=FFFFFF&amp;rakuten_txtColor=1D54A7&amp;rakuten_captionColor=000000&amp;rakuten_moverColor=C00000&amp;rakuten_recommend=on&amp;rakuten_service_flag=ichiba&amp;rakuten_adNetworkId=&amp;rakuten_adNetworkUrl=&amp;rakuten_searchKeyword=&amp;rakuten_disableLogo=&amp;rakuten_moverItembgColor=&amp;rakuten_moverCaptionColor=&amp;rakuten_slideSpeed=250&amp;rakuten_moreInfoColor=red&amp;rakuten_subTxtColor=&amp;rakuten_loadingImage=auto&amp;rakuten_imageDisplay=auto&amp;rakuten_txtDisplay=auto&amp;rakuten_captionDisplay=auto&amp;rakuten_moreInfoDisplay=auto&amp;rakuten_txtRow=auto&amp;rakuten_captionRow=auto&amp;rakuten_auto_interval=6000&amp;rakuten_imageSize=auto&amp;rakuten_slideCell=auto&amp;rakuten_slideDirection=auto&amp;rakuten_order=0,1,2,3&amp;rakuten_loadingTimeout=0&amp;rakuten_mediaId=&amp;rakuten_measurementId=-_ver--new_18_-&amp;rakuten_pointSiteId=&amp;rakuten_isAdvanced=false&amp;rakuten_isIE=false&amp;rakuten_deviceType=PC&amp;rakuten_itemAmount=20&amp;rakuten_tLogFrequency=10&amp;rakuten_timestamp=1696464403615&amp;rakuten_optout=off&amp;rakuten_deeplink=on&amp;rakuten_pUrl=https%3A%2F%2Fwww.spitz8823.com%2Ftyping%2Fkentei%2F01%2Ftype.cgi&amp;rakuten_version=20230106&amp;rakuten_datatype=json#mwc" role="button" data-slide="next">
+<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="28" height="28" viewBox="0 0 24 24" stroke-width="3" stroke="#919191" fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path stroke="none" d="M0 0h24v24H0z"></path>
+<polyline points="9 6 15 12 9 18"></polyline>
+</svg>
+<span class="sr-only">次</span>
+</a>
+</div>
+</div>
+</div>
+
+</div></div></body></html>
