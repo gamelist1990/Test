@@ -6,7 +6,7 @@
     "version": "23.01.11"
   },
   "accounts": true,
-  "assets_baseurl": "/Test/taiko/assets/",
+  "assets_baseurl": "/taiko/assets/",
   "custom_js": "",
   "email": null,
   "google_credentials": {
@@ -16,5 +16,5 @@
     "oauth_client_id": "",
     "project_number": ""
   },
-  "songs_baseurl": "/Test/taiko/songs/"
+  "songs_baseurl": "/taiko/songs/"
 }
