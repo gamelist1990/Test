@@ -51,7 +51,7 @@ var assets = {
         "view.css",
         "search.css"
     ],
-    "Test/taiko/img": [
+    "img": [
         "notes.png",
         "notes_drumroll.png",
         "notes_hit.png",
