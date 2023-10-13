@@ -1,10 +1,6 @@
 [
     {
-        "aliases": [
-            "jpop",
-            "j-pop",
-            "pops"
-        ],
+        "aliases": null,
         "id": 1,
         "song_skin": {
             "background": "#219fbb",
@@ -51,32 +47,6 @@
     },
     {
         "aliases": [
-            "ボーカロイド曲",
-            "ボーカロイド",
-            "vocaloid music",
-            "vocaloidmusic",
-            "vocaloid"
-        ],
-        "id": 3,
-        "song_skin": {
-            "background": "#def2ef",
-            "bg_img": "bg_genre_2.png",
-            "border": [
-                "#f7fbff",
-                "#79919f"
-            ],
-            "info_fill": "#546184",
-            "outline": "#5a6584",
-            "sort": 3
-        },
-        "title": "VOCALOID™ Music",
-        "title_lang": {
-            "en": "VOCALOID™ Music",
-            "ja": "ボーカロイド™曲"
-        }
-    },
-    {
-        "aliases": [
             "バラエティー",
             "どうよう",
             "童謡・民謡",
@@ -107,58 +77,6 @@
     },
     {
         "aliases": [
-            "game",
-            "gamemusic"
-        ],
-        "id": 6,
-        "song_skin": {
-            "background": "#9c72c0",
-            "bg_img": "bg_genre_5.png",
-            "border": [
-                "#bda2ce",
-                "#63407e"
-            ],
-            "info_fill": "#4f2886",
-            "outline": "#4b1c74",
-            "sort": 6
-        },
-        "title": "Game Music",
-        "title_lang": {
-            "cn": "游戏音乐",
-            "en": "Game Music",
-            "ja": "ゲームミュージック",
-            "ko": "게임",
-            "tw": "遊戲音樂"
-        }
-    },
-    {
-        "aliases": [
-            "namco",
-            "namcooriginal"
-        ],
-        "id": 7,
-        "song_skin": {
-            "background": "#ff5716",
-            "bg_img": "bg_genre_6.png",
-            "border": [
-                "#ffa66b",
-                "#b53000"
-            ],
-            "info_fill": "#961e00",
-            "outline": "#941c00",
-            "sort": 7
-        },
-        "title": "NAMCO Original",
-        "title_lang": {
-            "cn": "NAMCO原创音乐",
-            "en": "NAMCO Original",
-            "ja": "ナムコオリジナル",
-            "ko": "남코 오리지널",
-            "tw": "NAMCO原創音樂"
-        }
-    },
-    {
-        "aliases": [
             "クラッシック",
             "classic"
         ],
@@ -184,22 +102,59 @@
         }
     },
     {
-        "id": 8,
+        "aliases": null,
+        "id": 6,
         "song_skin": {
-            "background": "#8fd321",
-            "bg_img": "bg_genre_3.png",
+            "background": "#9c72c0",
+            "bg_img": "bg_genre_5.png",
             "border": [
-                "#f7fbff",
-                "#587d0b"
+                "#bda2ce",
+                "#63407e"
             ],
-            "info_fill": "#3c6800",
-            "outline": "#374c00",
-            "sort": 8
+            "info_fill": "#4f2886",
+            "outline": "#4b1c74",
+            "sort": 6
         },
-        "title": "Children & Folk"
+        "title": "Game Music",
+        "title_lang": {
+            "cn": "游戏音乐",
+            "en": "Game Music",
+            "ja": "ゲームミュージック",
+            "ko": "게임",
+            "tw": "遊戲音樂"
+        }
     },
     {
-        "id": 9,
+        "aliases": null,
+        "id": 7,
+        "song_skin": {
+            "background": "#ff5716",
+            "bg_img": "bg_genre_6.png",
+            "border": [
+                "#ffa66b",
+                "#b53000"
+            ],
+            "info_fill": "#961e00",
+            "outline": "#941c00",
+            "sort": 7
+        },
+        "title": "NAMCO Original",
+        "title_lang": {
+            "cn": "NAMCO原创音乐",
+            "en": "NAMCO Original",
+            "ja": "ナムコオリジナル",
+            "ko": "남코 오리지널",
+            "tw": "NAMCO原創音樂"
+        }
+    },
+    {
+        "aliases": [
+            "ボーカロイド曲",
+            "ボーカロイド",
+            "vocaloid music",
+            "vocaloid"
+        ],
+        "id": 3,
         "song_skin": {
             "background": "#def2ef",
             "bg_img": "bg_genre_2.png",
@@ -209,8 +164,12 @@
             ],
             "info_fill": "#546184",
             "outline": "#5a6584",
-            "sort": 9
+            "sort": 3
         },
-        "title": "Custom Songs"
+        "title": "VOCALOID™ Music",
+        "title_lang": {
+            "en": "VOCALOID™ Music",
+            "ja": "ボーカロイド™曲"
+        }
     }
 ]

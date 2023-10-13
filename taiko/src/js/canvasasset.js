@@ -1,8 +1,5 @@
 class CanvasAsset{
-	constructor(...args){
-		this.init(...args)
-	}
-	init(view, layer, position){
+	constructor(view, layer, position){
 		this.ctx = view.ctx
 		this.view = view
 		this.position = position

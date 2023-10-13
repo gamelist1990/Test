@@ -1,20 +1,20 @@
 {
   "_version": {
-    "commit": "1ae82e732b8a729f1c78c07e95019dacbc925dd9",
-    "commit_short": "1ae82e7",
-    "url": "https://github.com/EricLiver/cjdg/",
-    "version": "23.01.11"
+      "commit": "8fed7362ec44aac9655e57f4f37869a5ede4b25f",
+      "commit_short": "8fed736",
+      "url": "https://github.com/bui/taiko-web/",
+      "version": "23.01.11"
   },
   "accounts": true,
   "assets_baseurl": "/taiko/assets/",
   "custom_js": "",
   "email": null,
   "google_credentials": {
-    "api_key": "",
-    "gdrive_enabled": false,
-    "min_level": null,
-    "oauth_client_id": "",
-    "project_number": ""
+      "api_key": "",
+      "gdrive_enabled": false,
+      "min_level": null,
+      "oauth_client_id": "",
+      "project_number": ""
   },
   "songs_baseurl": "/taiko/songs/"
 }
