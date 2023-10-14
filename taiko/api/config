@@ -1,12 +1,13 @@
 {
   "_version": {
-      "commit": "",
+      "commit": null,
       "commit_short": "",
-      "url": "https://github.com/bui/taiko-web/",
-      "version": "null"
+      "url": "",
+      "version": "1.0.3"
   },
   "accounts": true,
-  "assets_baseurl": "/taiko/assets/",
+  "assets_baseurl": "/Test/taiko/assets/",
+  "basedir": "/",
   "custom_js": "",
   "email": null,
   "google_credentials": {
@@ -16,5 +17,99 @@
       "oauth_client_id": "",
       "project_number": ""
   },
-  "songs_baseurl": "/taiko/songs/"
+  "multiplayer_url": "",
+  "plugins": [
+      {
+          "hide": true,
+          "start": true,
+          "url": "/Test/taiko/src/js/plugin/ese.taikoweb.js"
+      },
+      {
+          "hide": true,
+          "start": true,
+          "url": "/Test/taiko/src/js/plugin/download-chart.taikoweb.js"
+      },
+      {
+          "hide": true,
+          "start": true,
+          "url": "/Test/taiko/src/js/plugin/TjaExpansionLib.taikoweb.js"
+      },
+      {
+          "hide": true,
+          "start": true,
+          "url": "/Test/taiko/src/js/plugin/loading-background.taikoweb.js"
+      },
+      {
+          "hide": true,
+          "start": true,
+          "url": "/Test/taiko/src/js/plugin/language-es-419.taikoweb.js"
+      },
+      {
+          "hide": true,
+          "start": true,
+          "url": "/Test/taiko/src/js/plugin/language-fr.taikoweb.js"
+      },
+      {
+          "hide": true,
+          "start": true,
+          "url": "/Test/taiko/src/js/plugin/language-pl.taikoweb.js"
+      },
+      {
+          "hide": false,
+          "start": false,
+          "url": "/Test/taiko/src/js/plugin/nightcore.taikoweb.js"
+      },
+      {
+          "hide": true,
+          "start": true,
+          "url": "/Test/taiko/src/js/plugin/recommended.taikoweb.js"
+      },
+      {
+          "hide": true,
+          "start": true,
+          "url": "/Test/taiko/src/js/plugin/newsong.taikoweb.js"
+      },
+      {
+          "hide": false,
+          "start": false,
+          "url": "/Test/taiko/src/js/plugin/change-music-speed.taikoweb.js"
+      },
+      {
+          "hide": false,
+          "start": false,
+          "url": "/Test/taiko/src/js/plugin/custom-scroll-speed.taikoweb.js"
+      },
+      {
+          "hide": false,
+          "start": false,
+          "url": "/Test/taiko/src/js/plugin/chaosv2.taikoweb.js"
+      },
+      {
+          "hide": false,
+          "start": false,
+          "url": "/Test/taiko/src/js/plugin/show-bpm.taikoweb.js"
+      },
+      {
+          "hide": false,
+          "start": false,
+          "url": "/Test/taiko/src/js/plugin/change-song-select-speed.taikoweb.js"
+      },
+      {
+          "hide": false,
+          "start": false,
+          "url": "/Test/taiko/src/js/plugin/TaikoTools.taikoweb.js"
+      },
+      {
+          "hide": false,
+          "start": false,
+          "url": "/Test/taiko/src/js/plugin/spartan-mode.taikoweb.js"
+      },
+      {
+          "hide": false,
+          "start": false,
+          "url": "/Test/taiko/src/js/plugin/disable-animations.taikoweb.js"
+      }
+  ],
+  "preview_type": "mp3",
+  "songs_baseurl": "/Test/taiko/songs/"
 }

@@ -196,7 +196,14 @@ class Scoresheet{
 		var ctx = this.ctx
 		ctx.save()
 		
-		var winW = innerWidth
+		var winW;
+		if (settings.getItem("aspect") === "wide"){
+			winW = innerHeight * 16 / 9;
+		}else if (settings.getItem("aspect") === "normal"){
+			winW = innerHeight * 4 / 3;
+		} else {
+			winW = innerWidth;
+		}
 		var winH = lastHeight
 		this.pixelRatio = window.devicePixelRatio || 1
 		var resolution = settings.getItem("resolution")
@@ -215,7 +222,7 @@ class Scoresheet{
 		
 		if(this.redrawing){
 			if(this.winW !== winW || this.winH !== winH){
-				this.canvas.width = Math.max(1, winW)
+				this.canvas.width  = Math.max(1, winW)
 				this.canvas.height = Math.max(1, winH)
 				ctx.scale(ratio, ratio)
 				this.canvas.style.width = (winW / this.pixelRatio) + "px"
@@ -389,7 +396,7 @@ class Scoresheet{
 			if(this.state.hasPointer === 0){
 				this.state.hasPointer = 1
 				if(!this.state.pointerLocked){
-					this.canvas.style.cursor = this.session ? "" : "pointer"
+					
 				}
 			}
 			ctx.save()
@@ -472,8 +479,20 @@ class Scoresheet{
 					var defaultName = p === 0 ? strings.defaultName : strings.default2PName
 					if(p === this.player[0]){
 						var name = account.loggedIn ? account.displayName : defaultName
+						var rank = account.loggedIn ? account.rank : strings.notLoggedIn
+						var rank_color = (account.loggedIn && account.rank_color) ? account.rank_color : false
 					}else{
 						var name = results.name || defaultName
+						var rank = results.rank || strings.notLoggedIn
+
+						if (results.name && results.rank) {
+							var rank = results.rank
+						} else if (results.name) {
+							var rank = ""
+						} else {
+							var rank = strings.notLoggedIn
+						}
+						var rank_color = results.rank_color || false
 					}
 					this.nameplateCache.get({
 						ctx: ctx,
@@ -488,6 +507,8 @@ class Scoresheet{
 							x: 3,
 							y: 3,
 							name: name,
+							rank: rank,
+							rank_color: rank_color,
 							font: this.font,
 							blue: p === 1
 						})
@@ -682,7 +703,7 @@ class Scoresheet{
 				}
 				var crownType = null
 				if(this.rules[p].clearReached(results.gauge)){
-					crownType = results.bad === "0" ? "gold" : "silver"
+					crownType = results.bad === "0" ? (results.ok === "0" ? "rainbow" : "gold") : "silver"
 				}
 				if(crownType !== null){
 					noCrownResultWait = 0;
@@ -709,7 +730,7 @@ class Scoresheet{
 						}
 						if(this.state.screen === "fadeIn" && elapsed >= 1200 && !this.state["fullcomboPlayed" + p]){
 							this.state["fullcomboPlayed" + p] = true
-							if(crownType === "gold"){
+							if(crownType === "gold" || crownType === "rainbow"){
 								this.playSound("v_results_fullcombo" + (p === 1 ? "2" : ""), p)
 							}
 						}
@@ -930,10 +951,10 @@ class Scoresheet{
 			var clearReached = this.controller.game.rules.clearReached(this.resultsObj.gauge)
 			var crown = ""
 			if(clearReached){
-				crown = this.resultsObj.bad === 0 ? "gold" : "silver"
+				crown = this.resultsObj.bad === 0 ? (this.resultsObj.ok === 0 ? "rainbow" : "gold") : "silver"
 			}
 			if(!oldScore || oldScore.points <= this.resultsObj.points){
-				if(oldScore && (oldScore.crown === "gold" || oldScore.crown === "silver" && !crown)){
+				if(oldScore && (oldScore.crown === "rainbow" || oldScore.crown === "gold" && (crown === "silver" || !crown) || oldScore.crown === "silver" && !crown)){
 					crown = oldScore.crown
 				}
 				this.resultsObj.crown = crown
@@ -943,7 +964,7 @@ class Scoresheet{
 				scoreStorage.add(hash, difficulty, this.resultsObj, true, title).catch(() => {
 					this.showWarning = {name: "scoreSaveFailed"}
 				})
-			}else if(oldScore && (crown === "gold" && oldScore.crown !== "gold" || crown && !oldScore.crown)){
+			}else if(oldScore && ((crown === "rainbow" && oldScore.crown !== "rainbow") || crown === "gold" && (oldScore.crown === "silver"  ||!oldScore.crown) || crown && !oldScore.crown)){
 				oldScore.crown = crown
 				scoreStorage.add(hash, difficulty, oldScore, true, title).catch(() => {
 					this.showWarning = {name: "scoreSaveFailed"}

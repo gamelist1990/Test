@@ -1,29 +1,6 @@
 [
     {
         "aliases": null,
-        "id": 1,
-        "song_skin": {
-            "background": "#219fbb",
-            "bg_img": "bg_genre_0.png",
-            "border": [
-                "#7ec3d3",
-                "#0b6773"
-            ],
-            "info_fill": "#004d68",
-            "outline": "#005058",
-            "sort": 1
-        },
-        "title": "Pop",
-        "title_lang": {
-            "cn": "流行音乐",
-            "en": "Pop",
-            "ja": "J-POP",
-            "ko": "POP",
-            "tw": "流行音樂"
-        }
-    },
-    {
-        "aliases": null,
         "id": 2,
         "song_skin": {
             "background": "#ff9700",
@@ -43,6 +20,55 @@
             "ja": "アニメ",
             "ko": "애니메이션",
             "tw": "卡通動畫音樂"
+        }
+    },
+    {
+        "aliases": null,
+        "id": 7,
+        "song_skin": {
+            "background": "#ff5716",
+            "bg_img": "bg_genre_6.png",
+            "border": [
+                "#ffa66b",
+                "#b53000"
+            ],
+            "info_fill": "#961e00",
+            "outline": "#941c00",
+            "sort": 7
+        },
+        "title": "NAMCO Original",
+        "title_lang": {
+            "cn": "NAMCO原创音乐",
+            "en": "NAMCO Original",
+            "ja": "ナムコオリジナル",
+            "ko": "남코 오리지널",
+            "tw": "NAMCO原創音樂"
+        }
+    },
+    {
+        "aliases": [
+            "クラッシック",
+            "classic"
+        ],
+        "id": 5,
+        "song_skin": {
+            "background": "#d1a016",
+            "bg_img": "bg_genre_4.png",
+            "border": [
+                "#e7cf6b",
+                "#9a6b00"
+            ],
+            "info_fill": "#865800",
+            "outline": "#734d00",
+            "sort": 5
+        },
+        "title": "Classical",
+        "title_lang": {
+            "cn": "古典音乐",
+            "en": "Classical",
+            "ja": "クラシック",
+            "ko": "클래식",
+            "tw": "古典音樂"
         }
     },
     {
@@ -76,29 +102,26 @@
         }
     },
     {
-        "aliases": [
-            "クラッシック",
-            "classic"
-        ],
-        "id": 5,
+        "aliases": null,
+        "id": 1,
         "song_skin": {
-            "background": "#d1a016",
-            "bg_img": "bg_genre_4.png",
+            "background": "#219fbb",
+            "bg_img": "bg_genre_0.png",
             "border": [
-                "#e7cf6b",
-                "#9a6b00"
+                "#7ec3d3",
+                "#0b6773"
             ],
-            "info_fill": "#865800",
-            "outline": "#734d00",
-            "sort": 5
+            "info_fill": "#004d68",
+            "outline": "#005058",
+            "sort": 1
         },
-        "title": "Classical",
+        "title": "Pop",
         "title_lang": {
-            "cn": "古典音乐",
-            "en": "Classical",
-            "ja": "クラシック",
-            "ko": "클래식",
-            "tw": "古典音樂"
+            "cn": "流行音乐",
+            "en": "Pop",
+            "ja": "J-POP",
+            "ko": "POP",
+            "tw": "流行音樂"
         }
     },
     {
@@ -125,29 +148,6 @@
         }
     },
     {
-        "aliases": null,
-        "id": 7,
-        "song_skin": {
-            "background": "#ff5716",
-            "bg_img": "bg_genre_6.png",
-            "border": [
-                "#ffa66b",
-                "#b53000"
-            ],
-            "info_fill": "#961e00",
-            "outline": "#941c00",
-            "sort": 7
-        },
-        "title": "NAMCO Original",
-        "title_lang": {
-            "cn": "NAMCO原创音乐",
-            "en": "NAMCO Original",
-            "ja": "ナムコオリジナル",
-            "ko": "남코 오리지널",
-            "tw": "NAMCO原創音樂"
-        }
-    },
-    {
         "aliases": [
             "ボーカロイド曲",
             "ボーカロイド",
@@ -170,6 +170,98 @@
         "title_lang": {
             "en": "VOCALOID™ Music",
             "ja": "ボーカロイド™曲"
+        }
+    },
+    {
+        "aliases": null,
+        "id": 8,
+        "song_skin": {
+            "background": "#3a3a91",
+            "bg_img": "bg_genre_Touhou.png",
+            "border": [
+                "#5b5bb5",
+                "#252570"
+            ],
+            "info_fill": "#242457",
+            "outline": "#242457",
+            "sort": 8
+        },
+        "title": "東方Project",
+        "title_lang": {
+            "cn": "東方Project",
+            "en": "東方Project",
+            "ja": "東方Project",
+            "ko": "東方Project",
+            "tw": "東方Project"
+        }
+    },
+    {
+        "aliases": null,
+        "id": 9,
+        "song_skin": {
+            "background": "#ff0600",
+            "bg_img": "bg_genre_YouTube.png",
+            "border": [
+                "#f23e3a",
+                "#b30202"
+            ],
+            "info_fill": "#8c0000",
+            "outline": "#8c0000",
+            "sort": 9
+        },
+        "title": "YouTuber",
+        "title_lang": {
+            "cn": "YouTuber",
+            "en": "YouTuber",
+            "ja": "ユーチューバー",
+            "ko": "YouTuber",
+            "tw": "YouTuber"
+        }
+    },
+    {
+        "aliases": null,
+        "id": 10,
+        "song_skin": {
+            "background": "#25C8FC",
+            "bg_img": "bg_genre_Hololive.png",
+            "border": [
+                "#5EDDEE",
+                "#529FF2"
+            ],
+            "info_fill": "#478BD3",
+            "outline": "#478BD3",
+            "sort": 10
+        },
+        "title": "ホロライブ",
+        "title_lang": {
+            "cn": "Hololive",
+            "en": "Hololive",
+            "ja": "ホロライブ",
+            "ko": "Hololive",
+            "tw": "Hololive"
+        }
+    },
+    {
+        "aliases": null,
+        "id": 11,
+        "song_skin": {
+            "background": "#1c1c1c",
+            "bg_img": "bg_genre_Hopeless.png",
+            "border": [
+                "#292929",
+                "#19191a"
+            ],
+            "info_fill": "#000000",
+            "outline": "#000000",
+            "sort": 11
+        },
+        "title": "しょうもない",
+        "title_lang": {
+            "cn": "Hopeless",
+            "en": "Hopeless",
+            "ja": "しょうもない",
+            "ko": "Hopeless",
+            "tw": "Hopeless"
         }
     }
 ]

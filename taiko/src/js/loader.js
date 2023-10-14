@@ -1,19 +1,23 @@
 class Loader{
-	constructor(callback){
+	constructor(...args){
+		this.init(...args)
+	}
+	init(callback){
 		this.callback = callback
 		this.loadedAssets = 0
 		this.assetsDiv = document.getElementById("assets")
 		this.screen = document.getElementById("screen")
 		this.startTime = Date.now()
 		this.errorMessages = []
+		this.songSearchGradient = "linear-gradient(to top, rgba(245, 246, 252, 0.08), #ff5963), "
 		
 		var promises = []
 		
-		promises.push(this.ajax("/taiko/src/views/loader.html").then(page => {
+		promises.push(this.ajax("src/views/loader.html").then(page => {
 			this.screen.innerHTML = page
 		}))
 		
-		promises.push(this.ajax("/taiko/api/config").then(conf => {
+		promises.push(this.ajax("api/config").then(conf => {
 			gameConfig = JSON.parse(conf)
 		}))
 		
@@ -25,7 +29,7 @@ class Loader{
 		this.loaderPercentage = document.querySelector("#loader .percentage")
 		this.loaderProgress = document.querySelector("#loader .progress")
 		
-		this.queryString = gameConfig._version.commit_short ? "?" + gameConfig._version.commit_short : ""
+		this.queryString = "?" // + Number(new Date())
 		
 		if(gameConfig.custom_js){
 			this.addPromise(this.loadScript(gameConfig.custom_js), gameConfig.custom_js)
@@ -35,7 +39,7 @@ class Loader{
 			assets.js.push("lib/oggmented-wasm.js")
 		}
 		assets.js.forEach(name => {
-			this.addPromise(this.loadScript("/taiko/src/js/" + name), "/taiko/src/js/" + name)
+			this.addPromise(this.loadScript("src/js/" + name), "src/js/" + name)
 		})
 		
 		var pageVersion = versionLink.href
@@ -55,13 +59,7 @@ class Loader{
 			assets.css.forEach(name => {
 				var stylesheet = document.createElement("link")
 				stylesheet.rel = "stylesheet"
-				stylesheet.href = "/taiko/src/css/" + name + this.queryString
-				document.head.appendChild(stylesheet)
-			})
-			assets.assetsCss.forEach(name => {
-				var stylesheet = document.createElement("link")
-				stylesheet.rel = "stylesheet"
-				stylesheet.href = gameConfig.assets_baseurl + name + this.queryString
+				stylesheet.href = "src/css/" + name + this.queryString
 				document.head.appendChild(stylesheet)
 			})
 			var checkStyles = () => {
@@ -81,9 +79,10 @@ class Loader{
 			}), url)
 		}
 		
-		assets.img.forEach(name=>{
+		assets.img.forEach(name => {
 			var id = this.getFilename(name)
 			var image = document.createElement("img")
+			image.crossOrigin = "anonymous"
 			var url = gameConfig.assets_baseurl + "img/" + name
 			this.addPromise(pageEvents.load(image), url)
 			image.id = name
@@ -92,15 +91,46 @@ class Loader{
 			assets.image[id] = image
 		})
 		
+		var css = []
+		for(let selector in assets.cssBackground){
+			let name = assets.cssBackground[selector]
+			var url = gameConfig.assets_baseurl + "img/" + name
+			this.addPromise(loader.ajax(url, request => {
+				request.responseType = "blob"
+			}).then(blob => {
+				var id = this.getFilename(name)
+				var image = document.createElement("img")
+				let blobUrl = URL.createObjectURL(blob)
+				var promise = pageEvents.load(image).then(() => {
+					var gradient = ""
+					if(selector === ".pattern-bg"){
+						loader.screen.style.backgroundImage = "url(\"" + blobUrl + "\")"
+					}else if(selector === "#song-search"){
+						gradient = this.songSearchGradient
+					}
+					css.push(this.cssRuleset({
+						[selector]: {
+							"background-image": gradient + "url(\"" + blobUrl + "\")"
+						}
+					}))
+				})
+				image.id = name
+				image.src = blobUrl
+				this.assetsDiv.appendChild(image)
+				assets.image[id] = image
+				return promise
+			}), url)
+		}
+		
 		assets.views.forEach(name => {
 			var id = this.getFilename(name)
-			var url = "/taiko/src/views/" + name + this.queryString
+			var url = "src/views/" + name + this.queryString
 			this.addPromise(this.ajax(url).then(page => {
 				assets.pages[id] = page
 			}), url)
 		})
 		
-		this.addPromise(this.ajax("/taiko/api/categories").then(cats => {
+		this.addPromise(this.ajax("api/categories").then(cats => {
 			assets.categories = JSON.parse(cats)
 			assets.categories.forEach(cat => {
 				if(cat.song_skin){
@@ -120,7 +150,7 @@ class Loader{
 					infoFill: "#656565"
 				}
 			})
-		}), "/taiko/api/categories")
+		}), "api/categories")
 		
 		var url = gameConfig.assets_baseurl + "img/vectors.json" + this.queryString
 		this.addPromise(this.ajax(url).then(response => {
@@ -129,7 +159,7 @@ class Loader{
 		
 		this.afterJSCount =
 			[
-				"/taiko/api/songs",
+				"api/songs",
 				"blurPerformance",
 				"categories"
 			].length +
@@ -144,7 +174,11 @@ class Loader{
 				return
 			}
 			
-			this.addPromise(this.ajax("/taiko/api/songs").then(songs => {
+			var style = document.createElement("style")
+			style.appendChild(document.createTextNode(css.join("\n")))
+			document.head.appendChild(style)
+			
+			this.addPromise(this.ajax("api/songs").then(songs => {
 				songs = JSON.parse(songs)
 				songs.forEach(song => {
 					var directory = gameConfig.songs_baseurl + song.id + "/"
@@ -163,29 +197,38 @@ class Loader{
 					if(song.lyrics){
 						song.lyricsFile = new RemoteFile(directory + "main.vtt")
 					}
+					if(song.video){
+						song.videoFile = new RemoteFile(directory + "main.mp4")
+					}
 					if(song.preview > 0){
-						song.previewMusic = new RemoteFile(directory + "preview.mp3")
+						song.previewMusic = new RemoteFile(directory + "preview." + gameConfig.preview_type)
 					}
 				})
 				assets.songsDefault = songs
 				assets.songs = assets.songsDefault
-			}), "/taiko/api/songs")
+			}), "api/songs")
 			
 			var categoryPromises = []
 			assets.categories //load category backgrounds to DOM
 				.filter(cat => cat.songSkin && cat.songSkin.bg_img)
 				.forEach(cat => {
 					let name = cat.songSkin.bg_img
-					var id = this.getFilename(name)
-					var image = document.createElement("img")
 					var url = gameConfig.assets_baseurl + "img/" + name
-					categoryPromises.push(pageEvents.load(image).catch(response => {
-						this.errorMsg(response, url)
+					categoryPromises.push(loader.ajax(url, request => {
+						request.responseType = "blob"
+					}).then(blob => {
+						var id = this.getFilename(name)
+						var image = document.createElement("img")
+						let blobUrl = URL.createObjectURL(blob)
+						var promise = pageEvents.load(image)
+						image.id = name
+						image.src = blobUrl
+						this.assetsDiv.appendChild(image)
+						assets.image[id] = image
+						return promise
+					}).catch(response => {
+						return this.errorMsg(response, url)
 					}))
-					image.id = name
-					image.src = url
-					this.assetsDiv.appendChild(image)
-					assets.image[id] = image
 				})
 			this.addPromise(Promise.all(categoryPromises))
 			
@@ -236,23 +279,30 @@ class Loader{
 			}), "blurPerformance")
 			
 			if(gameConfig.accounts){
-				this.addPromise(this.ajax("/taiko/api/scores/get").then(response => {
+				this.addPromise(this.ajax("api/scores/get").then(response => {
 					response = JSON.parse(response)
 					if(response.status === "ok"){
 						account.loggedIn = true
 						account.username = response.username
+						account.rank = response.user_rank
 						account.displayName = response.display_name
 						account.don = response.don
+						account.rank_color = response.user_rank_color
 						scoreStorage.load(response.scores)
 						pageEvents.send("login", account.username)
 					}
-				}), "/taiko/api/scores/get")
+				}), "api/scores/get")
 			}
 			
 			settings = new Settings()
 			pageEvents.setKbd()
 			scoreStorage = new ScoreStorage()
 			db = new IDB("taiko", "store")
+			plugins = new Plugins()
+			
+			if(localStorage.getItem("lastSearchQuery")){
+				localStorage.removeItem("lastSearchQuery")
+			}
 			
 			Promise.all(this.promises).then(() => {
 				if(this.error){
@@ -303,6 +353,8 @@ class Loader{
 						p2.send("invite", {
 							id: location.hash.slice(1).toLowerCase(),
 							name: account.loggedIn ? account.displayName : null,
+							rank: account.rank ? account.rank : null,
+							rank_color: account.rank_color ? account.rank_color : null,
 							don: account.loggedIn ? account.don : null
 						})
 						setTimeout(() => {
@@ -319,23 +371,45 @@ class Loader{
 					p2.hash("")
 				}
 				
-				promises.push(this.canvasTest.drawAllImages())
-				
-				Promise.all(promises).then(result => {
+				promises.push(this.canvasTest.drawAllImages().then(result => {
 					perf.allImg = result
+				}))
+				
+				if(gameConfig.plugins){
+					gameConfig.plugins.forEach(obj => {
+						if(obj.url){
+							var plugin = plugins.add(obj.url, {
+								hide: obj.hide
+							})
+							if(plugin){
+								plugin.loadErrors = true
+								promises.push(plugin.load(true).then(() => {
+									if(obj.start){
+										return plugin.start(false, true)
+									}
+								}).catch(response => {
+									return this.errorMsg(response, obj.url)
+								}))
+							}
+						}
+					})
+				}
+				
+				Promise.all(promises).then(() => {
 					perf.load = Date.now() - this.startTime
 					this.canvasTest.clean()
 					this.clean()
 					this.callback(songId)
+					this.ready = true
 					pageEvents.send("ready", readyEvent)
-				})
-			}, this.errorMsg.bind(this))
+				}, e => this.errorMsg(e))
+			}, e => this.errorMsg(e))
 		})
 	}
 	addPromise(promise, url){
 		this.promises.push(promise)
 		promise.then(this.assetLoaded.bind(this), response => {
-			this.errorMsg(response, url)
+			return this.errorMsg(response, url)
 		})
 	}
 	soundUrl(name){
@@ -351,9 +425,20 @@ class Loader{
 		return name.slice(0, name.lastIndexOf("."))
 	}
 	errorMsg(error, url){
+		var rethrow
 		if(url || error){
+			if(typeof error === "object" && error.constructor === Error){
+				rethrow = error
+				error = error.stack || ""
+				var index = error.indexOf("\n    ")
+				if(index !== -1){
+					error = error.slice(0, index)
+				}
+			}else if(Array.isArray(error)){
+				error = error[0]
+			}
 			if(url){
-				error = (Array.isArray(error) ? error[0] + ": " : (error ? error + ": " : "")) + url
+				error = (error ? error + ": " : "") + url
 			}
 			this.errorMessages.push(error)
 			pageEvents.send("loader-error", url || error)
@@ -378,7 +463,7 @@ class Loader{
 				if(!lang){
 					lang = "en"
 				}
-				loader.screen.getElementsByClassName("view-content")[0].innerText = allStrings[lang].errorOccured
+				loader.screen.getElementsByClassName("view-content")[0].innerText = allStrings[lang] && allStrings[lang].errorOccured || allStrings.en.errorOccured
 			}
 			var loaderError = loader.screen.getElementsByClassName("loader-error-div")[0]
 			loaderError.style.display = "flex"
@@ -429,6 +514,10 @@ class Loader{
 		}
 		var percentage = Math.floor(this.loadedAssets * 100 / (this.promises.length + this.afterJSCount))
 		this.errorTxt.element[this.errorTxt.method] = "```\n" + this.errorMessages.join("\n") + "\nPercentage: " + percentage + "%\n```"
+		if(rethrow || error){
+			console.error(rethrow || error)
+		}
+		return Promise.reject()
 	}
 	assetLoaded(){
 		if(!this.error){
@@ -441,6 +530,19 @@ class Loader{
 	changePage(name, patternBg){
 		this.screen.innerHTML = assets.pages[name]
 		this.screen.classList[patternBg ? "add" : "remove"]("pattern-bg")
+	}
+	cssRuleset(rulesets){
+		var css = []
+		for(var selector in rulesets){
+			var declarationsObj = rulesets[selector]
+			var declarations = []
+			for(var property in declarationsObj){
+				var value = declarationsObj[property]
+				declarations.push("\t" + property + ": " + value + ";")
+			}
+			css.push(selector + "{\n" + declarations.join("\n") + "\n}")
+		}
+		return css.join("\n")
 	}
 	ajax(url, customRequest, customResponse){
 		var request = new XMLHttpRequest()

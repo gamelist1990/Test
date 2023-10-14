@@ -272,6 +272,19 @@ class ImportSongs{
 				if(meta.wave){
 					songObj.music = this.otherFiles[dir + meta.wave.toLowerCase()] || songObj.music
 				}
+				if (meta.bgmovie){
+					let file = this.otherFiles[dir + meta.bgmovie.toLowerCase()]
+					if(file) {
+						songObj.video = true;
+						songObj.videoFile = file;
+					}
+				}
+				if (meta.movieoffset){
+					songObj.videoOffset = Number(meta.movieoffset);
+				}
+				if(meta.bgblur){
+					songObj.videoBlur = Number(meta.bgblur);
+				}
 				if(meta.genre){
 					if(meta.genre.toLowerCase() in this.categoryAliases){
 						songObj.category_id = this.categoryAliases[meta.genre.toLowerCase()]

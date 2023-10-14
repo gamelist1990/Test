@@ -49,6 +49,12 @@ class View{
 			moveHover: null,
 			hasPointer: false
 		}
+		if (settings.getItem("aspect") === "wide" || settings.getItem("aspect") === "normal"){
+			this.canvas.style.position = "absolute";
+			this.canvas.style.right = 0;
+			this.canvas.style.left = 0;
+			this.canvas.style.margin = "auto";
+		}
 		this.nextBeat = 0
 		this.gogoTime = 0
 		this.gogoTimeStarted = -Infinity
@@ -149,7 +155,10 @@ class View{
 	}
 	run(){
 		if(this.multiplayer !== 2){
-			this.setBackground()
+			if(!this.controller.video)
+				this.setBackground()
+			else
+				this.setVideo();
 		}
 		this.setDonBg()
 		
@@ -162,7 +171,14 @@ class View{
 	refresh(){
 		var ctx = this.ctx
 		
-		var winW = innerWidth
+		var winW;
+		if (settings.getItem("aspect") === "wide"){
+			winW = innerHeight * 16 / 9;
+		}else if (settings.getItem("aspect") === "normal"){
+			winW = innerHeight * 4 / 3;
+		} else {
+			winW = innerWidth;
+		}
 		var winH = lastHeight
 		
 		if(winW / 32 > winH / 9){
@@ -199,7 +215,7 @@ class View{
 			this.ratio = ratio
 			
 			if(this.player !== 2){
-				this.canvas.width = Math.max(1, winW)
+				this.canvas.width  = Math.max(1, winW)
 				this.canvas.height = Math.max(1, winH)
 				ctx.scale(ratio, ratio)
 				this.canvas.style.width = (winW / this.pixelRatio) + "px"
@@ -378,8 +394,18 @@ class View{
 				var defaultName = this.player === 1 ? strings.defaultName : strings.default2PName
 				if(this.multiplayer === 2){
 					var name = p2.name || defaultName
+					if (p2.name && p2.rank) {
+						var rank = p2.rank
+					} else if (p2.name) {
+						var rank = ""
+					} else {
+						var rank = strings.notLoggedIn
+					}
+					var rank_color = p2.rank_color || false
 				}else{
 					var name = account.loggedIn ? account.displayName : defaultName
+					var rank = account.loggedIn ? account.rank : strings.notLoggedIn
+					var rank_color = (account.loggedIn && account.rank_color) ? account.rank_color : false
 				}
 				this.draw.nameplate({
 					ctx: ctx,
@@ -387,6 +413,8 @@ class View{
 					y: 3,
 					scale: 0.8,
 					name: name,
+					rank: rank,
+					rank_color: rank_color, // old account.don.body_fil
 					font: this.font,
 					blue: this.player === 2
 				})
@@ -562,14 +590,26 @@ class View{
 				var defaultName = this.player === 1 ? strings.defaultName : strings.default2PName
 				if(this.multiplayer === 2){
 					var name = p2.name || defaultName
+					if (p2.name && p2.rank) {
+						var rank = p2.rank
+					} else if (p2.name) {
+						var rank = ""
+					} else {
+						var rank = strings.notLoggedIn
+					}
+					var rank_color = p2.rank_color || false
 				}else{
 					var name = account.loggedIn ? account.displayName : defaultName
+					var rank = account.loggedIn ? account.rank : strings.notLoggedIn
+					var rank_color = (account.loggedIn && account.rank_color) ? account.rank_color : false
 				}
 				this.draw.nameplate({
 					ctx: ctx,
 					x: 3,
 					y: 3,
 					name: name,
+					rank: rank,
+					rank_color: rank_color, // old account.don.body_fil
 					font: this.font,
 					blue: this.player === 2
 				})
@@ -1408,6 +1448,14 @@ class View{
 			this.setBgImage(this.songStage, assets.image[prefix + "bg_stage_" + songSkinName].src)
 		}
 	}
+	
+	setVideo(){
+		var bg = document.getElementById("bgvideo");
+		if(this.controller.videoBlur)
+			bg.style.filter = `blur(${this.controller.videoBlur}px)`;
+		bg.appendChild(this.controller.video)
+	}
+	
 	setDonBg(){
 		var selectedSong = this.controller.selectedSong
 		var songSkinName = selectedSong.songSkin.name
@@ -1885,14 +1933,16 @@ class View{
 		}
 		
 		if(this.gogoTime){
-			this.assets.fireworks.forEach(fireworksAsset => {
-				fireworksAsset.setAnimation("normal")
-				fireworksAsset.setAnimationStart(startMS)
-				var length = fireworksAsset.getAnimationLength("normal")
-				fireworksAsset.setAnimationEnd(length, () => {
-					fireworksAsset.setAnimation(false)
+			if(!settings.getItem("performanceMode")){
+				this.assets.fireworks.forEach(fireworksAsset => {
+					fireworksAsset.setAnimation("normal")
+					fireworksAsset.setAnimationStart(startMS)
+					var length = fireworksAsset.getAnimationLength("normal")
+					fireworksAsset.setAnimationEnd(length, () => {
+						fireworksAsset.setAnimation(false)
+					})
 				})
-			})
+			}
 			this.assets.fire.setAnimation("normal")
 			var don = this.assets.don
 			don.setAnimation("gogostart")
@@ -2169,7 +2219,7 @@ class View{
 			return
 		}
 		if(enabled && this.state.hasPointer === false){
-			this.canvas.style.cursor = "pointer"
+			
 			this.state.hasPointer = true
 		}else if(!enabled && this.state.hasPointer === true){
 			this.canvas.style.cursor = ""

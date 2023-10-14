@@ -40,6 +40,8 @@ class Session{
 		p2.send("invite", {
 			id: null,
 			name: account.loggedIn ? account.displayName : null,
+			rank: account.rank ? account.rank : null,
+			rank_color: account.rank_color ? account.rank_color : null,
 			don: account.loggedIn ? account.don : null
 		})
 		pageEvents.send("session")

@@ -1,4 +1,3 @@
-
 class SongSelect{
 	constructor(...args){
 		this.init(...args)
@@ -65,12 +64,6 @@ class SongSelect{
 				background: "#6c8ceb",
 				border: ["#a2b6f5", "#1f33ed"],
 				outline: "#1f52ed"
-			},
-			"line": {
-				sort: 0,
-				background: "#20c92f",
-				border: ["#4ccf58", "#10b01e"],
-				outline: "#0f7017"
 			},
 			"settings": {
 				sort: 0,
@@ -198,30 +191,7 @@ class SongSelect{
 					category: strings.random
 				})
 			}
-			else if(window.navigator.userAgent.toLowerCase().indexOf("windows nt") !== -1) {
-				this.songs.push({
-					title: strings.wininstall,
-					skin: this.songSkin.discord,
-					action: "installapp",
-					category: strings.random
-				})
-			}
-			else if(window.navigator.platform.includes("mac")) {
-				this.songs.push({
-					title: strings.macinstall,
-					skin: this.songSkin.discord,
-					action: "installapp",
-					category: strings.random
-				})
-			}
-			else {
-				this.songs.push({
-					title: strings.install,
-					skin: this.songSkin.discord,
-					action: "installapp",
-					category: strings.random
-				})
-			}
+			
 		} else {
 			this.songs.push({
 				title: strings.mbinstall,
@@ -249,45 +219,9 @@ class SongSelect{
 			category: strings.sns
 		})
 		this.songs.push({
-			title: strings.tweet,
-			skin: this.songSkin.about,
-			action: "tweet",
-			category: strings.sns
-		})
-		this.songs.push({
-			title: "運営のTwitter",
-			skin: this.songSkin.about,
-			action: "twitter_owner",
-			category: strings.sns
-		})
-		this.songs.push({
-			title: "公式Twitter",
-			skin: this.songSkin.about,
-			action: "twitter",
-			category: strings.sns
-		})
-		this.songs.push({
-			title: strings.line,
-			skin: this.songSkin.line,
-			action: "line",
-			category: strings.sns
-		})
-		this.songs.push({
-			title: strings.line_oc,
-			skin: this.songSkin.line,
-			action: "line_oc",
-			category: strings.sns
-		})
-		this.songs.push({
 			title: strings.help,
 			skin: this.songSkin.discord,
 			action: "help",
-			category: strings.random
-		})
-		this.songs.push({
-			title: strings.teian,
-			skin: this.songSkin.discord,
-			action: "teian",
 			category: strings.random
 		})
 		this.songs.push({
@@ -774,7 +708,6 @@ class SongSelect{
 			return
 		}
 		if(enabled && this.state.hasPointer === false){
-			this.canvas.style.cursor = 'url("https://kairun.jp/Taiko/cursor/click.png"), auto'
 			this.state.hasPointer = true
 		}else if(!enabled && this.state.hasPointer === true){
 			this.canvas.style.cursor = ""
@@ -1023,24 +956,10 @@ class SongSelect{
 				this.toyoutube()
 			}else if(currentSong.action === "discord"){
 				this.toDiscord()
-			}else if(currentSong.action === "line"){
-				this.toLINE()
-			}else if(currentSong.action === "line_oc"){
-				this.toLINE_OC()
-			}else if(currentSong.action === "tweet"){
-				this.toTweet()
-			}else if(currentSong.action === "twitter_owner"){
-				this.toOwnerTwitter()
-			}else if(currentSong.action === "twitter"){
-				this.toTwitter()
 			}else if(currentSong.action === "deletecache"){
 				this.todeletecache()
 			}else if(currentSong.action === "help"){
 				this.toHelp()
-			}else if(currentSong.action === "teian"){
-				this.toteian()
-			}else if(currentSong.action === "installapp"){
-				this.toinstallapp()
 			}else if(currentSong.action === "invite"){
 				this.toinvite()
 			}else if(currentSong.action === "settings"){
@@ -1185,36 +1104,6 @@ class SongSelect{
 			new totoInvite(this.touchEnabled)
 		}, 500)
 	}
-	toLINE(){
-		this.playSound("se_don")
-		setTimeout(() => {
-			new totoLINE(this.touchEnabled)
-		}, 500)
-	}
-	toLINE_OC(){
-		this.playSound("se_don")
-		setTimeout(() => {
-			new totoLINE_OC(this.touchEnabled)
-		}, 500)
-	}
-	toTweet(){
-		this.playSound("se_don")
-		setTimeout(() => {
-			new totoTweet(this.touchEnabled)
-		}, 500)
-	}
-	toOwnerTwitter(){
-		this.playSound("se_don")
-		setTimeout(() => {
-			new totoOwnerTwitter(this.touchEnabled)
-		}, 500)
-	}
-	toTwitter(){
-		this.playSound("se_don")
-		setTimeout(() => {
-			new totoTwitter(this.touchEnabled)
-		}, 500)
-	}
 	todeletecache(){
 		this.playSound("se_don")
 		setTimeout(() => {
@@ -1227,18 +1116,7 @@ class SongSelect{
 			new totoHelp(this.touchEnabled)
 		}, 500)
 	}
-	toteian(){
-		this.playSound("se_don")
-		setTimeout(() => {
-			new totoTeian(this.touchEnabled)
-		}, 500)
-	}
-	toinstallapp(){
-		this.playSound("se_don")
-		setTimeout(() => {
-			new totoinstallapp(this.touchEnabled)
-		}, 500)
-	}
+	
 	toSettings(){
 		this.playSound("se_don")
 		this.clean()
@@ -3239,24 +3117,10 @@ class SongSelect{
 }
 let deferredPrompt;
 
-class totoinstallapp{
-	constructor(touchEnabled){
-		this.touchEnabled = touchEnabled
-		if(window.navigator.userAgent.toLowerCase().indexOf("windows nt") !== -1) {
-			location.href = "https://cdn.kairun.jp/Kairuntaiko-Setup.exe";
-		}
-		if(window.navigator.platform.includes("mac")) {
-			location.href = "https://taiko.kairun.jp/cdn/KairunTaiko.dmg";
-		}else {
-			pwaInstall();
-		}
-	}
-}
-
 class totoyoutube{
 	constructor(touchEnabled){
 		this.touchEnabled = touchEnabled
-        window.open('https://www.youtube.com/c/kairu8264', '_blank');
+        window.open('https://www.youtube.com/channel/UCue_c1nQyNwfZa2cLR4fo7g?sub_confirmation=1', '_blank');
 		cancelTouch = false
 	}
 }
@@ -3264,7 +3128,7 @@ class totoyoutube{
 class totoDiscord{
 	constructor(touchEnabled){
 		this.touchEnabled = touchEnabled
-        window.open('https://kairun.jp/Discord/', '_blank');
+        window.open('https://discord.gg/cDnpQmj3Mc', '_blank');
 		cancelTouch = false
 	}
 }
@@ -3272,55 +3136,7 @@ class totoDiscord{
 class totoInvite{
 	constructor(touchEnabled){
 		this.touchEnabled = touchEnabled
-		location.href = "https://taiko.kairun.jp/Invite/"
-		cancelTouch = false
-	}
-}
-
-class totoLINE{
-	constructor(touchEnabled){
-		this.touchEnabled = touchEnabled
-        window.open('/LINE/', '_blank');
-		cancelTouch = false
-	}
-}
-
-class totoLINE_OC{
-	constructor(touchEnabled){
-		this.touchEnabled = touchEnabled
-        window.open('/LINE/OC/', '_blank');
-		cancelTouch = false
-	}
-}
-
-class totoTweet{
-	constructor(touchEnabled){
-		this.touchEnabled = touchEnabled
-        window.open('https://game.kairun.jp/Taiko/Share/Twitter/', '_blank');
-		cancelTouch = false
-	}
-}
-
-class totoOwnerTwitter{
-	constructor(touchEnabled){
-		this.touchEnabled = touchEnabled
-        window.open('https://kairun.jp/Twitter/', '_blank');
-		cancelTouch = false
-	}
-}
-
-class totoTwitter{
-	constructor(touchEnabled){
-		this.touchEnabled = touchEnabled
-        window.open('https://twitter.com/kairuntaiko', '_blank');
-		cancelTouch = false
-	}
-}
-
-class totoTeian{
-	constructor(touchEnabled){
-		this.touchEnabled = touchEnabled
-        window.open('https://game.kairun.jp/Taiko/Teian/', '_blank');
+		location.href = "/Test/taiko/Invite.html"
 		cancelTouch = false
 	}
 }
@@ -3328,7 +3144,7 @@ class totoTeian{
 class totoHelp{
 	constructor(touchEnabled){
 		this.touchEnabled = touchEnabled
-        window.open('https://game.kairun.jp/Taiko/Lag/', '_blank');
+        window.open('https//gamelist1990.github.io/gamelist1990/gamelist2023', '_blank');
 		cancelTouch = false
 	}
 }

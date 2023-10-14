@@ -3,6 +3,7 @@ class Game{
 		this.init(...args)
 	}
 	init(controller, selectedSong, songData){
+		this.hidden = false;
 		this.controller = controller
 		this.selectedSong = selectedSong
 		this.songData = songData
@@ -510,6 +511,8 @@ class Game{
 				if(this.controller.multiplayer === 1){
 					var obj = this.getGlobalScore()
 					obj.name = account.loggedIn ? account.displayName : null
+					obj.rank = account.loggedIn ? account.rank : null
+					obj.rank_color = (account.loggedIn && account.rank_color) ? account.rank_color : null
 					p2.send("gameresults", obj)
 				}
 				this.musicFadeOut++
@@ -548,6 +551,34 @@ class Game{
 			this.mainMusicPlaying = true
 		}
 	}
+	playBackgroundVideo(){
+		[...document.getElementsByClassName("donbg")].forEach(elem =>{
+			elem.style.display = "none"
+		});
+		var ms = this.elapsedTime - (this.controller.videoOffset*1000);
+		if(this.elapsedTime <= 0)
+			return;
+		if(document.hidden){
+			this.hidden = true;
+		}else{
+			if(this.hidden){
+				/*if(!this.paused){
+					this.controller.video.addEventListener("canplay",() => {
+						this.togglePause();
+					},{
+						once: true
+					})
+				}*/
+				this.controller.video.currentTime = ms / 1000
+			}
+			this.hidden = false;
+		}
+		if(!this.backgroundVideoPlaying && this.controller.video){
+			this.controller.video.currentTime = ms / 1000
+			this.controller.video.play();
+			this.backgroundVideoPlaying = true
+		}
+	}
 	togglePause(forcePause, pauseMove, noSound){
 		if(!this.paused){
 			if(forcePause === false){
@@ -561,6 +592,10 @@ class Game{
 			if(this.mainAsset){
 				this.mainAsset.stop()
 			}
+			if(this.controller.video){
+				this.controller.video.pause();
+			}
+			this.backgroundVideoPlaying = false;
 			this.mainMusicPlaying = false
 			this.view.pauseMove(pauseMove || 0, true)
 			this.view.gameDiv.classList.add("game-paused")

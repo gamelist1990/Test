@@ -30,11 +30,11 @@ var translations = {
     },
 
     taikoWeb: {
-        ja: "たいこウェブ",
-        en: "Taiko Web",
-        cn: "太鼓网页",
-        tw: "太鼓網頁",
-        ko: "태고 웹"
+        ja: "太鼓の達人！",
+        en: "Taikono tatujin",
+        cn: null,
+        tw: null,
+        ko: null
     },
     titleProceed: {
         ja: "クリックするかEnterを押す！",
@@ -51,10 +51,10 @@ var translations = {
         ko: "이 비공식 시뮬레이터는 반다이 남코와 관련이 없습니다."
     },
     titleCopyright: {
-        en: "Taiko no Tatsujin ©&™ 2011 BANDAI NAMCO Entertainment Inc."
+        en: "Kairun no Tatsujin ©&™ 2022 KAIDAI RUNCO Entertainment Inc."
     },
     selectSong: {
-        ja: "曲をえらぶ",
+        ja: "曲を選ぶ",
         en: "Select Song",
         cn: "选择乐曲",
         tw: "選擇樂曲",
@@ -75,11 +75,18 @@ var translations = {
         ko: "돌아가기"
     },
     random: {
-        ja: "ランダム",
-        en: "Random",
-        cn: "随机",
-        tw: "隨機",
-        ko: "랜덤"
+        ja: "全般",
+        en: "general",
+        cn: null,
+        tw: null,
+        ko: null
+    },
+    sns: {
+        ja: null,
+        en: "SNS",
+        cn: null,
+        tw: null,
+        ko: null
     },
     randomSong: {
         ja: "ランダムに曲をえらぶ",
@@ -96,11 +103,8 @@ var translations = {
         ko: "플레이 방법"
     },
     aboutSimulator: {
-        ja: "このシミュレータについて",
-        en: "About Simulator",
-        cn: "关于模拟器",
-        tw: "關於模擬器",
-        ko: "시뮬레이터 정보"
+        ja: null,
+        en: "改造版太鼓の達人について"
     },
     gameSettings: {
         ja: "ゲーム設定",
@@ -165,6 +169,230 @@ var translations = {
         tw: "魔王",
         ko: "귀신"
     },
+    soundOptions: {
+		ja: "音色",
+		en: "sound",
+		cn: "音色",
+		tw: "音色",
+		ko: "sound"
+	},
+	taikoS: {
+		ja: "太鼓",
+		en: "太鼓",
+		cn: "太鼓",
+		tw: "太鼓",
+		ko: "太鼓"
+	},
+	testS: {
+		ja: "どんちゃん",
+		en: "どんちゃん",
+		cn: "どんちゃん",
+		tw: "どんちゃん",
+		ko: "どんちゃん"
+	},
+	s3: {
+		ja: "豪華な太鼓",
+		en: "豪華な太鼓",
+		cn: "豪華な太鼓",
+		tw: "豪華な太鼓",
+		ko: "豪華な太鼓"
+	},
+	s4: {
+		ja: "太古の太鼓",
+		en: "太古の太鼓",
+		cn: "太古の太鼓",
+		tw: "太古の太鼓",
+		ko: "太古の太鼓"
+	},
+	s5: {
+		ja: "ドラム",
+		en: "ドラム",
+		cn: "ドラム",
+		tw: "ドラム",
+		ko: "ドラム"
+	},
+	s6: {
+		ja: "シンセドラム",
+		en: "シンセドラム",
+		cn: "シンセドラム",
+		tw: "シンセドラム",
+		ko: "シンセドラム"
+	},
+	s7: {
+		ja: "ドラゴンドラム",
+		en: "ドラゴンドラム",
+		cn: "ドラゴンドラム",
+		tw: "ドラゴンドラム",
+		ko: "ドラゴンドラム"
+	},
+	s8: {
+		ja: "もくぎょ",
+		en: "もくぎょ",
+		cn: "もくぎょ",
+		tw: "もくぎょ",
+		ko: "もくぎょ"
+	},
+	s9: {
+		ja: "メドル太鼓",
+		en: "メドル太鼓",
+		cn: "メドル太鼓",
+		tw: "メドル太鼓",
+		ko: "メドル太鼓"
+	},
+	s10: {
+		ja: "ヘビメタ太鼓",
+		en: "ヘビメタ太鼓",
+		cn: "ヘビメタ太鼓",
+		tw: "ヘビメタ太鼓",
+		ko: "ヘビメタ太鼓"
+	},
+	s11: {
+		ja: "コンガ",
+		en: "コンガ",
+		cn: "コンガ",
+		tw: "コンガ",
+		ko: "コンガ"
+	},
+	s12: {
+		ja: "大地のコンガ",
+		en: "大地のコンガ",
+		cn: "大地のコンガ",
+		tw: "大地のコンガ",
+		ko: "大地のコンガ"
+	},
+	s13: {
+		ja: "手裏剣",
+		en: "手裏剣",
+		cn: "手裏剣",
+		tw: "手裏剣",
+		ko: "手裏剣"
+	},
+	s14: {
+		ja: "神風手裏剣",
+		en: "神風手裏剣",
+		cn: "神風手裏剣",
+		tw: "神風手裏剣",
+		ko: "神風手裏剣"
+	},
+	s15: {
+		ja: "剣道",
+		en: "剣道",
+		cn: "剣道",
+		tw: "剣道",
+		ko: "剣道"
+	},
+	s16: {
+		ja: "和田かつ",
+		en: "和田かつ",
+		cn: "和田かつ",
+		tw: "和田かつ",
+		ko: "和田かつ"
+	},
+	s17: {
+		ja: "ドラ",
+		en: "ドラ",
+		cn: "ドラ",
+		tw: "ドラ",
+		ko: "ドラ"
+	},
+	s18: {
+		ja: "フライパン",
+		en: "フライパン",
+		cn: "フライパン",
+		tw: "フライパン",
+		ko: "フライパン"
+	},
+	s19: {
+		ja: "クイズ",
+		en: "クイズ",
+		cn: "クイズ",
+		tw: "クイズ",
+		ko: "クイズ"
+	},
+	s20: {
+		ja: "野球",
+		en: "野球",
+		cn: "野球",
+		tw: "野球",
+		ko: "野球"
+	},
+	s21: {
+		ja: "サッカー",
+		en: "サッカー",
+		cn: "サッカー",
+		tw: "サッカー",
+		ko: "サッカー"
+	},
+	s22: {
+		ja: "メカドン",
+		en: "メカドン",
+		cn: "メカドン",
+		tw: "メカドン",
+		ko: "メカドン"
+	},
+	s23: {
+		ja: "小太鼓",
+		en: "小太鼓",
+		cn: "小太鼓",
+		tw: "小太鼓",
+		ko: "小太鼓"
+	},
+	s24: {
+		ja: "雷太鼓",
+		en: "雷太鼓",
+		cn: "雷太鼓",
+		tw: "雷太鼓",
+		ko: "雷太鼓"
+	},
+	s25: {
+		ja: "和田兄弟",
+		en: "和田兄弟",
+		cn: "和田兄弟",
+		tw: "和田兄弟",
+		ko: "和田兄弟"
+	},
+	s26: {
+		ja: "タンバリン",
+		en: "タンバリン",
+		cn: "タンバリン",
+		tw: "タンバリン",
+		ko: "タンバリン"
+	},
+	s27: {
+		ja: "お祭り",
+		en: "お祭り",
+		cn: "お祭り",
+		tw: "お祭り",
+		ko: "お祭り"
+	},
+	s28: {
+		ja: "無音",
+		en: "無音",
+		cn: "無音",
+		tw: "無音",
+		ko: "無音"
+	},
+	s29: {
+		ja: "笨羊1",
+		en: "stupid sheep1",
+		cn: "笨羊1",
+		tw: "笨羊1",
+		ko: "笨羊1"
+	},
+	s30: {
+		ja: "笨羊2",
+		en: "stupid sheep2",
+		cn: "笨羊2",
+		tw: "笨羊2",
+		ko: "笨羊2"
+	},
+	s31: {
+		ja: "(ドン)とこーき(カッ)",
+		en: "(don) and koki(ka)",
+		cn: "(don) and koki(ka)",
+		tw: "(don) and koki(ka)",
+		ko: "(don) and koki(ka)"
+	},	
     songBranch: {
         ja: "譜面分岐あり",
         en: "Diverge Notes",
@@ -187,21 +415,21 @@ var translations = {
         ko: "딱이"
     },
     notLoggedIn: {
-        ja: "ログインしていない",
+        ja: "ログインしていません",
         en: "Not logged in",
         cn: "未登录",
         tw: "未登錄",
         ko: "로그인하지 않았습니다"
     },
     sessionStart: {
-        ja: "オンラインセッションを開始する！",
+        ja: "2人プレイを開始する！",
         en: "Begin an Online Session!",
         cn: "开始在线会话！",
         tw: "開始多人模式！",
         ko: "온라인 세션 시작!"
     },
     sessionEnd: {
-        ja: "オンラインセッションを終了する",
+        ja: "2人プレイを終了する",
         en: "End Online Session",
         cn: "结束在线会话",
         tw: "結束多人模式",
@@ -445,6 +673,9 @@ var translations = {
         tw: "發生錯誤，請重新載入頁面。",
         ko: "오류가 발생했습니다. 페이지를 새로 고침하시기 바랍니다."
     },
+    makers: {
+        en: "制作者一覧"
+    },
     tutorial: {
         basics: {
             ja: [
@@ -603,7 +834,7 @@ var translations = {
     },
     session: {
         multiplayerSession: {
-            ja: "オンラインセッション",
+            ja: "2人プレイ",
             en: "Multiplayer Session",
             cn: "在线会话",
             tw: "多人模式",
@@ -807,6 +1038,61 @@ var translations = {
                 cn: "显示歌词",
                 tw: "顯示歌詞",
                 ko: "가사 표시하기"
+            }
+        },
+        SEVolume: {
+            name: {
+                en: "効果音の音量"
+            }
+        },
+        playVideos: {
+            name: {
+                ja: "動画の再生",
+                en: "Play Videos"
+            }
+        },
+        vibration: {
+            name: {
+                ja: "振動",
+                en: "Vibration"
+            },
+            high: {
+                ka: "強い",
+                en: "High"
+            },
+            midium: {
+                ka: "普通",
+                en: "Midium"
+            },
+            low: {
+                ka: "弱い",
+                en: "Low"
+            },
+            none: {
+                ka: "なし",
+                en: "None"
+            }
+        },
+        aspect: {
+            name: {
+                en: "Aspect (Beta!)",
+                ja: "アスペクト比 (ベータ)"
+            },
+            full: {
+                ja: "自動",
+                en: "Auto"
+            },
+            wide: {
+                en: "16:9"
+            },
+            normal: {
+                en: "4:3"
+            }
+        },
+        performanceMode: {
+            name: {
+                ja: "軽量化(パフォーマンス)モード",
+                en: "Performance mode"
             }
         },
         on: {
@@ -1084,6 +1370,12 @@ var translations = {
                 ko: "초기화"
             }
         },
+        customrank: {
+            rankColor: {
+                ja: "称号の色",
+                en: "title color"
+            }
+        },
         changePassword: {
             ja: "パスワードの変更",
             en: "Change Password",
@@ -1127,7 +1419,7 @@ var translations = {
     },
     serverError: {
         not_logged_in: {
-            ja: "ログインしていない",
+            ja: "ログインしていません",
             en: "Not logged in",
             tw: "未登入",
             ko: "로그인되지 않음"
@@ -1228,7 +1520,7 @@ var translations = {
             ko: "창작"
         },
         maker: {
-            ja: "メーカー",
+            ja: "制作者",
             en: "Maker:",
             cn: "制作者",
             tw: "製作者",
@@ -1274,12 +1566,26 @@ var translations = {
                 "TJA 확장자로 되어 있는 채보가 포함되어 있는 폴더를 골라 커스텀 곡을 플레이하세요!"
             ]
         },
+        ZIPDescription: {
+            ja: "tjaが含まれてるZIPファイル",
+            en: "ZIP file containing tja",
+            cn: "包含tja的ZIP文件",
+            tw: "包含tja的ZIP文件",
+            ko: "tja가 포함된 ZIP 파일"
+        },
         localFolder: {
             ja: "ローカルフォルダ...",
             en: "Local Folder...",
             cn: "本地文件夹...",
             tw: "本機資料夾...",
             ko: "로컬 폴더..."
+        },
+        localZIP: {
+            ja: "ローカルZIPファイル...",
+            en: "Local ZIP File...",
+            cn: "本地 ZIP 文件...",
+            tw: "本地 ZIP 文件...",
+            ko: "로컬 ZIP 파일..."
         },
         gdriveFolder: {
             ja: "Google ドライブ...",
@@ -1298,7 +1604,6 @@ var translations = {
         dropzone: {
             ja: "ここにファイルをドロップ",
             en: "Drop files here",
-            cn: "将文件拖至此处",
             tw: "將文件拖至此處",
             ko: "파일을 여기에 드롭하세요"
         },
@@ -1313,6 +1618,13 @@ var translations = {
             en: "No Taiko chart files have been found in the provided folder.",
             tw: "在你選擇的資料夾中找不到譜面檔案。",
             ko: "해당 폴더에서 채보 파일을 찾을 수 없습니다."
+        },
+        errorZIP: {
+            ja: "ZIPファイルの展開中にエラーが発生しました",
+            en: "An error occurred while extracting the ZIP file",
+            cn: "在解压ZIP文件时，发生了一个错误",
+            tw: "在解压ZIP文件时，发生了一个错误",
+            ko: "ZIP 파일을 압축 해제하는 동안 오류가 발생했습니다."
         }
     },
     gpicker: {
@@ -1359,7 +1671,7 @@ var translations = {
     },
     plugins: {
         title: {
-            ja: "プラグイン",
+            ja: "追加機能",
             en: "Plugins",
             ko: "플러그인"
         },
@@ -1369,14 +1681,14 @@ var translations = {
             ko: "모두 해제"
         },
         warning: {
-            ja: "%sを読み込もうとしています。プラグインは信頼できる場合のみ読み込むようにしてください。続行しますか？",
+            ja: "%sを読み込もうとしています。追加機能は信頼できる場合のみ読み込むようにしてください。続行しますか？",
             en: "You are about to load %s. Plugins should only be loaded if you trust them. Continue?",
             ko: "%s을 로드하려고 합니다. 신뢰할 수 있는 플러그인만 로드하시기 바랍니다. 계속할까요?"
         },
         plugin: {
             ja: {
-                one: "%sつのプラグイン",
-                other: "%sつのプラグイン"
+                one: "%sつの追加機能",
+                other: "%sつの追加機能"
             },
             en: {
                 one: "%s plugin",
@@ -1469,6 +1781,26 @@ var translations = {
                 "특정 창작자가 만든 채보를 검색하고 싶으신가요? \"maker:<창작자 이름>\" 키워드를 사용하세요!"
             ]
         }
+    },
+    discord: {
+        ja: null,
+        en: "Discord"
+    },
+    mbinstall: {
+        ja: null,
+        en: "ホーム画面に追加",
+    },
+    invite: {
+        ja: "招待コードの入力",
+        en: "Enter invite code",
+    },
+    help: {
+        ja: null,
+        en: "重たい・ラグい場合",
+    },
+    teian: {
+        ja: null,
+        en: "曲の提案",
     }
 }
 var allStrings = {}

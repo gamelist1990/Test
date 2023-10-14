@@ -43,7 +43,8 @@ class Controller{
 			this.parsedSongData = new ParseOsu(songData, selectedSong.difficulty, selectedSong.stars, selectedSong.offset)
 		}
 		this.offset = this.parsedSongData.soundOffset
-		
+		this.videoOffset = 0;
+		this.videoBlur = 0;
 		var maxCombo = this.parsedSongData.circles.filter(circle => ["don", "ka", "daiDon", "daiKa"].indexOf(circle.type) > -1 && (!circle.branch || circle.branch.name == "master")).length
 		if (maxCombo >= 50) {
 			var comboVoices = ["v_combo_50"].concat(Array.from(Array(Math.min(50, Math.floor(maxCombo / 100))), (d, i) => "v_combo_" + ((i + 1) * 100)))
@@ -68,6 +69,14 @@ class Controller{
 				if(song.id == this.selectedSong.folder){
 					this.mainAsset = song.sound
 					this.volume = song.volume || 1
+					if(settings.getItem("playVideos")){
+						if(song.video)
+							this.video = song.video;
+						if(song.videoOffset)
+							this.videoOffset = song.videoOffset;	
+						if(song.videoBlur)
+							this.videoBlur = song.videoBlur;	
+					}
 					if(!multiplayer && (!this.touchEnabled || this.autoPlayEnabled) && settings.getItem("showLyrics")){
 						if(song.lyricsData){
 							var lyricsDiv = document.getElementById("song-lyrics")
@@ -157,7 +166,8 @@ class Controller{
 			}
 			if(!this.game.isPaused()){
 				this.keyboard.checkGameKeys()
-				
+				if(this.video)
+					this.game.playBackgroundVideo()
 				if(ms < 0){
 					this.game.updateTime()
 				}else{
@@ -207,17 +217,21 @@ class Controller{
 	gameEnded(){
 		var score = this.getGlobalScore()
 		var vp
-		if(this.game.rules.clearReached(score.gauge)){
-			if(score.bad === 0){
+		if (this.game.rules.clearReached(score.gauge)) {
+			if (score.ok === 0 && score.bad === 0) { // TODO: donder fullcombo
+				this.playSound("v_donderfulcombo", 0.050)
+			} else if (score.bad === 0) {
 				vp = "fullcombo"
 				this.playSound("v_fullcombo", 1.350)
-			}else{
+			} else {
 				vp = "clear"
 			}
-		}else{
+		} else {
 			vp = "fail"
 		}
-		this.playSound("se_game" + vp)
+		if (vp) {
+			this.playSound("se_game" + vp)
+		}
 	}
 	displayResults(){
 		if(this.multiplayer !== 2){
@@ -308,7 +322,7 @@ class Controller{
 		}))
 	}
 	playSound(id, time, noSnd){
-		if(!this.drumSounds && (id === "neiro_1_don" || id === "neiro_1_ka" || id === "se_don" || id === "se_ka")){
+		if(!this.drumSounds && (id === "neiro_1_don" || id === "neiro_1_ka" || id === "neiro_2_don" || id === "neiro_2_ka" || id === "neiro_3_don" || id === "neiro_3_ka" || id === "neiro_4_don" || id === "neiro_4_ka" || id === "neiro_5_don" || id === "neiro_5_ka" || id === "neiro_6_don" || id === "neiro_6_ka" || id === "neiro_7_don" || id === "neiro_7_ka" || id === "neiro_8_don" || id === "neiro_8_ka" || id === "neiro_9_don" || id === "neiro_9_ka" || id === "neiro_10_don" || id === "neiro_10_ka" || id === "neiro_11_don" || id === "neiro_11_ka" || id === "neiro_12_don" || id === "neiro_12_ka" || id === "neiro_13_don" || id === "neiro_13_ka" || id === "neiro_14_don" || id === "neiro_14_ka" || id === "neiro_15_don" || id === "neiro_15_ka" || id === "neiro_16_don" || id === "neiro_16_ka" || id === "neiro_17_don" || id === "neiro_17_ka" || id === "neiro_18_don" || id === "neiro_18_ka" || id === "neiro_19_don" || id === "neiro_19_ka" || id === "neiro_20_don" || id === "neiro_20_ka" || id === "neiro_21_don" || id === "neiro_21_ka" || id === "neiro_22_don" || id === "neiro_22_ka" || id === "neiro_23_don" || id === "neiro_23_ka" || id === "neiro_24_don" || id === "neiro_24_ka" || id === "neiro_25_don" || id === "neiro_25_ka" || id === "neiro_26_don" || id === "neiro_26_ka" || id === "neiro_27_don" || id === "neiro_27_ka" || id === "neiro_28_don" || id === "neiro_28_ka" || id === "neiro_29_don" || id === "neiro_29_ka" || id === "neiro_30_don" || id === "neiro_30_ka" || id === "se_don" || id === "se_ka")){
 			return
 		}
 		var ms = Date.now() + (time || 0) * 1000

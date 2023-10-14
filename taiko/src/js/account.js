@@ -66,11 +66,18 @@ class Account{
 		var parent = this.customdonBodyFill.parentNode
 		parent.insertBefore(document.createTextNode(strings.account.customdon.bodyFill), parent.firstChild)
 		pageEvents.add(this.customdonBodyFill, ["change", "input"], this.customdonChange.bind(this))
+
 		this.customdonFaceFill = this.getElement("customdon-facefill")
 		this.customdonFaceFill.value = account.don.face_fill
 		var parent = this.customdonFaceFill.parentNode
 		parent.insertBefore(document.createTextNode(strings.account.customdon.faceFill), parent.firstChild)
 		pageEvents.add(this.customdonFaceFill, ["change", "input"], this.customdonChange.bind(this))
+
+		this.customrankColor = this.getElement("customrank-rank_color")
+		this.customrankColor.value = account.rank_color
+		var parent = this.customrankColor.parentNode
+		parent.insertBefore(document.createTextNode(strings.account.customrank.rankColor), parent.firstChild)
+
 		this.customdonResetBtn = this.getElement("customdon-reset")
 		this.customdonResetBtn.value = strings.account.customdon.reset
 		pageEvents.add(this.customdonResetBtn, ["click", "touchstart"], this.customdonReset.bind(this))
@@ -385,6 +392,7 @@ class Account{
 			account.loggedIn = true
 			account.username = response.username
 			account.displayName = response.display_name
+			account.rank = response.user_rank
 			account.don = response.don
 			var loadScores = scores => {
 				scoreStorage.load(scores)
@@ -442,6 +450,7 @@ class Account{
 		account.loggedIn = false
 		delete account.username
 		delete account.displayName
+		delete account.rank
 		delete account.don
 		var loadScores = () => {
 			scoreStorage.load()
@@ -486,6 +495,7 @@ class Account{
 			}).then(() => {
 				account.loggedIn = false
 				delete account.username
+				delete account.rank
 				delete account.displayName
 				delete account.don
 				scoreStorage.load()
@@ -503,12 +513,15 @@ class Account{
 		}
 		var bodyFill = this.customdonBodyFill.value
 		var faceFill = this.customdonFaceFill.value
-		if(!noNameChange && (bodyFill !== account.body_fill || this.customdonFaceFill.value !== account.face_fill)){
+		var rankColor = this.customrankColor.value
+		if(!noNameChange && (bodyFill !== account.body_fill || faceFill !== account.face_fill || rankColor !== account.rank_color)){
 			promises.push(this.request("account/don", {
 				body_fill: bodyFill,
-				face_fill: faceFill
+				face_fill: faceFill,
+				user_rank_color: rankColor
 			}).then(response => {
 				account.don = response.don
+				account.rank_color = response.user_rank_color
 			}))
 		}
 		var error = false
@@ -629,6 +642,7 @@ class Account{
 			pageEvents.remove(this.customdonCanvas, "click")
 			pageEvents.remove(this.customdonBodyFill, ["change", "input"])
 			pageEvents.remove(this.customdonFaceFill, ["change", "input"])
+			pageEvents.remove(this.customrankColor, ["change", "input"])
 			pageEvents.remove(this.customdonResetBtn, ["click", "touchstart"])
 			pageEvents.remove(this.accounPassButton, ["click", "touchstart"])
 			pageEvents.remove(this.accountDelButton, ["click", "touchstart"])
@@ -645,6 +659,7 @@ class Account{
 			delete this.customdonCtx
 			delete this.customdonBodyFill
 			delete this.customdonFaceFill
+			delete this.customrankColor
 			delete this.customdonResetBtn
 			delete this.accountPassButton
 			delete this.accountPass

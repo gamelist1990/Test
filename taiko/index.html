@@ -14,7 +14,7 @@
 <meta name="msapplication-wide310x150logo" content="assets/app/site-tile-310x150.png" />
 <meta name="msapplication-square310x310logo" content="assets/app/site-tile-310x310.png" />
 <meta name="msapplication-TileColor" content="#0078d7" />
-<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="assets/img/favicon.ico" />
+<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="/Test/taiko/assets/img/favicon.ico" />
 <link rel="icon" type="image/vnd.microsoft.icon" href="assets/img/favicon.ico" />
 <link rel="apple-touch-icon" sizes="57x57" href="/assets/app/apple-touch-icon-57x57.png" />
 <link rel="apple-touch-icon" sizes="60x60" href="/assets/app/apple-touch-icon-60x60.png" />
@@ -58,9 +58,7 @@
 <meta name="keywords" content="Minecraft">
 <meta itemprop="name" content="太鼓の達人！">
 <meta itemprop="description" content="Unity!?
-    ">
-<meta itemprop="image" content="https://kairun.jp/Taiko/banner.png">
-<meta property="og:type" content="website">
+    "><meta property="og:type" content="website">
 <meta property="og:url" content="https://gamelist1990.github.io/gamelist1990/gamelist2023">
 <meta property="og:title" content="太鼓の達人！">
 <meta property="og:site_name" content="太鼓の達人！">
@@ -80,24 +78,20 @@
 <div id="assets"></div>
 <div id="screen" class="pattern-bg"></div>
 <div data-nosnippet id="version">
-<a id="version-link" class="stroke-sub" alt="Kairun-Taiko Var.1.0.3">Kairun-Taiko Var.1.0.3</a>
-</div>
-<div id="rekairun_div">
-<iframe id="rekairun_iframe" title="reKAIRUN" src="assets/app/kakunin" width="304" height="78" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox">
-    </iframe>
+<a id="version-link" class="stroke-sub" alt="改造太鼓の達人">改造太鼓の達人</a>
 </div>
 <script src="src/js/browsersupport.js?"></script>
 <script src="src/js/main.js?"></script>
 <noscript>
     <div data-nosnippet id="unsupportedBrowser">
       <div id="unsupportedWarn">!</div>
-      <span>かいるんの達人はJavaScriptを有効にする必要があります。<br />Taiko Web
+      <span>太鼓の達人はJavaScriptを有効にする必要があります。<br />Taiko Web
         requires JavaScript to be enabled in the browser.</span>
     </div>
   </noscript>
 <script>
     if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/sw.js").then(function () {
+      navigator.serviceWorker.register("/Test/taiko/sw.js").then(function () {
         console.log("Service worker registered!");
       });
     }
@@ -126,9 +120,6 @@
     }
   </script>
 <style>
-    body {
-      cursor: url('assets/app/kairun_cur.png'), auto;
-    }
 
     #rekairun_iframe {
       transform: translate(-50%, 50%);

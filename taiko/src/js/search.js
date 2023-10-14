@@ -35,8 +35,8 @@ class Search{
 
 	normalizeString(string){
 		string = string
-			.replace('窶�', '\'').replace('窶�', '"').replace('窶�', '"')
-			.replace('縲�', '.').replace('��', ',').replace('縲�', ',')
+			.replace('’', '\'').replace('“', '"').replace('”', '"')
+			.replace('。', '.').replace('，', ',').replace('、', ',')
 
 		kanaPairs.forEach(pair => {
 			string = string.replace(pair[1], pair[0])

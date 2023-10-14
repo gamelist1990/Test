@@ -19,6 +19,7 @@ class LoadSong{
 		
 		loader.changePage("loadsong", true)
 		var loadingText = document.getElementById("loading-text")
+		this.loadingText = loadingText
 		loadingText.appendChild(document.createTextNode(strings.loading))
 		loadingText.setAttribute("alt", strings.loading)
 		if(multiplayer){
@@ -35,6 +36,7 @@ class LoadSong{
 		})
 	}
 	run(){
+		var loadingText = this.loadingText
 		var song = this.selectedSong
 		var id = song.folder
 		var songObj
@@ -120,14 +122,20 @@ class LoadSong{
 			}
 		}
 		this.loadSongBg(id)
+
+		loadingText.innerText = "音声ファイルを読み込み中..."
+		loadingText.setAttribute("alt", "音声ファイルを読み込み中...")
 		
 		if(songObj.sound && songObj.sound.buffer){
 			songObj.sound.gain = snd.musicGain
 		}else if(songObj.music !== "muted"){
 			this.addPromise(snd.musicGain.load(songObj.music).then(sound => {
+				loadingText.innerText = "音声ファイルを読み込み完了"
+				loadingText.setAttribute("alt", "音声ファイルを読み込み完了")
 				songObj.sound = sound
 			}), songObj.music.url)
 		}
+
 		var chart = songObj.chart
 		if(chart && chart.separateDiff){
 			var chartDiff = this.selectedSong.difficulty
@@ -145,6 +153,39 @@ class LoadSong{
 				songObj.lyricsData = data
 			}, () => {}), songObj.lyricsFile.url)
 		}
+
+		if(songObj.videoFile && settings.getItem("playVideos")){
+			loadingText.innerText = "動画ファイルを読み込み中..."
+			loadingText.setAttribute("alt", "動画ファイルを読み込み中...")
+			this.addPromise(new Promise((resolve,reject)=>{
+				const video = document.createElement('video');
+				video.muted = true;
+				video.preload = "auto";
+				if (songObj.videoloop){
+					video.loop = true;
+				}
+				let canplay = () => {
+					video.removeEventListener('canplay',canplay)
+					video.removeEventListener('error',onerror)
+					songObj.video = video;
+					loadingText.innerText = "動画ファイルを読み込み完了"
+					loadingText.setAttribute("alt", "動画ファイルを読み込み完了")
+					resolve();
+				};
+				let onerror = () => {
+					video.removeEventListener('canplay',canplay)
+					video.removeEventListener('error',onerror);
+					reject();
+				}
+				video.addEventListener('canplay',canplay);
+				video.addEventListener('error',onerror);
+				songObj.videoFile.blob().then(data => {
+					let url = URL.createObjectURL(data);
+					video.src = url;
+				});
+			}),songObj.videoFile.url)
+		}
+		
 		if(this.touchEnabled && !assets.image["touch_drum"]){
 			let img = document.createElement("img")
 			img.crossOrigin = "anonymous"

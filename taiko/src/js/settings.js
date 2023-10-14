@@ -57,7 +57,34 @@ class Settings{
 			showLyrics: {
 				type: "toggle",
 				default: true
-			}
+			},
+			playVideos: {
+				type: "toggle",
+				default: phone ? false : true
+			},
+			vibration: {
+				type: "select",
+				options: ["high", "midium", "low", "none"],
+				default: "midium"
+			},
+			aspect: {
+				type: "select",
+				options: ["full", "wide", "normal"],
+				default: "full"
+			},
+			performanceMode: {
+				type: "toggle",
+				default: false
+			},
+			// SEVolume: {
+			// 	format: "%s%",
+			// 	type: "number",
+            //     min: 1,
+            //     max: 150,
+            //     fixedPoint: 1,
+            //     step: 1,
+			// 	default: 100
+			// },
 		}
 		
 		this.storage = {}

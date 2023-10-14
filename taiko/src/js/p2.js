@@ -177,6 +177,8 @@ class P2Connection{
 				break
 			case "name":
 				this.name = response.value ? (response.value.name || "").toString() : ""
+				this.rank = response.value ? (response.value.rank) : null
+				this.rank_color = response.value ? (response.value.rank_color) : null
 				this.don = response.value ? (response.value.don) : null
 				break
 			case "getcrowns":

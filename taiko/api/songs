@@ -1,1 +1,2935 @@
-[]
+[
+    {
+        "category": "Pop",
+        "category_id": 1,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": null,
+            "oni": null,
+            "ura": {
+                "branch": false,
+                "stars": 8
+            }
+        },
+        "hash": "2wmINXndYYboagQ6wfsIuw",
+        "id": 1,
+        "lyrics": true,
+        "maker": {
+            "id": 1,
+            "name": "こう君",
+            "url": "https://twitter.com/PEXkoukunn"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 1,
+        "preview": 32.3,
+        "song_skin": null,
+        "subtitle": "Avicii",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "The Nights",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": true,
+        "videoBlur": null,
+        "videoOffset": -10.8,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "YouTuber",
+        "category_id": 9,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": {
+                "branch": false,
+                "stars": 8
+            },
+            "oni": null,
+            "ura": null
+        },
+        "hash": "0cYLt5N5vpS9Rr5mV7xHiQ",
+        "id": 2,
+        "lyrics": false,
+        "maker": {
+            "id": 1,
+            "name": "こう君",
+            "url": "https://twitter.com/PEXkoukunn"
+        },
+        "music_type": "mp3",
+        "offset": null,
+        "order": 2,
+        "preview": null,
+        "song_skin": null,
+        "subtitle": "こう君",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "ドンドンドンハイ!!",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "volume": 1
+    },
+    {
+        "category": "Anime",
+        "category_id": 2,
+        "courses": {
+            "easy": {
+                "branch": false,
+                "stars": 1
+            },
+            "hard": null,
+            "normal": null,
+            "oni": null,
+            "ura": null
+        },
+        "hash": "xqE+uEqjXHo1l8rOC0ndDQ",
+        "id": 3,
+        "lyrics": true,
+        "maker": {
+            "id": 1,
+            "name": "こう君",
+            "url": "https://twitter.com/PEXkoukunn"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 3,
+        "preview": null,
+        "song_skin": null,
+        "subtitle": "天空の城ラピュタ",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "人がゴミのようだ",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "volume": 2
+    },
+    {
+        "category": "Classical",
+        "category_id": 5,
+        "courses": {
+            "easy": {
+                "branch": false,
+                "stars": 3
+            },
+            "hard": {
+                "branch": false,
+                "stars": 6
+            },
+            "normal": {
+                "branch": false,
+                "stars": 4
+            },
+            "oni": {
+                "branch": false,
+                "stars": 8
+            },
+            "ura": {
+                "branch": false,
+                "stars": 9
+            }
+        },
+        "hash": "nKXMKxZ2ig/L5GiQKAhC3g",
+        "id": 4,
+        "lyrics": true,
+        "maker": {
+            "id": 1,
+            "name": "こう君",
+            "url": "https://twitter.com/PEXkoukunn"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 4,
+        "preview": 92.631,
+        "song_skin": {
+            "don": null,
+            "name": "Kitatyousen",
+            "song": "static",
+            "stage": "static"
+        },
+        "subtitle": "朝鮮音楽",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "攻撃戦だ！(コンギョ)",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": "공격전이다",
+            "tw": null
+        },
+        "type": "tja",
+        "video": true,
+        "videoBlur": null,
+        "videoOffset": -0.8,
+        "videoloop": false,
+        "volume": 0.9
+    },
+    {
+        "category": "YouTuber",
+        "category_id": 9,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": {
+                "branch": false,
+                "stars": 4
+            },
+            "oni": null,
+            "ura": null
+        },
+        "hash": "nKXMKxZ2ig/L5GiQKAhC3g",
+        "id": 5,
+        "lyrics": true,
+        "maker": {
+            "id": 1,
+            "name": "こう君",
+            "url": "https://twitter.com/PEXkoukunn"
+        },
+        "music_type": "mp3",
+        "offset": 1.2,
+        "order": 5,
+        "preview": null,
+        "song_skin": {
+            "don": "equalscroll",
+            "name": "yokai",
+            "song": "static",
+            "stage": null
+        },
+        "subtitle": "柿パン",
+        "subtitle_lang": {
+            "cn": null,
+            "en": "kakipan",
+            "ja": "柿パン",
+            "ko": null,
+            "tw": null
+        },
+        "title": "アンチデイリー",
+        "title_lang": {
+            "cn": null,
+            "en": "Anti Daily",
+            "ja": "アンチデイリー",
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "volume": 2
+    },
+    {
+        "category": "Pop",
+        "category_id": 1,
+        "courses": {
+            "easy": {
+                "branch": false,
+                "stars": 3
+            },
+            "hard": {
+                "branch": false,
+                "stars": 7
+            },
+            "normal": {
+                "branch": false,
+                "stars": 3
+            },
+            "oni": {
+                "branch": false,
+                "stars": 9
+            },
+            "ura": null
+        },
+        "hash": "G/IFRSfBgtXkS9iSzeHRNw",
+        "id": 6,
+        "lyrics": false,
+        "maker": {
+            "id": 3,
+            "name": "Spica",
+            "url": "https://twitter.com/Spica_taikojiro"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 6,
+        "preview": 45.526,
+        "song_skin": null,
+        "subtitle": "Yunomi",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "インドア系ならトラックメイカー",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "volume": 1
+    },
+    {
+        "category": "Game Music",
+        "category_id": 6,
+        "courses": {
+            "easy": {
+                "branch": false,
+                "stars": 3
+            },
+            "hard": {
+                "branch": false,
+                "stars": 6
+            },
+            "normal": {
+                "branch": false,
+                "stars": 5
+            },
+            "oni": {
+                "branch": false,
+                "stars": 9
+            },
+            "ura": null
+        },
+        "hash": "Gb4M6h+rhWlPLgVKmO/Isw",
+        "id": 7,
+        "lyrics": false,
+        "maker": {
+            "id": 3,
+            "name": "Spica",
+            "url": "https://twitter.com/Spica_taikojiro"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 7,
+        "preview": 0.5,
+        "song_skin": null,
+        "subtitle": "星のカービィ スーパーデラックス",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "激突！グルメレース",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "volume": 1.4
+    },
+    {
+        "category": "Game Music",
+        "category_id": 6,
+        "courses": {
+            "easy": {
+                "branch": false,
+                "stars": 1
+            },
+            "hard": {
+                "branch": false,
+                "stars": 5
+            },
+            "normal": {
+                "branch": false,
+                "stars": 8
+            },
+            "oni": {
+                "branch": false,
+                "stars": 10
+            },
+            "ura": null
+        },
+        "hash": "mCsNuDfT+XcY0nWbE1xC4w",
+        "id": 8,
+        "lyrics": false,
+        "maker": {
+            "id": 5,
+            "name": "その他",
+            "url": "/makers"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 8,
+        "preview": 68.868,
+        "song_skin": null,
+        "subtitle": "Frums「Arcaea」",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "dropdead",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "Game Music",
+        "category_id": 6,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": null,
+            "oni": {
+                "branch": false,
+                "stars": 8
+            },
+            "ura": null
+        },
+        "hash": "lBzol5CR/wuH7UFHNeRUMw",
+        "id": 9,
+        "lyrics": false,
+        "maker": {
+            "id": 1,
+            "name": "こう君",
+            "url": "https://twitter.com/PEXkoukunn"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 9,
+        "preview": 49.6,
+        "song_skin": null,
+        "subtitle": "すりみ連合",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "蛮殻ミックスモダン",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "ホロライブ",
+        "category_id": 10,
+        "courses": {
+            "easy": null,
+            "hard": {
+                "branch": false,
+                "stars": 8
+            },
+            "normal": null,
+            "oni": null,
+            "ura": null
+        },
+        "hash": "IYegjgEvoCCScbtXfA7EuQ",
+        "id": 10,
+        "lyrics": false,
+        "maker": {
+            "id": 1,
+            "name": "こう君",
+            "url": "https://twitter.com/PEXkoukunn"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 10,
+        "preview": 227,
+        "song_skin": {
+            "don": "equalscroll",
+            "name": "hololive",
+            "song": "static",
+            "stage": "static"
+        },
+        "subtitle": "ホロライブが吹っ切れた【24人で歌ってみた】",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "おちゃめ機能 Ver.ホロライブ",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "volume": 1.5
+    },
+    {
+        "category": "Variety",
+        "category_id": 4,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": null,
+            "oni": {
+                "branch": false,
+                "stars": 5
+            },
+            "ura": {
+                "branch": false,
+                "stars": 9
+            }
+        },
+        "hash": "gjWq3+FvNLcjndlAJhQ9OA",
+        "id": 11,
+        "lyrics": false,
+        "maker": {
+            "id": 5,
+            "name": "その他",
+            "url": "/makers"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 11,
+        "preview": 0.8,
+        "song_skin": null,
+        "subtitle": null,
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "おとわっか",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 0.8
+    },
+    {
+        "category": "しょうもない",
+        "category_id": 11,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": null,
+            "oni": {
+                "branch": false,
+                "stars": 10
+            },
+            "ura": null
+        },
+        "hash": "xdphunV4EGo9qUqAlYrorQ",
+        "id": 12,
+        "lyrics": false,
+        "maker": {
+            "id": 5,
+            "name": "その他",
+            "url": "/makers"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 12,
+        "preview": null,
+        "song_skin": {
+            "don": "static",
+            "name": "idolmaster",
+            "song": "slowfade",
+            "stage": "static"
+        },
+        "subtitle": null,
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "和田アキ子ワールド",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "Variety",
+        "category_id": 4,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": {
+                "branch": false,
+                "stars": 9
+            },
+            "oni": null,
+            "ura": null
+        },
+        "hash": "g+xRCncL6FgrH1nWGRbGtA",
+        "id": 13,
+        "lyrics": false,
+        "maker": {
+            "id": 1,
+            "name": "こう君",
+            "url": "https://twitter.com/PEXkoukunn"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 13,
+        "preview": 77.7,
+        "song_skin": null,
+        "subtitle": null,
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "夜に駆ける・改",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "volume": 1
+    },
+    {
+        "category": "Classical",
+        "category_id": 5,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": null,
+            "oni": {
+                "branch": false,
+                "stars": 5
+            },
+            "ura": null
+        },
+        "hash": "YWXlkb5BELZ+53cw7Zn3mw",
+        "id": 14,
+        "lyrics": false,
+        "maker": {
+            "id": 1,
+            "name": "こう君",
+            "url": "https://twitter.com/PEXkoukunn"
+        },
+        "music_type": "mp3",
+        "offset": 0.05,
+        "order": 14,
+        "preview": 31.8,
+        "song_skin": null,
+        "subtitle": null,
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "Coffin Dance",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "volume": 1
+    },
+    {
+        "category": "Anime",
+        "category_id": 2,
+        "courses": {
+            "easy": {
+                "branch": false,
+                "stars": 2
+            },
+            "hard": {
+                "branch": false,
+                "stars": 3
+            },
+            "normal": {
+                "branch": false,
+                "stars": 3
+            },
+            "oni": {
+                "branch": false,
+                "stars": 7
+            },
+            "ura": null
+        },
+        "hash": "ecZ31ShbE/VnyIz5KPX4Ng",
+        "id": 15,
+        "lyrics": false,
+        "maker": {
+            "id": 1,
+            "name": "こう君",
+            "url": "https://twitter.com/PEXkoukunn"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 15,
+        "preview": 51.41,
+        "song_skin": null,
+        "subtitle": "ウマ娘 プリティーダービー",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "うまぴょい伝説",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "volume": 1
+    },
+    {
+        "category": "Game Music",
+        "category_id": 6,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": null,
+            "oni": {
+                "branch": false,
+                "stars": 3
+            },
+            "ura": null
+        },
+        "hash": "kxjYQpXEBD3+FJmsasA4Mw",
+        "id": 16,
+        "lyrics": false,
+        "maker": {
+            "id": 1,
+            "name": "こう君",
+            "url": "https://twitter.com/PEXkoukunn"
+        },
+        "music_type": "mp3",
+        "offset": null,
+        "order": 16,
+        "preview": null,
+        "song_skin": null,
+        "subtitle": null,
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "Geometry Dash",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "volume": 1.5
+    },
+    {
+        "category": "YouTuber",
+        "category_id": 9,
+        "courses": {
+            "easy": {
+                "branch": false,
+                "stars": 3
+            },
+            "hard": {
+                "branch": false,
+                "stars": 7
+            },
+            "normal": {
+                "branch": false,
+                "stars": 5
+            },
+            "oni": {
+                "branch": false,
+                "stars": 8
+            },
+            "ura": {
+                "branch": false,
+                "stars": 10
+            }
+        },
+        "hash": "Uj1HGPdsIL+XUtd1iD/U0g",
+        "id": 17,
+        "lyrics": false,
+        "maker": {
+            "id": 1,
+            "name": "こう君",
+            "url": "https://twitter.com/PEXkoukunn"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 17,
+        "preview": 62.3,
+        "song_skin": {
+            "don": null,
+            "name": "hikakin",
+            "song": "static",
+            "stage": "static"
+        },
+        "subtitle": "HIKAKIN & SEIKIN",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "FIRE",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "volume": 1
+    },
+    {
+        "category": "VOCALOID™ Music",
+        "category_id": 3,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": null,
+            "oni": {
+                "branch": false,
+                "stars": 9
+            },
+            "ura": null
+        },
+        "hash": "udnsulqFv+N2G1fFtXey7g",
+        "id": 18,
+        "lyrics": false,
+        "maker": {
+            "id": 1,
+            "name": "こう君",
+            "url": "https://twitter.com/PEXkoukunn"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 18,
+        "preview": 49.5,
+        "song_skin": null,
+        "subtitle": "P丸様。",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "シル・ヴ・プレジデント(harukun19 ver.)",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "東方Project",
+        "category_id": 8,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": null,
+            "oni": {
+                "branch": false,
+                "stars": 10
+            },
+            "ura": null
+        },
+        "hash": "ughQBb9a2zzkozEr8XwdiA",
+        "id": 19,
+        "lyrics": false,
+        "maker": {
+            "id": 1,
+            "name": "こう君",
+            "url": "https://twitter.com/PEXkoukunn"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 19,
+        "preview": null,
+        "song_skin": {
+            "don": "static",
+            "name": "touhou",
+            "song": "static",
+            "stage": "none"
+        },
+        "subtitle": null,
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "超真っ黒ナイトオブナイツ",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "volume": 1
+    },
+    {
+        "category": "Game Music",
+        "category_id": 6,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": null,
+            "oni": {
+                "branch": false,
+                "stars": 10
+            },
+            "ura": null
+        },
+        "hash": "pnp1ww+Ya+uY75wmCnlEWQ",
+        "id": 20,
+        "lyrics": false,
+        "maker": {
+            "id": 1,
+            "name": "こう君",
+            "url": "https://twitter.com/PEXkoukunn"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 20,
+        "preview": 11.4893617,
+        "song_skin": null,
+        "subtitle": null,
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "Among Us Drip Theme Song",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "volume": 1
+    },
+    {
+        "category": "Anime",
+        "category_id": 2,
+        "courses": {
+            "easy": {
+                "branch": false,
+                "stars": 1
+            },
+            "hard": {
+                "branch": false,
+                "stars": 4
+            },
+            "normal": {
+                "branch": false,
+                "stars": 3
+            },
+            "oni": {
+                "branch": false,
+                "stars": 5
+            },
+            "ura": null
+        },
+        "hash": "zChQ420K8HPjR8hYnVEK5w",
+        "id": 21,
+        "lyrics": false,
+        "maker": {
+            "id": 1,
+            "name": "こう君",
+            "url": "https://twitter.com/PEXkoukunn"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 21,
+        "preview": 74.8262,
+        "song_skin": {
+            "don": "equalscroll",
+            "name": "Suzume_no_Tojimari",
+            "song": "static",
+            "stage": "static"
+        },
+        "subtitle": "RADWIMPS feat. Toaka",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "すずめ",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "volume": 1
+    },
+    {
+        "category": "東方Project",
+        "category_id": 8,
+        "courses": {
+            "easy": {
+                "branch": false,
+                "stars": 3
+            },
+            "hard": {
+                "branch": false,
+                "stars": 7
+            },
+            "normal": {
+                "branch": false,
+                "stars": 6
+            },
+            "oni": {
+                "branch": false,
+                "stars": 9
+            },
+            "ura": null
+        },
+        "hash": "M2zs16Nl69sPLVVPn8EDPg",
+        "id": 22,
+        "lyrics": false,
+        "maker": {
+            "id": 5,
+            "name": "その他",
+            "url": "/makers"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 22,
+        "preview": 7.833,
+        "song_skin": null,
+        "subtitle": null,
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "孤独月",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "Game Music",
+        "category_id": 6,
+        "courses": {
+            "easy": {
+                "branch": false,
+                "stars": 2
+            },
+            "hard": {
+                "branch": false,
+                "stars": 4
+            },
+            "normal": {
+                "branch": false,
+                "stars": 3
+            },
+            "oni": {
+                "branch": false,
+                "stars": 2
+            },
+            "ura": null
+        },
+        "hash": "WUKAGGO5XmIPt1ZEkHmfKw",
+        "id": 23,
+        "lyrics": false,
+        "maker": {
+            "id": 1,
+            "name": "こう君",
+            "url": "https://twitter.com/PEXkoukunn"
+        },
+        "music_type": "ogg",
+        "offset": -0.61,
+        "order": 23,
+        "preview": 82.675,
+        "song_skin": null,
+        "subtitle": "グリムノーツ",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "忘れじの言の葉／ダズビー COVER",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "volume": 1
+    },
+    {
+        "category": "YouTuber",
+        "category_id": 9,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": null,
+            "oni": {
+                "branch": false,
+                "stars": 0
+            },
+            "ura": null
+        },
+        "hash": "QdunOKaIox6tdgbSzizjFw",
+        "id": 24,
+        "lyrics": true,
+        "maker": {
+            "id": 4,
+            "name": "Rasky1",
+            "url": null
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 24,
+        "preview": null,
+        "song_skin": null,
+        "subtitle": "こう君",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "デュルルッツデュンルンルンルンルンルンルンルンルンルンルンルンルンルンルン",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "volume": 1
+    },
+    {
+        "category": "VOCALOID™ Music",
+        "category_id": 3,
+        "courses": {
+            "easy": {
+                "branch": false,
+                "stars": 3
+            },
+            "hard": {
+                "branch": false,
+                "stars": 5
+            },
+            "normal": {
+                "branch": false,
+                "stars": 4
+            },
+            "oni": {
+                "branch": false,
+                "stars": 7
+            },
+            "ura": {
+                "branch": false,
+                "stars": 9
+            }
+        },
+        "hash": "lOYeCFc5NvlhpocuE0fdVw",
+        "id": 25,
+        "lyrics": false,
+        "maker": {
+            "id": 5,
+            "name": "その他",
+            "url": "/makers"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 25,
+        "preview": 61.87,
+        "song_skin": null,
+        "subtitle": "ツミキ feat. 音楽的同位体 可不(KAFU)",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "フォニイ",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "NAMCO Original",
+        "category_id": 7,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": null,
+            "oni": {
+                "branch": false,
+                "stars": 10
+            },
+            "ura": null
+        },
+        "hash": "lr3DznMs5QFLY392DmclDQ",
+        "id": 26,
+        "lyrics": false,
+        "maker": {
+            "id": 5,
+            "name": "その他",
+            "url": "/makers"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 26,
+        "preview": 48.21,
+        "song_skin": null,
+        "subtitle": "立秋 feat. ちょこ",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "詩謳兎揺蕩兎",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "ホロライブ",
+        "category_id": 10,
+        "courses": {
+            "easy": {
+                "branch": false,
+                "stars": 2
+            },
+            "hard": {
+                "branch": false,
+                "stars": 3
+            },
+            "normal": {
+                "branch": false,
+                "stars": 2
+            },
+            "oni": {
+                "branch": false,
+                "stars": 6
+            },
+            "ura": {
+                "branch": false,
+                "stars": 10
+            }
+        },
+        "hash": "XxykVfklL1Bd5R7ikCPkGQ",
+        "id": 27,
+        "lyrics": false,
+        "maker": {
+            "id": 5,
+            "name": "その他",
+            "url": "/makers"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 27,
+        "preview": 80.343,
+        "song_skin": {
+            "don": "equalscroll",
+            "name": "hololive",
+            "song": "static",
+            "stage": "static"
+        },
+        "subtitle": "薔薇☆Dice(鷹嶺ルイ・不知火フレア・白銀ノエル・宝鐘マリン・桃鈴ねね・風真いろは)",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "六本の薔薇と采の歌",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "Pop",
+        "category_id": 1,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": null,
+            "oni": {
+                "branch": false,
+                "stars": 9
+            },
+            "ura": null
+        },
+        "hash": "hXFyuzSeF7SHdOtSxSHwrQ",
+        "id": 28,
+        "lyrics": false,
+        "maker": {
+            "id": 5,
+            "name": "その他",
+            "url": "/makers"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 28,
+        "preview": 15.16,
+        "song_skin": null,
+        "subtitle": "ツユ",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "泥の分際で私の大切を奪おうなんて",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "NAMCO Original",
+        "category_id": 7,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": null,
+            "oni": {
+                "branch": false,
+                "stars": 10
+            },
+            "ura": null
+        },
+        "hash": "g6sVzySH3s6RLD8yMp+vYQ",
+        "id": 29,
+        "lyrics": false,
+        "maker": {
+            "id": 5,
+            "name": "その他",
+            "url": "/makers"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 29,
+        "preview": 80.009,
+        "song_skin": null,
+        "subtitle": "t+pazolite vs P*light",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "IZANA",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "NAMCO Original",
+        "category_id": 7,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": null,
+            "oni": {
+                "branch": false,
+                "stars": 10
+            },
+            "ura": null
+        },
+        "hash": "I1UguNBnFwZ1Bf3Da5K0FA",
+        "id": 30,
+        "lyrics": false,
+        "maker": {
+            "id": 5,
+            "name": "その他",
+            "url": "/makers"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 30,
+        "preview": 57.87,
+        "song_skin": null,
+        "subtitle": "Laur",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "魑魅魍魎 第二難関",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "Classical",
+        "category_id": 5,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": null,
+            "oni": {
+                "branch": false,
+                "stars": 10
+            },
+            "ura": null
+        },
+        "hash": "UZBMC+TuTP4U1kGXdhIfpw",
+        "id": 31,
+        "lyrics": false,
+        "maker": {
+            "id": 5,
+            "name": "その他",
+            "url": "/makers"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 31,
+        "preview": 57.87,
+        "song_skin": {
+            "don": "static",
+            "name": "idolmaster",
+            "song": "slowfade",
+            "stage": "static"
+        },
+        "subtitle": "(帝京平成大学のここがすごい！) ワンピース",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "テイキョウ・ヘイセィ・ダイガク",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "しょうもない",
+        "category_id": 11,
+        "courses": {
+            "easy": {
+                "branch": false,
+                "stars": 2
+            },
+            "hard": {
+                "branch": false,
+                "stars": 3
+            },
+            "normal": {
+                "branch": false,
+                "stars": 3
+            },
+            "oni": {
+                "branch": false,
+                "stars": 2
+            },
+            "ura": null
+        },
+        "hash": "3EkbUfleS1NwD6C62r+sHQ",
+        "id": 32,
+        "lyrics": false,
+        "maker": {
+            "id": 1,
+            "name": "こう君",
+            "url": "https://twitter.com/PEXkoukunn"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 32,
+        "preview": 9.63,
+        "song_skin": {
+            "don": null,
+            "name": "hikakin",
+            "song": "static",
+            "stage": "static"
+        },
+        "subtitle": "HIKAKIN",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "ヒカキン×ピーチ城",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "volume": 1
+    },
+    {
+        "category": "しょうもない",
+        "category_id": 11,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": null,
+            "oni": {
+                "branch": false,
+                "stars": 10
+            },
+            "ura": null
+        },
+        "hash": "Vr1SprWP0rcnvP9WoFsaiQ",
+        "id": 33,
+        "lyrics": false,
+        "maker": {
+            "id": 4,
+            "name": "Rasky1",
+            "url": null
+        },
+        "music_type": "mp3",
+        "offset": null,
+        "order": 33,
+        "preview": null,
+        "song_skin": {
+            "don": null,
+            "name": "hikakin",
+            "song": "static",
+            "stage": "static"
+        },
+        "subtitle": null,
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "シ〇シ〇みさき",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "volume": 1
+    },
+    {
+        "category": "Anime",
+        "category_id": 2,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": null,
+            "oni": {
+                "branch": false,
+                "stars": 8
+            },
+            "ura": null
+        },
+        "hash": "FYLz9J6cly2fCezAG0o1pw",
+        "id": 34,
+        "lyrics": false,
+        "maker": {
+            "id": 5,
+            "name": "その他",
+            "url": "/makers"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 34,
+        "preview": 60,
+        "song_skin": null,
+        "subtitle": "「ご注文はうさぎですか？」より",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "Daydream cafe",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "しょうもない",
+        "category_id": 11,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": null,
+            "oni": {
+                "branch": false,
+                "stars": 4
+            },
+            "ura": null
+        },
+        "hash": "tuf06Ehc36w9X70hbsJYZw",
+        "id": 35,
+        "lyrics": false,
+        "maker": {
+            "id": 1,
+            "name": "こう君",
+            "url": "https://twitter.com/PEXkoukunn"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 35,
+        "preview": 0.1,
+        "song_skin": {
+            "don": null,
+            "name": "hikakin",
+            "song": "static",
+            "stage": "static"
+        },
+        "subtitle": null,
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "Hikakin from the far east",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "volume": 1
+    },
+    {
+        "category": "VOCALOID™ Music",
+        "category_id": 3,
+        "courses": {
+            "easy": {
+                "branch": false,
+                "stars": 2
+            },
+            "hard": {
+                "branch": false,
+                "stars": 5
+            },
+            "normal": {
+                "branch": false,
+                "stars": 5
+            },
+            "oni": {
+                "branch": false,
+                "stars": 7
+            },
+            "ura": null
+        },
+        "hash": "Os/mEdyh86L/5oaGHZW0Kw",
+        "id": 36,
+        "lyrics": false,
+        "maker": {
+            "id": 5,
+            "name": "その他",
+            "url": "/makers"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 36,
+        "preview": 88.388,
+        "song_skin": null,
+        "subtitle": "稲葉曇 Vo.歌愛ユキ",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "ラグトレイン",
+        "title_lang": {
+            "cn": null,
+            "en": "lagtrain",
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": true,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 0.8
+    },
+    {
+        "category": "Pop",
+        "category_id": 1,
+        "courses": {
+            "easy": {
+                "branch": false,
+                "stars": 1
+            },
+            "hard": {
+                "branch": false,
+                "stars": 5
+            },
+            "normal": {
+                "branch": false,
+                "stars": 4
+            },
+            "oni": {
+                "branch": false,
+                "stars": 7
+            },
+            "ura": null
+        },
+        "hash": "jM7S++fCC+LoEdTtiXndMg",
+        "id": 37,
+        "lyrics": false,
+        "maker": {
+            "id": 5,
+            "name": "その他",
+            "url": "/makers"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 37,
+        "preview": 44.567,
+        "song_skin": null,
+        "subtitle": "米津玄師 / TBS系 日曜劇場「ノーサイド・ゲーム」主題歌",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "馬と鹿",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "Pop",
+        "category_id": 1,
+        "courses": {
+            "easy": {
+                "branch": false,
+                "stars": 3
+            },
+            "hard": {
+                "branch": false,
+                "stars": 6
+            },
+            "normal": {
+                "branch": false,
+                "stars": 6
+            },
+            "oni": {
+                "branch": false,
+                "stars": 8
+            },
+            "ura": null
+        },
+        "hash": "UPLATD2bqD9p0D8HHK3p/g",
+        "id": 38,
+        "lyrics": false,
+        "maker": {
+            "id": 5,
+            "name": "その他",
+            "url": "/makers"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 38,
+        "preview": 79,
+        "song_skin": null,
+        "subtitle": "米津玄師",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "ゴーゴー幽霊船",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "Pop",
+        "category_id": 1,
+        "courses": {
+            "easy": {
+                "branch": false,
+                "stars": 2
+            },
+            "hard": {
+                "branch": false,
+                "stars": 4
+            },
+            "normal": {
+                "branch": false,
+                "stars": 2
+            },
+            "oni": {
+                "branch": false,
+                "stars": 6
+            },
+            "ura": null
+        },
+        "hash": "uujHmSAmgMCKegwpQqn9hw",
+        "id": 39,
+        "lyrics": false,
+        "maker": {
+            "id": 5,
+            "name": "その他",
+            "url": "/makers"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 39,
+        "preview": 70.6,
+        "song_skin": null,
+        "subtitle": "back number",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "水平線",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "しょうもない",
+        "category_id": 11,
+        "courses": {
+            "easy": {
+                "branch": false,
+                "stars": 3
+            },
+            "hard": {
+                "branch": false,
+                "stars": 7
+            },
+            "normal": {
+                "branch": false,
+                "stars": 5
+            },
+            "oni": {
+                "branch": false,
+                "stars": 8
+            },
+            "ura": null
+        },
+        "hash": "9BUdLIL1LFqWFat4AuStKw",
+        "id": 40,
+        "lyrics": false,
+        "maker": {
+            "id": 5,
+            "name": "その他",
+            "url": "/makers"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 40,
+        "preview": 36.664,
+        "song_skin": null,
+        "subtitle": "Young Kz",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "裏Young Kz ",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": true,
+        "videoBlur": null,
+        "videoOffset": -7.6,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "YouTuber",
+        "category_id": 9,
+        "courses": {
+            "easy": {
+                "branch": false,
+                "stars": 2
+            },
+            "hard": {
+                "branch": false,
+                "stars": 4
+            },
+            "normal": {
+                "branch": false,
+                "stars": 4
+            },
+            "oni": {
+                "branch": false,
+                "stars": 6
+            },
+            "ura": null
+        },
+        "hash": "PY2/97vuDEeTO3u983poTQ",
+        "id": 41,
+        "lyrics": false,
+        "maker": {
+            "id": 5,
+            "name": "その他",
+            "url": "/makers"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 41,
+        "preview": 56.343,
+        "song_skin": null,
+        "subtitle": "すとぷり",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "おかえりらぶっ！",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "Pop",
+        "category_id": 1,
+        "courses": {
+            "easy": {
+                "branch": false,
+                "stars": 4
+            },
+            "hard": {
+                "branch": false,
+                "stars": 6
+            },
+            "normal": {
+                "branch": false,
+                "stars": 5
+            },
+            "oni": {
+                "branch": false,
+                "stars": 8
+            },
+            "ura": {
+                "branch": false,
+                "stars": 10
+            }
+        },
+        "hash": "dgBLrAAGS9FCx/p3RByJ3A",
+        "id": 42,
+        "lyrics": false,
+        "maker": {
+            "id": 3,
+            "name": "Spica",
+            "url": "https://twitter.com/Spica_taikojiro"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 42,
+        "preview": 41.7,
+        "song_skin": null,
+        "subtitle": "『化物語』より",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "恋愛サーキュレーション",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "Pop",
+        "category_id": 1,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": null,
+            "oni": {
+                "branch": false,
+                "stars": 6
+            },
+            "ura": {
+                "branch": false,
+                "stars": 10
+            }
+        },
+        "hash": "FKVoTAZ34xUmf5ro1pX8qg",
+        "id": 43,
+        "lyrics": false,
+        "maker": {
+            "id": 5,
+            "name": "その他",
+            "url": "/makers"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 43,
+        "preview": 77.11,
+        "song_skin": null,
+        "subtitle": "米津玄師",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "灰色と青",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "しょうもない",
+        "category_id": 11,
+        "courses": {
+            "easy": {
+                "branch": false,
+                "stars": 2
+            },
+            "hard": {
+                "branch": false,
+                "stars": 5
+            },
+            "normal": {
+                "branch": false,
+                "stars": 5
+            },
+            "oni": {
+                "branch": false,
+                "stars": 7
+            },
+            "ura": null
+        },
+        "hash": "tTG+d8KnwXIo6qz41QqV6g",
+        "id": 44,
+        "lyrics": false,
+        "maker": {
+            "id": 1,
+            "name": "こう君",
+            "url": "https://twitter.com/PEXkoukunn"
+        },
+        "music_type": "mp3",
+        "offset": -0.05,
+        "order": 44,
+        "preview": 88.388,
+        "song_skin": null,
+        "subtitle": "稲葉曇 Vo.歌愛ユキ",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "ドラグトレイン",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": true,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 0.8
+    },
+    {
+        "category": "しょうもない",
+        "category_id": 11,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": null,
+            "oni": {
+                "branch": false,
+                "stars": 10
+            },
+            "ura": null
+        },
+        "hash": "zybtEnljwq0mcsU8mN55lA",
+        "id": 45,
+        "lyrics": false,
+        "maker": {
+            "id": 5,
+            "name": "その他",
+            "url": "/makers"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 45,
+        "preview": 28,
+        "song_skin": null,
+        "subtitle": null,
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "野々村議員",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 2.2
+    },
+    {
+        "category": "Anime",
+        "category_id": 2,
+        "courses": {
+            "easy": {
+                "branch": false,
+                "stars": 4
+            },
+            "hard": {
+                "branch": false,
+                "stars": 7
+            },
+            "normal": {
+                "branch": false,
+                "stars": 6
+            },
+            "oni": {
+                "branch": false,
+                "stars": 8
+            },
+            "ura": null
+        },
+        "hash": "OoKfmN73wfbLJZ7OxI+gWA",
+        "id": 46,
+        "lyrics": false,
+        "maker": {
+            "id": 5,
+            "name": "その他",
+            "url": "/makers"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 46,
+        "preview": 55.235,
+        "song_skin": {
+            "don": "static",
+            "name": "idolmaster",
+            "song": "slowfade",
+            "stage": "static"
+        },
+        "subtitle": "YOASOBI / TVアニメ『推しの子』より",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "アイドル",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "Pop",
+        "category_id": 1,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": null,
+            "oni": {
+                "branch": false,
+                "stars": 8
+            },
+            "ura": null
+        },
+        "hash": "PkIExvdBTkMVNVxU86vvrQ",
+        "id": 47,
+        "lyrics": false,
+        "maker": {
+            "id": 6,
+            "name": "のあ",
+            "url": "https://630e1386e579e.site123.me/"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 47,
+        "preview": 68.8,
+        "song_skin": null,
+        "subtitle": null,
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "アイのシナリオ",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "Pop",
+        "category_id": 1,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": null,
+            "oni": {
+                "branch": false,
+                "stars": 9
+            },
+            "ura": {
+                "branch": false,
+                "stars": 8
+            }
+        },
+        "hash": "FAVGt9MXtbyy5fvY7wzsTw",
+        "id": 48,
+        "lyrics": false,
+        "maker": {
+            "id": 6,
+            "name": "のあ",
+            "url": "https://630e1386e579e.site123.me/"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 48,
+        "preview": 53.6,
+        "song_skin": null,
+        "subtitle": null,
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "ハートの主張",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "VOCALOID™ Music",
+        "category_id": 3,
+        "courses": {
+            "easy": {
+                "branch": false,
+                "stars": 3
+            },
+            "hard": {
+                "branch": false,
+                "stars": 6
+            },
+            "normal": {
+                "branch": false,
+                "stars": 4
+            },
+            "oni": {
+                "branch": false,
+                "stars": 8
+            },
+            "ura": {
+                "branch": false,
+                "stars": 9
+            }
+        },
+        "hash": "dahidt+S00tIAbjr9hDPtg",
+        "id": 49,
+        "lyrics": false,
+        "maker": {
+            "id": 6,
+            "name": "のあ",
+            "url": "https://630e1386e579e.site123.me/"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 49,
+        "preview": 70.942,
+        "song_skin": null,
+        "subtitle": "ラマーズP feat.初音ミク",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "ぽっぴっぽー",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "Pop",
+        "category_id": 1,
+        "courses": {
+            "easy": {
+                "branch": false,
+                "stars": 2
+            },
+            "hard": {
+                "branch": false,
+                "stars": 5
+            },
+            "normal": {
+                "branch": false,
+                "stars": 3
+            },
+            "oni": {
+                "branch": false,
+                "stars": 8
+            },
+            "ura": null
+        },
+        "hash": "qxB7RQlE5gt1h2gfrInhjA",
+        "id": 50,
+        "lyrics": false,
+        "maker": {
+            "id": 6,
+            "name": "のあ",
+            "url": "https://630e1386e579e.site123.me/"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 50,
+        "preview": 67,
+        "song_skin": null,
+        "subtitle": null,
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "プライド革命",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "Pop",
+        "category_id": 1,
+        "courses": {
+            "easy": null,
+            "hard": {
+                "branch": false,
+                "stars": 8
+            },
+            "normal": null,
+            "oni": {
+                "branch": false,
+                "stars": 10
+            },
+            "ura": null
+        },
+        "hash": "b2BuExeZSwCuIBC/MNzeLA",
+        "id": 51,
+        "lyrics": false,
+        "maker": {
+            "id": 5,
+            "name": "その他",
+            "url": "/makers"
+        },
+        "music_type": "ogg",
+        "offset": -0.251,
+        "order": 51,
+        "preview": 60,
+        "song_skin": null,
+        "subtitle": "Owl City & Carly Rae Jepsen",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "Good time",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "Variety",
+        "category_id": 4,
+        "courses": {
+            "easy": {
+                "branch": false,
+                "stars": 4
+            },
+            "hard": {
+                "branch": false,
+                "stars": 7
+            },
+            "normal": {
+                "branch": false,
+                "stars": 6
+            },
+            "oni": {
+                "branch": false,
+                "stars": 9
+            },
+            "ura": {
+                "branch": false,
+                "stars": 10
+            }
+        },
+        "hash": "4SbRvFyzZzAjADr6fVvukA",
+        "id": 52,
+        "lyrics": false,
+        "maker": null,
+        "music_type": "ogg",
+        "offset": null,
+        "order": 52,
+        "preview": 48.4,
+        "song_skin": null,
+        "subtitle": "Different Heaven (NCS Release)",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "Nekozilla",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "Game Music",
+        "category_id": 6,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": null,
+            "oni": {
+                "branch": false,
+                "stars": 6
+            },
+            "ura": null
+        },
+        "hash": "/5Gc1Silx/3bXZ4XepKXGQ",
+        "id": 53,
+        "lyrics": false,
+        "maker": null,
+        "music_type": "ogg",
+        "offset": -0.55,
+        "order": 53,
+        "preview": null,
+        "song_skin": null,
+        "subtitle": "星のカービィ　スーパーデラックス",
+        "subtitle_lang": {
+            "cn": null,
+            "en": "Kirby Super Star",
+            "ja": "星のカービィ　スーパーデラックス",
+            "ko": null,
+            "tw": null
+        },
+        "title": "スカイハイ",
+        "title_lang": {
+            "cn": null,
+            "en": "Sky High",
+            "ja": "スカイハイ",
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    },
+    {
+        "category": "しょうもない",
+        "category_id": 11,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": null,
+            "oni": {
+                "branch": false,
+                "stars": 6
+            },
+            "ura": null
+        },
+        "hash": "/CmSxVaSDuDUzXJHKI0eGw",
+        "id": 54,
+        "lyrics": false,
+        "maker": {
+            "id": 1,
+            "name": "こう君",
+            "url": "https://twitter.com/PEXkoukunn"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 54,
+        "preview": 7.8,
+        "song_skin": {
+            "don": null,
+            "name": "hikakin",
+            "song": "static",
+            "stage": "static"
+        },
+        "subtitle": "seikin|mania",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "SAENSキン 増量版 素材",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1.1
+    },
+    {
+        "category": "Pop",
+        "category_id": 1,
+        "courses": {
+            "easy": null,
+            "hard": null,
+            "normal": null,
+            "oni": {
+                "branch": false,
+                "stars": 6
+            },
+            "ura": {
+                "branch": false,
+                "stars": 10
+            }
+        },
+        "hash": "/CmSxVaSDuDUzXJOKI0eGw",
+        "id": 55,
+        "lyrics": false,
+        "maker": {
+            "id": 1,
+            "name": "こう君",
+            "url": "https://twitter.com/PEXkoukunn"
+        },
+        "music_type": "ogg",
+        "offset": null,
+        "order": 55,
+        "preview": 0,
+        "song_skin": null,
+        "subtitle": "Alan Walker",
+        "subtitle_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "title": "Fade",
+        "title_lang": {
+            "cn": null,
+            "en": null,
+            "ja": null,
+            "ko": null,
+            "tw": null
+        },
+        "type": "tja",
+        "video": false,
+        "videoBlur": null,
+        "videoOffset": null,
+        "videoloop": false,
+        "volume": 1
+    }
+]

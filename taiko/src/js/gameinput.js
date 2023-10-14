@@ -171,6 +171,9 @@ class GameInput{
 		}
 	}
 	checkKeySound(name, sound){
+		var vOneLS = localStorage.getItem("vOneLocalStorage")
+		var soundEffect = Number(vOneLS)
+		if (!vOneLS) soundEffect = 1
 		this.checkKey(name, "sound", () => {
 			var circles = this.controller.getCircles()
 			var circle = circles[this.controller.getCurrentCircle()]
@@ -182,9 +185,15 @@ class GameInput{
 						this.controller.playSound("se_balloon")
 						return
 					}
+				}else if(circle.type === "adlib"){
+					var relative = Math.abs(currentTime - circle.ms)
+					if(relative < this.game.rules.ok){
+						this.controller.playSound("se_hidden")
+						return
+					}
 				}
 			}
-			this.controller.playSound("neiro_1_" + sound)
+			this.controller.playSound("neiro_"+ soundEffect + "_" + sound)
 		})
 	}
 	getKeys(){
@@ -207,11 +216,25 @@ class GameInput{
 					this.game.calibrationHit(ms)
 				}else{
 					this.checkKeySound(name, "don")
+					var canVibrate = window.navigator.vibrate
+					if (canVibrate) {
+						var vibration = settings.getItem("vibration")
+						if (vibration == "high") navigator.vibrate(50)
+						if (vibration == "midium") navigator.vibrate(25)
+						if (vibration == "low") navigator.vibrate(5)
+					}
 				}
 				this.keyboardEvents++
 			}else if(name == "ka_l" || name == "ka_r"){
 				if(!calibration){
 					this.checkKeySound(name, "ka")
+					var canVibrate = window.navigator.vibrate
+					if (canVibrate) {
+						var vibration = settings.getItem("vibration")
+						if (vibration == "high") navigator.vibrate(10)
+						if (vibration == "midium") navigator.vibrate(5)
+						if (vibration == "low") navigator.vibrate(1)
+					}
 				}
 				this.keyboardEvents++
 			}

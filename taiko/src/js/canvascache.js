@@ -27,7 +27,7 @@ class CanvasCache{
 		this.h = h
 		this.lastW = 0
 		this.lastH = 0
-		this.canvas.width = Math.max(1, this.w * this.scale)
+		this.canvas.width  = Math.max(1, this.w * this.scale)
 		this.canvas.height = Math.max(1, this.h * this.scale)
 		this.ctx.scale(this.scale, this.scale)
 	}

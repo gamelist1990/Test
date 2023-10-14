@@ -5,23 +5,22 @@ class Logo{
 	init(){
 		this.canvas = document.getElementById("logo")
 		this.ctx = this.canvas.getContext("2d")
-		this.pathSvg = failedTests.indexOf("Path2D SVG") === -1 && vectors.logo1
 		this.symbolFont = "TnT, Meiryo, sans-serif"
 		this.symbols = [{
-			x: 315, y: 18, xAlt: 15, scale: true, text: "ブ",
+			x: 300, y: 2, xAlt: 15, scale: true, text: "ん",
 			path: new Path2D(vectors.logo5)
 		}, {
-			x: 267, y: 50, yAlt: -34, scale: true, text: "ェ",
+			x: 230, y: 12, xAlt: 15, scale: true, text: "ゃ",
 			path: new Path2D(vectors.logo4)
 		}, {
-			x: 197, y: 7, xAlt: 15, scale: true, text: "ウ",
+			x: 160, y: 14, xAlt: 15, scale: true, text: "ち",
 			path: new Path2D(vectors.logo3)
 		}, {
-			x: 87, y: 7, xAlt: 15, text: "鼓",
+			x: 70, y: 17, xAlt: 15, text: "ん",
 			path: new Path2D(vectors.logo2),
 			shadow: new Path2D(vectors.logo2Shadow)
 		}, {
-			x: 22, y: 16, xAlt: 10, scaleAlt: true, text: "太",
+			x: 30, y: 26, xAlt: 0, scaleAlt: true, text: "ど",
 			path: new Path2D(vectors.logo1)
 		}]
 		pageEvents.add(window, "resize", this.update.bind(this))
@@ -59,8 +58,9 @@ class Logo{
 		var ctx = this.ctx
 		ctx.save()
 		
-		this.width = 1170
-		this.height = 390
+		this.width = 1570
+		this.height = 690
+		this.yoko = 200
 		var pixelRatio = window.devicePixelRatio || 1
 		var winW = this.canvas.offsetWidth * pixelRatio
 		var winH = this.canvas.offsetHeight * pixelRatio
