@@ -1,3 +1,4 @@
+
 class SongSelect{
 	constructor(...args){
 		this.init(...args)
@@ -5,6 +6,7 @@ class SongSelect{
 	init(fromTutorial, fadeIn, touchEnabled, songId, showWarning){
 		this.touchEnabled = touchEnabled
 		
+		this.doublecount = 0;
 		loader.changePage("songselect", false)
 		this.canvas = document.getElementById("song-sel-canvas")
 		this.ctx = this.canvas.getContext("2d")
@@ -40,6 +42,12 @@ class SongSelect{
 				border: ["#FF9FB7", "#BE1432"],
 				outline: "#A50B15"
 			},
+			"youtube": {
+				sort: 0,
+				background: "#ff001d",
+				border: ["#FF9FB7", "#BE1432"],
+				outline: "#A50B15"
+			},
 			"tutorial": {
 				sort: 0,
 				background: "#29e8aa",
@@ -51,6 +59,18 @@ class SongSelect{
 				background: "#a2d0e7",
 				border: ["#c6dfff", "#4485d9"],
 				outline: "#2390d9"
+			},
+			"discord": {
+				sort: 0,
+				background: "#6c8ceb",
+				border: ["#a2b6f5", "#1f33ed"],
+				outline: "#1f52ed"
+			},
+			"line": {
+				sort: 0,
+				background: "#20c92f",
+				border: ["#4ccf58", "#10b01e"],
+				outline: "#0f7017"
 			},
 			"settings": {
 				sort: 0,
@@ -161,27 +181,129 @@ class SongSelect{
 			action: "about",
 			category: strings.random
 		})
+		var ua = navigator.userAgent;
+		var pf = navigator.platform;
+		if (!(ua.indexOf('iPhone') > 0 || ua.indexOf('iPad') > 0 || ua.indexOf('Android') > 0 || ua.indexOf('Mobile') > 0)) {
+			if (ua.indexOf('kairuntaiko') > 0) {
+				this.songs.push({
+					title: strings.invite,
+					skin: this.songSkin.tutorial,
+					action: "invite",
+					category: strings.random
+				})
+				this.songs.push({
+					title: strings.installed,
+					skin: this.songSkin.discord,
+					action: "installed",
+					category: strings.random
+				})
+			}
+			else if(window.navigator.userAgent.toLowerCase().indexOf("windows nt") !== -1) {
+				this.songs.push({
+					title: strings.wininstall,
+					skin: this.songSkin.discord,
+					action: "installapp",
+					category: strings.random
+				})
+			}
+			else if(window.navigator.platform.includes("mac")) {
+				this.songs.push({
+					title: strings.macinstall,
+					skin: this.songSkin.discord,
+					action: "installapp",
+					category: strings.random
+				})
+			}
+			else {
+				this.songs.push({
+					title: strings.install,
+					skin: this.songSkin.discord,
+					action: "installapp",
+					category: strings.random
+				})
+			}
+		} else {
+			this.songs.push({
+				title: strings.mbinstall,
+				skin: this.songSkin.discord,
+				action: "installapp",
+				category: strings.random
+			})
+		}
+		this.songs.push({
+			title: "キャッシュを削除",
+			skin: this.songSkin.youtube,
+			action: "deletecache",
+			category: strings.random
+		})
+		this.songs.push({
+			title: "YouTube",
+			skin: this.songSkin.youtube,
+			action: "youtube",
+			category: strings.sns
+		})
+		this.songs.push({
+			title: strings.discord,
+			skin: this.songSkin.discord,
+			action: "discord",
+			category: strings.sns
+		})
+		this.songs.push({
+			title: strings.tweet,
+			skin: this.songSkin.about,
+			action: "tweet",
+			category: strings.sns
+		})
+		this.songs.push({
+			title: "運営のTwitter",
+			skin: this.songSkin.about,
+			action: "twitter_owner",
+			category: strings.sns
+		})
+		this.songs.push({
+			title: "公式Twitter",
+			skin: this.songSkin.about,
+			action: "twitter",
+			category: strings.sns
+		})
+		this.songs.push({
+			title: strings.line,
+			skin: this.songSkin.line,
+			action: "line",
+			category: strings.sns
+		})
+		this.songs.push({
+			title: strings.line_oc,
+			skin: this.songSkin.line,
+			action: "line_oc",
+			category: strings.sns
+		})
+		this.songs.push({
+			title: strings.help,
+			skin: this.songSkin.discord,
+			action: "help",
+			category: strings.random
+		})
+		this.songs.push({
+			title: strings.teian,
+			skin: this.songSkin.discord,
+			action: "teian",
+			category: strings.random
+		})
 		this.songs.push({
 			title: strings.gameSettings,
 			skin: this.songSkin.settings,
 			action: "settings",
 			category: strings.random
 		})
-		
 		var showCustom = false
-		if(gameConfig.google_credentials.gdrive_enabled){
-			showCustom = true
-		}else if("webkitdirectory" in HTMLInputElement.prototype && !(/Android|iPhone|iPad/.test(navigator.userAgent))){
-			showCustom = true
-		}
-		if(showCustom){
-			this.songs.push({
-				title: assets.customSongs ? strings.customSongs.default : strings.customSongs.title,
-				skin: this.songSkin.customSongs,
-				action: "customSongs",
-				category: strings.random
-			})
-		}
+		if(showCustom){}
+		this.songs.push({
+			title: assets.customSongs ? strings.customSongs.default : strings.customSongs.title,
+			skin: this.songSkin.customSongs,
+			action: "customSongs",
+			category: strings.random
+		})
 		this.songs.push({
 			title: strings.plugins.title,
 			skin: this.songSkin.plugins,
@@ -220,9 +342,17 @@ class SongSelect{
 			iconName: "options",
 			iconFill: "#d9f19f",
 			letterSpacing: 0
+		}, {
+			text: strings.soundOptions,
+			fill: "#ff99b2",
+			iconName: "sounds",
+			iconFill: "#ffccd8",
+			letterSpacing: -4
 		}]
+
 		this.optionsList = [strings.none, strings.auto, strings.netplay]
-		
+		this.soundList = [strings.taikoS, strings.testS, strings.s3, strings.s4, strings.s5, strings.s6, strings.s7, strings.s8, strings.s9, strings.s10, strings.s11, strings.s12, strings.s13, strings.s14, strings.s15, strings.s16, strings.s17, strings.s18, strings.s19, strings.s20, strings.s21, strings.s22, strings.s23, strings.s24, strings.s25, strings.s26, strings.s27, strings.s28, strings.s29, strings.s30, strings.s31]
+
 		this.draw = new CanvasDraw(noSmoothing)
 		this.songTitleCache = new CanvasCache(noSmoothing)
 		this.selectTextCache = new CanvasCache(noSmoothing)
@@ -240,7 +370,6 @@ class SongSelect{
 			"sessionstart": strings.sessionStart,
 			"sessionend": strings.sessionEnd
 		}
-		
 		this.selectedSong = 0
 		this.selectedDiff = 0
 		this.lastCurrentSong = {}
@@ -308,6 +437,7 @@ class SongSelect{
 			locked: true,
 			hasPointer: false,
 			options: 0,
+			sound: localStorage.getItem("vOneLocalStorage"),
 			selLock: false,
 			catJump: false,
 			focused: true,
@@ -399,7 +529,12 @@ class SongSelect{
 
 		this.selectedSong = songIdx
 	}
-
+	
+	songTP(moveBy){
+	    this.selectedSong = this.mod(this.songs.length,this.selectedSong + moveBy)
+	    this.playSound("se_jump", 0, false)
+	}
+	
 	keyPress(pressed, name, event, repeat){
 		if(pressed){
 			if(!this.pressedKeys[name]){
@@ -435,6 +570,12 @@ class SongSelect{
 			}else if(name === "session"){
 				this.toSession()
 			}else if(name === "left"){
+				if (!repeat && ++this.doublecount === 2) {
+				   this.doublecount = 0;
+				   this.songTP(-5);
+				} else {
+				   setTimeout(() => this.doublecount = 0, 150);
+				}
 				if(shift){
 					if(!repeat){
 						this.categoryJump(-1)
@@ -443,6 +584,12 @@ class SongSelect{
 					this.moveToSong(-1)
 				}
 			}else if(name === "right"){
+				if (!repeat && ++this.doublecount === 2) {
+				   this.doublecount = 0;
+				   this.songTP(5);
+				} else {
+				   setTimeout(() => this.doublecount = 0, 150);
+				}
 				if(shift){
 					if(!repeat){
 						this.categoryJump(1)
@@ -469,6 +616,8 @@ class SongSelect{
 					this.toSongSelect()
 				}else if(this.selectedDiff === 1){
 					this.toOptions(1)
+				}else if(this.selectedDiff === 2){
+					this.toSound(1)
 				}else{
 					this.toLoadSong(this.selectedDiff - this.diffOptions.length, shift, ctrl)
 				}
@@ -493,7 +642,7 @@ class SongSelect{
 			}
 		}
 	}
-	
+
 	mouseDown(event){
 		if(event.target === this.selectable || event.target.parentNode === this.selectable){
 			this.selectable.focus()
@@ -553,6 +702,8 @@ class SongSelect{
 				this.toSongSelect()
 			}else if(moveBy === 1){
 				this.toOptions(1)
+			}else if(moveBy === 2){
+				this.toSound(1)
 			}else if(moveBy === "maker"){
 				window.open(this.songs[this.selectedSong].maker.url)
 			}else if(moveBy === this.diffOptions.length + 4){
@@ -623,7 +774,7 @@ class SongSelect{
 			return
 		}
 		if(enabled && this.state.hasPointer === false){
-			this.canvas.style.cursor = "pointer"
+			this.canvas.style.cursor = 'url("https://kairun.jp/Taiko/cursor/click.png"), auto'
 			this.state.hasPointer = true
 		}else if(!enabled && this.state.hasPointer === true){
 			this.canvas.style.cursor = ""
@@ -673,6 +824,75 @@ class SongSelect{
 	}
 	
 	moveToSong(moveBy, fromP2){
+		var ctrl = false
+		if(moveBy == 7.1){
+			moveBy = 7
+			ctrl = true
+			var ms = this.getMS() - 799
+		}
+		else if(moveBy == -7.1){
+			moveBy = -7
+			ctrl = true
+			var ms = this.getMS() - 799
+		}
+		else{
+			var ms = this.getMS()
+		}
+		if(p2.session && !fromP2){
+			if(!this.state.selLock && ms > this.state.moveMS + 800){
+				this.state.selLock = true
+				p2.send("songsel", {
+					song: this.mod(this.songs.length, this.selectedSong + moveBy)
+				})
+			}
+		}else if(this.state.locked !== 1 || fromP2){
+			if(this.songs[this.selectedSong].courses && !this.songs[this.selectedSong].unloaded && (this.state.locked === 0 || fromP2)){
+				this.state.moveMS = ms
+			}else{
+				this.state.moveMS = ms - this.songSelecting.speed * this.songSelecting.resize
+			}
+			this.state.move = moveBy
+			this.state.lastMove = moveBy
+			this.state.locked = 1
+			this.state.moveHover = null
+			if(ctrl){
+				this.state.skip = true
+			}else{
+				this.state.skip = false
+			}
+			var lastMoveMul = Math.pow(Math.abs(moveBy), 1 / 4)
+			var changeSpeed = this.songSelecting.speed * lastMoveMul
+			var resize = changeSpeed * this.songSelecting.resize / lastMoveMul
+			var scrollDelay = changeSpeed * this.songSelecting.scrollDelay
+			var resize2 = changeSpeed - resize
+			var scroll = resize2 - resize - scrollDelay * 2
+			
+			var soundsDelay = Math.abs((scroll + resize) / moveBy)
+			this.lastMoveBy = fromP2 ? fromP2.player : false
+
+			if(ctrl){
+				this.playSound("se_jump", 0, fromP2 ? fromP2.player : false)
+			}
+			else{
+				for(var i = 0; i < Math.abs(moveBy) - 1; i++){
+					this.playSound("se_ka", (resize + i * soundsDelay) / 1000, fromP2 ? fromP2.player : false)
+					var canVibrate = window.navigator.vibrate
+					if (canVibrate) {
+						var vibration = settings.getItem("vibration")
+						setTimeout(() => {
+							if (vibration == "high") navigator.vibrate(3)
+							if (vibration == "midium") navigator.vibrate(2)
+							if (vibration == "low") navigator.vibrate(1)
+						}, resize + i * soundsDelay);
+					}
+				}
+			}
+			ctrl = false
+			this.pointer(false)
+		}
+	}
+
+	moveToSongCustomSound(moveBy, fromP2){
 		var ms = this.getMS()
 		if(p2.session && !fromP2){
 			if(!this.state.selLock && ms > this.state.moveMS + 800){
@@ -692,19 +912,9 @@ class SongSelect{
 			this.state.locked = 1
 			this.state.moveHover = null
 			
-			var lastMoveMul = Math.pow(Math.abs(moveBy), 1 / 4)
-			var changeSpeed = this.songSelecting.speed * lastMoveMul
-			var resize = changeSpeed * this.songSelecting.resize / lastMoveMul
-			var scrollDelay = changeSpeed * this.songSelecting.scrollDelay
-			var resize2 = changeSpeed - resize
-			var scroll = resize2 - resize - scrollDelay * 2
-			
-			var soundsDelay = Math.abs((scroll + resize) / moveBy)
 			this.lastMoveBy = fromP2 ? fromP2.player : false
 			
-			for(var i = 0; i < Math.abs(moveBy) - 1; i++){
-				this.playSound("se_ka", (resize + i * soundsDelay) / 1000, fromP2 ? fromP2.player : false)
-			}
+			this.playSound("se_jump", 0, fromP2 ? fromP2.player : false)
 			this.pointer(false)
 		}
 	}
@@ -726,6 +936,13 @@ class SongSelect{
 			
 			this.endPreview()
 			this.playSound("se_jump", 0, fromP2 ? fromP2.player : false)
+		}
+		var canVibrate = window.navigator.vibrate
+		if (canVibrate) {
+			var vibration = settings.getItem("vibration")
+			if (vibration == "high") navigator.vibrate(500)
+			if (vibration == "midium") navigator.vibrate(250)
+			if (vibration == "low") navigator.vibrate(100)
 		}
 	}
 
@@ -777,6 +994,17 @@ class SongSelect{
 			}else if(currentSong.action === "back"){
 				this.toTitleScreen()
 			}else if(currentSong.action === "random"){
+				// this.playSound("se_don", 0, fromP2 ? fromP2.player : false)
+				// this.state.locked = true
+				// do{
+				// 	var i = Math.floor(Math.random() * this.songs.length)
+				// }while(!this.songs[i].courses)
+				// var moveBy = i - this.selectedSong
+				// setTimeout(() => {
+				// 	this.moveToSong(moveBy, fromP2)
+				// }, 200)
+				// pageEvents.send("song-select-random")
+
 				do{
 					var i = Math.floor(Math.random() * this.songs.length)
 				}while(!this.songs[i].courses)
@@ -791,6 +1019,30 @@ class SongSelect{
 				this.toTutorial()
 			}else if(currentSong.action === "about"){
 				this.toAbout()
+			}else if(currentSong.action === "youtube"){
+				this.toyoutube()
+			}else if(currentSong.action === "discord"){
+				this.toDiscord()
+			}else if(currentSong.action === "line"){
+				this.toLINE()
+			}else if(currentSong.action === "line_oc"){
+				this.toLINE_OC()
+			}else if(currentSong.action === "tweet"){
+				this.toTweet()
+			}else if(currentSong.action === "twitter_owner"){
+				this.toOwnerTwitter()
+			}else if(currentSong.action === "twitter"){
+				this.toTwitter()
+			}else if(currentSong.action === "deletecache"){
+				this.todeletecache()
+			}else if(currentSong.action === "help"){
+				this.toHelp()
+			}else if(currentSong.action === "teian"){
+				this.toteian()
+			}else if(currentSong.action === "installapp"){
+				this.toinstallapp()
+			}else if(currentSong.action === "invite"){
+				this.toinvite()
 			}else if(currentSong.action === "settings"){
 				this.toSettings()
 			}else if(currentSong.action === "customSongs"){
@@ -884,6 +1136,14 @@ class SongSelect{
 			}while((!p2.socket || p2.socket.readyState !== 1 || assets.customSongs) && this.state.options === 2)
 		}
 	}
+	toSound(moveBy){
+		do{
+			this.state.sound = this.mod(this.soundList.length, this.state.sound + moveBy)
+			var soundEffec = this.state.sound + 1
+			localStorage.setItem("vOneLocalStorage", soundEffec);
+			this.playNeiroPreview(Number(soundEffec))
+		}while((p2.socket.readyState !== 1 || assets.customSongs) && this.state.options === 2)
+    }
 	toTitleScreen(){
 		if(!p2.session){
 			this.playSound("se_cancel")
@@ -905,6 +1165,78 @@ class SongSelect{
 		this.clean()
 		setTimeout(() => {
 			new About(this.touchEnabled)
+		}, 500)
+	}
+	toyoutube(){
+		this.playSound("se_don")
+		setTimeout(() => {
+			new totoyoutube(this.touchEnabled)
+		}, 500)
+	}
+	toDiscord(){
+		this.playSound("se_don")
+		setTimeout(() => {
+			new totoDiscord(this.touchEnabled)
+		}, 500)
+	}
+	toinvite(){
+		this.playSound("se_don")
+		setTimeout(() => {
+			new totoInvite(this.touchEnabled)
+		}, 500)
+	}
+	toLINE(){
+		this.playSound("se_don")
+		setTimeout(() => {
+			new totoLINE(this.touchEnabled)
+		}, 500)
+	}
+	toLINE_OC(){
+		this.playSound("se_don")
+		setTimeout(() => {
+			new totoLINE_OC(this.touchEnabled)
+		}, 500)
+	}
+	toTweet(){
+		this.playSound("se_don")
+		setTimeout(() => {
+			new totoTweet(this.touchEnabled)
+		}, 500)
+	}
+	toOwnerTwitter(){
+		this.playSound("se_don")
+		setTimeout(() => {
+			new totoOwnerTwitter(this.touchEnabled)
+		}, 500)
+	}
+	toTwitter(){
+		this.playSound("se_don")
+		setTimeout(() => {
+			new totoTwitter(this.touchEnabled)
+		}, 500)
+	}
+	todeletecache(){
+		this.playSound("se_don")
+		setTimeout(() => {
+			new totodeletecache(this.touchEnabled)
+		}, 500)
+	}
+	toHelp(){
+		this.playSound("se_don")
+		setTimeout(() => {
+			new totoHelp(this.touchEnabled)
+		}, 500)
+	}
+	toteian(){
+		this.playSound("se_don")
+		setTimeout(() => {
+			new totoTeian(this.touchEnabled)
+		}, 500)
+	}
+	toinstallapp(){
+		this.playSound("se_don")
+		setTimeout(() => {
+			new totoinstallapp(this.touchEnabled)
 		}, 500)
 	}
 	toSettings(){
@@ -991,8 +1323,15 @@ class SongSelect{
 		}
 		
 		var ctx = this.ctx
-		var winW = innerWidth
-		var winH = lastHeight
+		var winW;
+		if (settings.getItem("aspect") === "wide"){
+			winW = innerHeight * 16 / 9;
+		}else if (settings.getItem("aspect") === "normal"){
+			winW = innerHeight * 4 / 3;
+		} else {
+			winW = innerWidth;
+		}
+		var winH = lastHeight;
 		if(winW / 32 > winH / 9){
 			winW = winH / 9 * 32
 		}
@@ -1011,12 +1350,11 @@ class SongSelect{
 		var ratioY = winH / 720
 		var ratio = (ratioX < ratioY ? ratioX : ratioY)
 		if(this.winW !== winW || this.winH !== winH){
-			this.canvas.width = Math.max(1, winW)
+			this.canvas.width  = Math.max(1, winW)
 			this.canvas.height = Math.max(1, winH)
 			ctx.scale(ratio, ratio)
 			this.canvas.style.width = (winW / this.pixelRatio) + "px"
 			this.canvas.style.height = (winH / this.pixelRatio) + "px"
-			
 			var borders = (this.songAsset.border + this.songAsset.innerBorder) * 2
 			var songsLength = Math.ceil(winW / ratio / (this.songAsset.width + this.songAsset.marginLeft)) + 1
 			
@@ -1078,19 +1416,8 @@ class SongSelect{
 			if(this.search.opened && this.search.container){
 				this.search.onInput(true)
 			}
-		}else if(!document.hasFocus() && !p2.session){
-			if(this.state.focused){
-				this.state.focused = false
-				this.songSelect.classList.add("unfocused")
-				this.pressedKeys = {}
-			}
-			return
 		}else{
 			ctx.clearRect(0, 0, winW / ratio, winH / ratio)
-		}
-		if(!this.state.focused){
-			this.state.focused = true
-			this.songSelect.classList.remove("unfocused")
 		}
 		this.winW = winW
 		this.winH = winH
@@ -1543,6 +1870,9 @@ class SongSelect{
 						var text = this.diffOptions[i].text
 						if(this.diffOptions[i].iconName === "options" && (this.selectedDiff === i || this.state.options !== 0)){
 							text = this.optionsList[this.state.options]
+						}
+						if(this.diffOptions[i].iconName === "sounds" && (this.selectedDiff === i || this.state.sound !== 0)){
+							text = this.soundList[this.state.sound]
 						}
 						
 						this.draw.verticalText({
@@ -2106,10 +2436,18 @@ class SongSelect{
 		
 		if(!p2.session || p2.player === 1){
 			var name = account.loggedIn ? account.displayName : strings.defaultName
-			var rank = account.loggedIn || !gameConfig.accounts || p2.session ? false : strings.notLoggedIn
+			var rank = account.loggedIn ? account.rank : strings.notLoggedIn
+			var rank_color = (account.loggedIn && account.rank_color) ? account.rank_color : false
 		}else{
 			var name = p2.name || strings.defaultName
-			var rank = false
+			if (p2.name && p2.rank) {
+				var rank = p2.rank
+			} else if (p2.name) {
+				var rank = ""
+			} else {
+				var rank = strings.notLoggedIn
+			}
+			var rank_color = p2.rank_color || false
 		}
 		this.nameplateCache.get({
 			ctx: ctx,
@@ -2125,6 +2463,7 @@ class SongSelect{
 				y: 3,
 				name: name,
 				rank: rank,
+				rank_color: rank_color, // old account.don.body_fil
 				font: this.font
 			})
 		})
@@ -2262,8 +2601,18 @@ class SongSelect{
 		if(p2.session){
 			if(p2.player === 1){
 				var name = p2.name || strings.default2PName
+				if (p2.name && p2.rank) {
+					var rank = p2.rank
+				} else if (p2.name) {
+					var rank = ""
+				} else {
+					var rank = strings.notLoggedIn
+				}
+				var rank_color = p2.rank_color || false
 			}else{
 				var name = account.loggedIn ? account.displayName : strings.default2PName
+				var rank = account.loggedIn ? account.rank : strings.notLoggedIn
+				var rank_color = (account.loggedIn && account.rank_color) ? account.rank_color : false
 			}
 			this.nameplateCache.get({
 				ctx: ctx,
@@ -2278,6 +2627,8 @@ class SongSelect{
 					x: 3,
 					y: 3,
 					name: name,
+					rank: rank,
+					rank_color: rank_color, // old account.don.body_fil
 					font: this.font,
 					blue: true
 				})
@@ -2827,6 +3178,21 @@ class SongSelect{
 			this.playedSounds[id] = ms
 		}
 	}
+
+	playNeiroPreview(effectnum, time, snd){
+		if(!this.drumSounds && (id === "neiro_1_don" || id === "neiro_1_ka" || id === "neiro_2_don" || id === "neiro_2_ka" || id === "neiro_3_don" || id === "neiro_3_ka" || id === "neiro_4_don" || id === "neiro_4_ka" || id === "neiro_5_don" || id === "neiro_5_ka" || id === "neiro_6_don" || id === "neiro_6_ka" || id === "neiro_7_don" || id === "neiro_7_ka" || id === "neiro_8_don" || id === "neiro_8_ka" || id === "neiro_9_don" || id === "neiro_9_ka" || id === "neiro_10_don" || id === "neiro_10_ka" || id === "neiro_11_don" || id === "neiro_11_ka" || id === "neiro_12_don" || id === "neiro_12_ka" || id === "neiro_13_don" || id === "neiro_13_ka" || id === "neiro_14_don" || id === "neiro_14_ka" || id === "neiro_15_don" || id === "neiro_15_ka" || id === "neiro_16_don" || id === "neiro_16_ka" || id === "neiro_17_don" || id === "neiro_17_ka" || id === "neiro_18_don" || id === "neiro_18_ka" || id === "neiro_19_don" || id === "neiro_19_ka" || id === "neiro_20_don" || id === "neiro_20_ka" || id === "neiro_21_don" || id === "neiro_21_ka" || id === "neiro_22_don" || id === "neiro_22_ka" || id === "neiro_23_don" || id === "neiro_23_ka" || id === "neiro_24_don" || id === "neiro_24_ka" || id === "neiro_25_don" || id === "neiro_25_ka" || id === "neiro_26_don" || id === "neiro_26_ka" || id === "neiro_27_don" || id === "neiro_27_ka" || id === "neiro_28_don" || id === "neiro_28_ka" || id === "neiro_29_don" || id === "neiro_29_ka" || id === "neiro_30_don" || id === "neiro_30_ka" || id === "neiro_31_don" || id === "neiro_31_ka" || id === "se_don" || id === "se_ka")){
+			return
+		}
+		const id = "neiro_"+ effectnum + "_"
+		var ms = Date.now() + (time || 0) * 1000
+		if(!(id in this.playedSounds) || ms > this.playedSounds[id] + 30){
+			assets.sounds[id + "don" + (snd ? "_p" + snd : "")].play(time)
+			setTimeout(() => {
+				assets.sounds[id + "ka" + (snd ? "_p" + snd : "")].play(time)
+			}, 500);
+			this.playedSounds[id] = ms
+		}
+	}
 	
 	getMS(){
 		return Date.now()
@@ -2869,5 +3235,125 @@ class SongSelect{
 		delete this.selectable
 		delete this.ctx
 		delete this.canvas
+	}
+}
+let deferredPrompt;
+
+class totoinstallapp{
+	constructor(touchEnabled){
+		this.touchEnabled = touchEnabled
+		if(window.navigator.userAgent.toLowerCase().indexOf("windows nt") !== -1) {
+			location.href = "https://cdn.kairun.jp/Kairuntaiko-Setup.exe";
+		}
+		if(window.navigator.platform.includes("mac")) {
+			location.href = "https://taiko.kairun.jp/cdn/KairunTaiko.dmg";
+		}else {
+			pwaInstall();
+		}
+	}
+}
+
+class totoyoutube{
+	constructor(touchEnabled){
+		this.touchEnabled = touchEnabled
+        window.open('https://www.youtube.com/c/kairu8264', '_blank');
+		cancelTouch = false
+	}
+}
+
+class totoDiscord{
+	constructor(touchEnabled){
+		this.touchEnabled = touchEnabled
+        window.open('https://kairun.jp/Discord/', '_blank');
+		cancelTouch = false
+	}
+}
+
+class totoInvite{
+	constructor(touchEnabled){
+		this.touchEnabled = touchEnabled
+		location.href = "https://taiko.kairun.jp/Invite/"
+		cancelTouch = false
+	}
+}
+
+class totoLINE{
+	constructor(touchEnabled){
+		this.touchEnabled = touchEnabled
+        window.open('/LINE/', '_blank');
+		cancelTouch = false
+	}
+}
+
+class totoLINE_OC{
+	constructor(touchEnabled){
+		this.touchEnabled = touchEnabled
+        window.open('/LINE/OC/', '_blank');
+		cancelTouch = false
+	}
+}
+
+class totoTweet{
+	constructor(touchEnabled){
+		this.touchEnabled = touchEnabled
+        window.open('https://game.kairun.jp/Taiko/Share/Twitter/', '_blank');
+		cancelTouch = false
+	}
+}
+
+class totoOwnerTwitter{
+	constructor(touchEnabled){
+		this.touchEnabled = touchEnabled
+        window.open('https://kairun.jp/Twitter/', '_blank');
+		cancelTouch = false
+	}
+}
+
+class totoTwitter{
+	constructor(touchEnabled){
+		this.touchEnabled = touchEnabled
+        window.open('https://twitter.com/kairuntaiko', '_blank');
+		cancelTouch = false
+	}
+}
+
+class totoTeian{
+	constructor(touchEnabled){
+		this.touchEnabled = touchEnabled
+        window.open('https://game.kairun.jp/Taiko/Teian/', '_blank');
+		cancelTouch = false
+	}
+}
+
+class totoHelp{
+	constructor(touchEnabled){
+		this.touchEnabled = touchEnabled
+        window.open('https://game.kairun.jp/Taiko/Lag/', '_blank');
+		cancelTouch = false
+	}
+}
+
+class totodeletecache{
+	constructor(touchEnabled){
+		this.touchEnabled = touchEnabled
+		navigator.serviceWorker.getRegistrations().then(function(registrations) {
+			// 登録されているworkerを全て削除する
+			for(let registration of registrations) {
+				registration.unregister();
+			}
+		});
+		caches.keys().then(function(keys) {
+			var promises = [];
+			// キャッシュストレージを全て削除する
+			keys.forEach(function(cacheName) {
+				if (cacheName) {
+					promises.push(caches.delete(cacheName));
+				}
+			});
+		});
+		if (!alert('キャッシュを削除しましたので再起動します!')) {
+			location.reload();
+		}		
+		cancelTouch = false
 	}
 }

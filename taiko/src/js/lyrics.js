@@ -1,5 +1,8 @@
 class Lyrics{
-	constructor(file, songOffset, div, parsed){
+	constructor(...args){
+		this.init(...args)
+	}
+	init(file, songOffset, div, parsed){
 		this.div = div
 		this.stroke = document.createElement("div")
 		this.stroke.classList.add("stroke")
@@ -74,7 +77,7 @@ class Lyrics{
 								break
 							}
 							var lang = text.slice(index1 + 6, index2).toLowerCase()
-							if(strings.id === lang){
+							if(strings.preferEn && lang === "en" || strings.id === lang){
 								var index3 = text.indexOf("<lang ", index2 + 1)
 								if(index3 !== -1){
 									textLang = text.slice(index2 + 1, index3)
@@ -128,12 +131,14 @@ class Lyrics{
 		}
 		ms += this.songOffset + this.vttOffset
 		var currentLine = this.lines[this.current]
-		while(currentLine && ms > currentLine.end){
+		while(currentLine && (ms > currentLine.end || currentLine.branch && this.branch && currentLine.branch !== this.branch)){
 			currentLine = this.lines[++this.current]
 		}
 		if(this.shown !== this.current){
 			if(currentLine && ms >= currentLine.start){
-				this.setText(this.lines[this.current].text)
+				if(!currentLine.copy){
+					this.setText(currentLine.text)
+				}
 				this.shown = this.current
 			}else if(this.shown !== -1){
 				this.setText("")

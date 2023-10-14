@@ -1,5 +1,8 @@
 class CustomSongs{
-	constructor(touchEnabled, noPage){
+	constructor(...args){
+		this.init(...args)
+	}
+	init(touchEnabled, noPage, noLoading){
 		this.loaderDiv = document.createElement("div")
 		this.loaderDiv.innerHTML = assets.pages["loadsong"]
 		var loadingText = this.loaderDiv.querySelector("#loading-text")
@@ -10,6 +13,7 @@ class CustomSongs{
 		
 		if(noPage){
 			this.noPage = true
+			this.noLoading = noLoading
 			return
 		}
 		
@@ -85,6 +89,11 @@ class CustomSongs{
 			var dropContent = this.dropzone.getElementsByClassName("view-content")[0]
 			dropContent.innerText = strings.customSongs.dropzone
 			this.dragging = false
+			this.dragTarget = null
+			pageEvents.add(document, "dragenter", event => {
+				event.preventDefault()
+				this.dragTarget = event.target
+			})
 			pageEvents.add(document, "dragover", event => {
 				event.preventDefault()
 				if(!this.locked){
@@ -96,8 +105,11 @@ class CustomSongs{
 				}
 			})
 			pageEvents.add(document, "dragleave", () => {
-				this.dropzone.classList.remove("dragover")
-				this.dragging = false
+				if(this.dragTarget === event.target){
+					event.preventDefault()
+					this.dropzone.classList.remove("dragover")
+					this.dragging = false
+				}
 			})
 			pageEvents.add(document, "drop", this.filesDropped.bind(this))
 		}
@@ -149,10 +161,12 @@ class CustomSongs{
 			return
 		}
 		this.changeSelected(this.linkLocalFolder)
-		if(typeof showDirectoryPicker === "function"){
+		if(typeof showDirectoryPicker === "function" && !(/\bOPR\/|\bOPRGX\//.test(navigator.userAgent))){
 			return showDirectoryPicker().then(file => {
-				this.walkFilesystem(file).then(files => this.importLocal(files)).then(e => {
-					db.setItem("customFolder", [file])
+				this.walkFilesystem(file).then(files => this.importLocal(files)).then(input => {
+					if(input){
+						db.setItem("customFolder", [file])
+					}
 				}).catch(e => {
 					if(e !== "cancel"){
 						return Promise.reject(e)
@@ -217,8 +231,8 @@ class CustomSongs{
 				}))
 			}
 		}
-		Promise.all(dropPromises).then(() => this.importLocal(allFiles)).then(() => {
-			if(dbItems.length){
+		Promise.all(dropPromises).then(() => this.importLocal(allFiles)).then(input => {
+			if(input && dbItems.length){
 				db.setItem("customFolder", dbItems)
 			}
 		})
@@ -257,14 +271,17 @@ class CustomSongs{
 		
 		var importSongs = new ImportSongs()
 		return importSongs.load(files).then(this.songsLoaded.bind(this), e => {
-			this.browse.parentNode.reset()
+			if(!this.noPage){
+				this.browse.form.reset()
+			}
 			this.locked = false
 			this.loading(false)
 			if(e === "nosongs"){
-				this.showError(strings.customSongs.noSongs)
+				this.showError(strings.customSongs.noSongs, "nosongs")
 			}else if(e !== "cancel"){
 				return Promise.reject(e)
 			}
+			return false
 		})
 	}
 	gdriveFolder(event){
@@ -283,7 +300,7 @@ class CustomSongs{
 		this.loading(true)
 		var importSongs = new ImportSongs(true)
 		if(!gpicker){
-			var gpickerPromise = loader.loadScript("/src/js/gpicker.js").then(() => {
+			var gpickerPromise = loader.loadScript("src/js/gpicker.js").then(() => {
 				gpicker = new Gpicker()
 			})
 		}else{
@@ -302,13 +319,15 @@ class CustomSongs{
 			this.locked = false
 			this.loading(false)
 			if(e === "nosongs"){
-				this.showError(strings.customSongs.noSongs)
+				this.showError(strings.customSongs.noSongs, "nosongs")
 			}else if(e !== "cancel"){
 				return Promise.reject(e)
 			}
 		}).finally(() => {
-			var addRemove = !gpicker || !gpicker.oauthToken ? "add" : "remove"
-			this.linkGdriveAccount.classList[addRemove]("hiddenbtn")
+			if(this.linkGdriveAccount){
+				var addRemove = !gpicker || !gpicker.oauthToken ? "add" : "remove"
+				this.linkGdriveAccount.classList[addRemove]("hiddenbtn")
+			}
 		})
 	}
 	gdriveAccount(event){
@@ -363,7 +382,7 @@ class CustomSongs{
 		open("privacy")
 	}
 	loading(show){
-		if(this.noPage){
+		if(this.noLoading){
 			return
 		}
 		if(show){
@@ -379,14 +398,17 @@ class CustomSongs{
 			assets.customSongs = true
 			assets.customSelected = this.noPage ? +localStorage.getItem("customSelected") : 0
 		}
-		if(!this.noPage){
+		if(this.noPage){
+			pageEvents.send("import-songs", length)
+		}else{
 			assets.sounds["se_don"].play()
+			setTimeout(() => {
+				new SongSelect("customSongs", false, this.touchEnabled)
+				pageEvents.send("import-songs", length)
+			}, 500)
 		}
 		this.clean()
-		setTimeout(() => {
-			new SongSelect("customSongs", false, this.touchEnabled)
-			pageEvents.send("import-songs", length)
-		}, 500)
+		return songs && songs.length
 	}
 	keyPressed(pressed, name){
 		if(!pressed || this.locked){
@@ -465,10 +487,14 @@ class CustomSongs{
 			resolve()
 		}, 500))
 	}
-	showError(text){
+	showError(text, errorName){
 		this.locked = false
 		this.loading(false)
-		if(this.noPage || this.mode === "error"){
+		if(this.noPage){
+			var error = new Error(text)
+			error.name = errorName
+			throw error
+		}else if(this.mode === "error"){
 			return
 		}
 		this.mode = "error"
@@ -504,8 +530,12 @@ class CustomSongs{
 		pageEvents.remove(this.errorDiv, ["mousedown", "touchstart"])
 		pageEvents.remove(this.errorEnd, ["mousedown", "touchstart"])
 		if(DataTransferItem.prototype.webkitGetAsEntry){
-			pageEvents.remove(document, ["dragover", "dragleave", "drop"])
+			pageEvents.remove(document, ["dragenter", "dragover", "dragleave", "drop"])
 			delete this.dropzone
+			delete this.dragTarget
+		}
+		if(gpicker){
+			gpicker.tokenResolve = null
 		}
 		delete this.browse
 		delete this.linkLocalFolder

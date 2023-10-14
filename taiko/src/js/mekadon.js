@@ -1,5 +1,8 @@
 class Mekadon{
-	constructor(controller, game){
+	constructor(...args){
+		this.init(...args)
+	}
+	init(controller, game){
 		this.controller = controller
 		this.game = game
 		this.lr = false
@@ -63,13 +66,11 @@ class Mekadon{
 		}
 		
 		if(reverse){
-			if(type === "don" || type === "daiDon" || type === "adlib"){
+			if(type === "don" || type === "daiDon"){
 				type = "ka"
 			}else if(type === "ka" || type === "daiKa"){
 				type = "don"
 			}
-		}else if(type === "adlib"){
-			type = "don"
 		}
 		if(type === "daiDon" && playDai){
 			this.setKey("don_l", ms)
@@ -79,11 +80,6 @@ class Mekadon{
 		}else if(type === "don" || type === "daiDon" || drumrollNotes && score !== 2){
 			this.setKey(this.lr ? "don_l" : "don_r", ms)
 			this.lr = !this.lr
-			}else if(type === "green"){
-			this.setKey(["ka_l"], ms)
-			this.setKey(["don_r"], ms)
-			this.lr = false
-			keyDai = true
 		}else if(type === "daiKa" && playDai){
 			this.setKey("ka_l", ms)
 			this.setKey("ka_r", ms)
@@ -101,16 +97,13 @@ class Mekadon{
 		}else if(type === "drumroll" || type === "daiDrumroll"){
 			this.game.checkDrumroll(circle, score === 2)
 		}else{
-			this.controller.displayScore(score, false, keyDai, circle.type === "adlib")
+			this.controller.displayScore(score, false, keyDai)
 			this.game.updateCombo(score)
 			this.game.updateGlobalScore(score, keyDai ? 2 : 1, circle.gogoTime)
 			this.game.updateCurrentCircle()
 			circle.played(score, keyDai)
 			if(circle.section){
 				this.game.resetSection()
-			}
-			if(circle.type === "adlib" && score){
-				this.game.globalScore.adlib++
 			}
 			this.game.sectionNotes.push(score === 450 ? 1 : (score === 230 ? 0.5 : 0))
 		}

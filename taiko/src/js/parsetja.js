@@ -1,5 +1,8 @@
 class ParseTja{
-	constructor(file, difficulty, stars, offset, metaOnly, mods){
+	constructor(...args){
+		this.init(...args)
+	}
+	init(file, difficulty, stars, offset, metaOnly){
 		this.data = []
 		for(let line of file){
 			var indexComment = line.indexOf("//")
@@ -15,14 +18,6 @@ class ParseTja{
 		this.difficulty = difficulty
 		this.stars = stars
 		this.offset = (offset || 0) * -1000
-		this.mods = mods || {
-			speed: 1,
-			shuffle: 0,
-			doron: false,
-			hardcore: false,
-			allDon: false,
-			allKat: false
-		};
 		this.soundOffset = 0
 		this.noteTypes = {
 			"0": {name: false, txt: false},
@@ -36,9 +31,7 @@ class ParseTja{
 			"8": {name: false, txt: false},
 			"9": {name: "balloon", txt: strings.note.balloon},
 			"A": {name: "daiDon", txt: strings.note.daiDon},
-			"B": {name: "daiKa", txt: strings.note.daiKa},
-			"F": {name: "adlib", txt: false},
-			"G": {name: "green", txt: strings.note.green}
+			"B": {name: "daiKa", txt: strings.note.daiKa}
 		}
 		this.noteTypes_ex = strings.ex_note;
 		this.courseTypes = {
@@ -55,7 +48,7 @@ class ParseTja{
 		this.beatInfo = {}
 		this.events = []
 		if(!metaOnly){
-			this.circles = this.parseCircles()
+			this.circles = this.parseCircles(difficulty)
 		}
 	}
 	parseMetadata(){
@@ -71,16 +64,18 @@ class ParseTja{
 			if(line.slice(0, 1) === "#"){
 				
 				var name = line.slice(1).toLowerCase()
-				if(name === "start" && !inSong){
+				if((name === "start" || name === "start p1") && !inSong){
 					
 					inSong = true
-					if(!hasSong){
+					if(!hasSong || name === "start" && courses[courseName] && courses[courseName].startName !== "start"){
+						hasSong = false
 						if(!(courseName in courses)){
 							courses[courseName] = {}
 						}
-						for(var name in currentCourse){
-							if(name !== "branch"){
-								courses[courseName][name] = currentCourse[name]
+						courses[courseName].startName = name
+						for(var opt in currentCourse){
+							if(opt !== "branch"){
+								courses[courseName][opt] = currentCourse[opt]
 							}
 						}
 						courses[courseName].start = lineNum + 1
@@ -140,13 +135,15 @@ class ParseTja{
 		}
 		return [string.slice(0, index), string.slice(index + delimiter.length)]
 	}
-	parseCircles(){
-		var meta = this.metadata[this.difficulty] || {}
+	parseCircles(difficulty, lyricsOnly){
+		var meta = this.metadata[difficulty] || {}
 		var ms = (meta.offset || 0) * -1000 + this.offset
 		var bpm = Math.abs(meta.bpm) || 120
 		var scroll = 1
 		var measure = 4
-		this.beatInfo.beatInterval = 60000 / bpm
+		if(!lyricsOnly){
+			this.beatInfo.beatInterval = 60000 / bpm
+		}
 		var gogo = false
 		var barLine = true
 		
@@ -155,6 +152,7 @@ class ParseTja{
 		
 		var lastDrumroll = false
 		
+		var branches
 		var branch = false
 		var branchObj = {}
 		var currentBranch = false
@@ -163,12 +161,17 @@ class ParseTja{
 		var sectionBegin = true
 		var lastBpm = bpm
 		var lastGogo = gogo
+		var lyrics
+		var lyricsIndex = null
 		var lyricsLine = null
+		var lyricsCopy = false
 		
+		var measures = []
 		var currentMeasure = []
 		var firstNote = true
 		var circles = []
 		var circleID = 0
+		var events = []
 		var regexAZ = /[A-Z]/
 		var regexSpace = /\s/
 		var regexLinebreak = /\\n/g
@@ -205,14 +208,16 @@ class ParseTja{
 			}else{
 				var speed = bpm * scroll / 60
 			}
-			this.measures.push({
-				ms: ms,
-				originalMS: ms,
-				speed: speed * this.mods.speed,
-				visible: barLine,
-				branch: currentBranch,
-				branchFirst: branchFirstMeasure
-			})
+			if(!lyricsOnly){
+				measures.push({
+					ms: ms,
+					originalMS: ms,
+					speed: speed,
+					visible: barLine,
+					branch: currentBranch,
+					branchFirst: branchFirstMeasure
+				})
+			}
 			branchFirstMeasure = false
 			if(currentMeasure.length){
 				for(var i = 0; i < currentMeasure.length; i++){
@@ -234,74 +239,15 @@ class ParseTja{
 				}
 				var note_chain = [];
 				for (var i = 0; i < currentMeasure.length; i++){
-					//console.log(note_chain.length);
 					var note = currentMeasure[i]
-					if (note.type) {
-						circleID++;
-						if (Math.random() < this.mods.shuffle) { 
-							switch (note.type) { 
-								case "don":
-									note.type = "ka";
-									note.txt = strings.note.ka;
-									break;
-								case "ka":
-									note.type = "don";
-									note.txt = strings.note.don;
-									break;
-								case "daiDon":
-									note.type = "daiKa";
-									note.txt = strings.note.daiKa;
-									break;
-								case "daiKa":
-									note.type = "daiDon";
-									note.txt = strings.note.daiDon;
-									break;
-								default:
-									break;
-							}
-						}
-						if (this.mods.allDon) {
-							switch (note.type) { 
-								case "don":
-									break;
-								case "ka":
-									note.type = "don";
-									note.txt = strings.note.don;
-									break;
-								case "daiDon":
-									break;
-								case "daiKa":
-									note.type = "daiDon";
-									note.txt = strings.note.daiDon;
-									break;
-								default:
-									break;
-							}
-						}
-						if (this.mods.allKat) {
-							switch (note.type) { 
-								case "don":
-									note.type = "ka";
-									note.txt = strings.note.ka;
-									break;
-								case "ka":
-									break;
-								case "daiDon":
-									note.type = "daiKa";
-									note.txt = strings.note.daiKa;
-									break;
-								case "daiKa":
-									break;
-								default:
-									break;
-							}
-						}
+					if(!lyricsOnly){
+						circleID++
 						var circleObj = new Circle({
 							id: circleID,
 							start: note.start,
 							type: note.type,
 							txt: note.txt,
-							speed: note.bpm * note.scroll * this.mods.speed / 60,
+							speed: note.bpm * note.scroll / 60,
 							gogoTime: note.gogo,
 							endTime: note.endTime,
 							requiredHits: note.requiredHits,
@@ -309,46 +255,63 @@ class ParseTja{
 							branch: currentBranch,
 							section: note.section
 						})
-						if (note.type === "don" || note.type === "ka" || note.type === "daiDon" || note.type === "daiKa") {
-							note_chain.push(circleObj);
-						} else { 
-							if (note_chain.length > 1 && currentMeasure.length >= 8) { 
-								checkChain(note_chain, currentMeasure.length, false);
+						if(note.type){
+							if(note.type === "don" || note.type === "ka" || note.type === "daiDon" || note.type === "daiKa"){
+								note_chain.push(circleObj)
+							}else{
+								if(note_chain.length > 1 && currentMeasure.length >= 8){
+									checkChain(note_chain, currentMeasure.length, false)
+								}
+								note_chain = []
 							}
-							note_chain = [];
-						} 
-						if (lastDrumroll === note) {
-							lastDrumroll = circleObj
+							if (lastDrumroll === note) {
+								lastDrumroll = circleObj
+							}
+							
+							if(note.type !== "event"){
+								circles.push(circleObj)
+							}
+						}else if(
+							(currentMeasure.length < 24 ||
+								currentMeasure[i + 1]
+								&& !currentMeasure[i + 1].type
+							) && (currentMeasure.length < 48 ||
+								currentMeasure[i + 2]
+								&& !currentMeasure[i + 2].type
+								&& currentMeasure[i + 3]
+								&& !currentMeasure[i + 3].type
+							)
+						){
+							if(note_chain.length > 1 && currentMeasure.length >= 8){
+								checkChain(note_chain, currentMeasure.length, true)
+							}
+							note_chain = []
 						}
-						
 						if(note.event){
-							this.events.push(circleObj)
+							events.push(circleObj)
 						}
-						if(note.type !== "event"){
-							circles.push(circleObj)
-						}
-					} else if (!(currentMeasure.length >= 24 && (!currentMeasure[i + 1] || currentMeasure[i + 1].type))
-						&& !(currentMeasure.length >= 48 && (!currentMeasure[i + 2] || currentMeasure[i + 2].type || !currentMeasure[i + 3] || currentMeasure[i + 3].type))) { 
-						if (note_chain.length > 1 && currentMeasure.length >= 8) { 
-							checkChain(note_chain, currentMeasure.length, true);
-						}
-						note_chain = [];
 					}
+					var lyricsObj = null
 					if("lyricsLine" in note){
-						if(!this.lyrics){
-							this.lyrics = []
-						}
-						if(this.lyrics.length !== 0){
-							this.lyrics[this.lyrics.length - 1].end = note.start
-						}
-						this.lyrics.push({
+						lyricsObj = {
 							start: note.start,
 							text: note.lyricsLine
-						})
+						}
+					}else if(note.lyricsCopy){
+						lyricsObj = {
+							start: note.start,
+							copy: true
+						}
+					}
+					if(lyricsObj){
+						if(currentBranch){
+							lyricsObj.branch = currentBranch.name
+						}
+						insertLyrics(lyricsObj)
 					}
 				}
-				if (note_chain.length > 1 && currentMeasure.length >= 8) { 
-					checkChain(note_chain, currentMeasure.length, false);
+				if(!lyricsOnly && note_chain.length > 1 && currentMeasure.length >= 8){
+					checkChain(note_chain, currentMeasure.length, false)
 				}
 			}else{
 				var msPerMeasure = 60000 * measure / bpm
@@ -365,7 +328,10 @@ class ParseTja{
 				if(lyricsLine !== null){
 					circleObj.lyricsLine = lyricsLine
 					lyricsLine = null
+				}else if(lyricsCopy){
+					circleObj.lyricsCopy = true
 				}
+				lyricsCopy = false
 				currentMeasure.push(circleObj)
 			}
 		}
@@ -385,16 +351,31 @@ class ParseTja{
 				if(lyricsLine !== null){
 					circleObj2.lyricsLine = lyricsLine
 					lyricsLine = null
+				}else if(lyricsCopy){
+					circleObj2.lyricsCopy = true
 				}
+				lyricsCopy = false
 				currentMeasure.push(circleObj2)
 			}
 			if(circleObj){
 				if(lyricsLine !== null){
 					circleObj.lyricsLine = lyricsLine
 					lyricsLine = null
+				}else if(lyricsCopy){
+					circleObj.lyricsCopy = true
 				}
+				lyricsCopy = false
 				currentMeasure.push(circleObj)
 			}
+		}
+		var insertLyrics = obj => {
+			if(!lyrics){
+				lyrics = []
+			}else if(lyricsIndex !== null){
+				lyrics[lyricsIndex].end = obj.start
+			}
+			lyricsIndex = lyrics.length
+			lyrics.push(obj)
 		}
 		
 		for(var lineNum = meta.start; lineNum < meta.end; lineNum++){
@@ -440,11 +421,18 @@ class ParseTja{
 							gogo: gogo,
 							bpm: bpm,
 							scroll: scroll,
-							sectionBegin: sectionBegin
+							sectionBegin: sectionBegin,
+							lyricsCopy: !!lyrics
 						}
+						if(lyrics && lyricsIndex !== null){
+							var line = lyrics[lyricsIndex]
+							line.end = ms
+						}
+						lyricsIndex = null
+						
 						value = value.split(",")
-						if(!this.branches){
-							this.branches = []
+						if(!branches){
+							branches = []
 						}
 						var req = {
 							advanced: parseFloat(value[1]) || 0,
@@ -462,12 +450,12 @@ class ParseTja{
 							type: value[0].trim().toLowerCase() === "r" ? "drumroll" : "accuracy",
 							requirement: req
 						}
-						this.branches.push(branchObj)
-						if(this.measures.length === 1 && branchObj.type === "drumroll"){
+						branches.push(branchObj)
+						if(measures.length === 1 && branchObj.type === "drumroll"){
 							for(var i = circles.length; i--;){
 								var circle = circles[i]
-								if(circle.endTime && circle.type === "drumroll" || circle.type === "daiDrumroll" || circle.type === "balloon"){
-									this.measures.push({
+								if(circle.endTime && (circle.type === "drumroll" || circle.type === "daiDrumroll" || circle.type === "balloon")){
+									measures.push({
 										ms: circle.endTime,
 										originalMS: circle.endTime,
 										speed: circle.bpm * circle.scroll / 60,
@@ -478,13 +466,14 @@ class ParseTja{
 								}
 							}
 						}
-						if(this.measures.length !== 0){
-							this.measures[this.measures.length - 1].nextBranch = branchObj
+						if(measures.length !== 0){
+							measures[measures.length - 1].nextBranch = branchObj
 						}
 						break
 					case "branchend":
 						branch = false
 						currentBranch = false
+						lyricsCopy = lyricsCopy || !!lyrics
 						break
 					case "section":
 						sectionBegin = true
@@ -496,11 +485,19 @@ class ParseTja{
 						if(!branch){
 							break
 						}
+						if(lyrics){
+							if(lyricsIndex !== null){
+								var line = lyrics[lyricsIndex]
+								line.end = ms
+							}
+							lyricsIndex = null
+						}
 						ms = branchSettings.ms
 						gogo = branchSettings.gogo
 						bpm = branchSettings.bpm
 						scroll = branchSettings.scroll
 						sectionBegin = branchSettings.sectionBegin
+						lyricsCopy = branchSettings.lyricsCopy
 						branchFirstMeasure = true
 						var branchName = name === "m" ? "master" : (name === "e" ? "advanced" : "normal")
 						currentBranch = {
@@ -526,7 +523,7 @@ class ParseTja{
 						case "0":
 							insertBlankNote()
 							break
-						case "1": case "2": case "3": case "4": case "A": case "B": case "F": case "G":
+						case "1": case "2": case "3": case "4": case "A": case "B":
 							var type = this.noteTypes[symbol]
 							var circleObj = {
 								type: type.name,
@@ -556,8 +553,9 @@ class ParseTja{
 							sectionBegin = false
 							if(lastDrumroll){
 								if(symbol === "9"){
-									insertBlankNote({
+									insertNote({
 										endDrumroll: lastDrumroll,
+										gogo: gogo,
 										bpm: bpm,
 										scroll: scroll,
 										section: sectionBegin
@@ -582,8 +580,9 @@ class ParseTja{
 							break
 						case "8":
 							if(lastDrumroll){
-								insertBlankNote({
+								insertNote({
 									endDrumroll: lastDrumroll,
+									gogo: gogo,
 									bpm: bpm,
 									scroll: scroll,
 									section: sectionBegin
@@ -591,10 +590,7 @@ class ParseTja{
 								sectionBegin = false
 								lastDrumroll = false
 							}else{
-								insertBlankNote({
-									bpm: bpm,
-									scroll: scroll
-								})
+								insertBlankNote()
 							}
 							break
 						case ",":
@@ -620,30 +616,51 @@ class ParseTja{
 				
 			}
 		}
-		pushMeasure()
 		if(lastDrumroll){
 			lastDrumroll.endTime = ms
 			lastDrumroll.originalEndTime = ms
 		}
+		if(lyricsLine !== null){
+			insertLyrics({
+				start: ms,
+				text: lyricsLine
+			})
+		}
+		pushMeasure()
 		
-		if(this.branches){
-			circles.sort((a, b) => a.ms > b.ms ? 1 : -1)
-			this.measures.sort((a, b) => a.ms > b.ms ? 1 : -1)
-			circles.forEach((circle, i) => circle.id = i + 1)
+		if(!lyricsOnly){
+			if(branches){
+				circles.sort((a, b) => a.ms > b.ms ? 1 : -1)
+				measures.sort((a, b) => a.ms > b.ms ? 1 : -1)
+				circles.forEach((circle, i) => circle.id = i + 1)
+			}
+			this.measures = measures
+			this.events = events
+			this.branches = branches
+			this.scoreinit = meta.scoreinit
+			this.scorediff = meta.scorediff
+			if(this.scoreinit && this.scorediff){
+				this.scoremode = meta.scoremode || 1
+			}else{
+				this.scoremode = meta.scoremode || 2
+				var autoscore = new AutoScore(difficulty, this.stars, this.scoremode, circles)
+				this.scoreinit = autoscore.ScoreInit
+				this.scorediff = autoscore.ScoreDiff
+			}
 		}
-		this.scoreinit = meta.scoreinit;
-		this.scorediff = meta.scorediff;
-		if (this.scoreinit) {
-			this.scoremode = meta.scoremode || 1;
-		} else { 
-			this.scoremode = meta.scoremode || 2;
-			var autoscore = new AutoScore(this.difficulty, this.stars, this.scoremode, circles);
-			this.scoreinit = autoscore.ScoreInit;
-			this.scorediff = autoscore.ScoreDiff;
-		}
-		if(this.lyrics){
-			var line = this.lyrics[this.lyrics.length - 1]
+		if(lyrics && lyricsIndex !== null){
+			var line = lyrics[lyricsIndex]
 			line.end = Math.max(ms, line.start) + 5000
+		}
+		if(lyrics){
+			this.lyrics = lyrics
+		}else if(!lyricsOnly){
+			for(var courseName in this.metadata){
+				if(this.metadata[courseName].inlineLyrics){
+					this.parseCircles(courseName, true)
+					break
+				}
+			}
 		}
 		return circles
 	}

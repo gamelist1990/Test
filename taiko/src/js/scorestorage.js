@@ -1,5 +1,8 @@
 class ScoreStorage{
-	constructor(){
+	constructor(...args){
+		this.init(...args)
+	}
+	init(){
 		this.scores = {}
 		this.scoresP2 = {}
 		this.requestP2 = new Set()
@@ -7,7 +10,7 @@ class ScoreStorage{
 		this.songTitles = {}
 		this.difficulty = ["oni", "ura", "hard", "normal", "easy"]
 		this.scoreKeys = ["points", "good", "ok", "bad", "maxCombo", "drumroll"]
-		this.crownValue = ["", "silver", "gold", "rainbow"]
+		this.crownValue = ["", "silver", "gold"]
 	}
 	load(strings, loadFailed){
 		var scores = {}
@@ -45,7 +48,7 @@ class ScoreStorage{
 						var scoreArray = diffArray[i].slice(1).split(",")
 						for(var j in this.scoreKeys){
 							var name = this.scoreKeys[j]
-							var value = parseInt(scoreArray[j], 36) || 0
+							var value = parseInt(scoreArray[j] || 0, 36) || 0
 							if(value < 0){
 								value = 0
 							}

@@ -1,5 +1,8 @@
 class CanvasDraw{
-	constructor(noSmoothing){
+	constructor(...args){
+		this.init(...args)
+	}
+	init(noSmoothing){
 		this.diffStarPath = new Path2D(vectors.diffStar)
 		this.longVowelMark = new Path2D(vectors.longVowelMark)
 		
@@ -154,7 +157,7 @@ class CanvasDraw{
 			ctx.fillRect(0, 0, w, h)
 		}
 		if(config.cached){
-			if(this.songFrameCache.w !== config.frameCache.w){
+			if(this.songFrameCache.w !== config.frameCache.w || this.songFrameCache.scale !== config.frameCache.ratio){
 				this.songFrameCache.resize(config.frameCache.w, config.frameCache.h, config.frameCache.ratio)
 			}
 			this.songFrameCache.get({
@@ -178,31 +181,19 @@ class CanvasDraw{
 			let _y = y + border
 			let _w = w - border * 2
 			let _h = h - border * 2
-			if(config.background === "recommended"){
-				ctx.drawImage(assets.image["bg_recommended"], _x, _y, _w - 1, _h - 1)
-			}else{
-				ctx.fillStyle = config.background
-				ctx.fillRect(_x, _y, _w, _h)
-			}
+			ctx.fillStyle = config.borderStyle[1]
+			ctx.fillRect(_x, _y, _w, _h)
 			ctx.fillStyle = config.borderStyle[0]
 			ctx.beginPath()
 			ctx.moveTo(_x, _y)
 			ctx.lineTo(_x + _w, _y)
 			ctx.lineTo(_x + _w - innerBorder, _y + innerBorder)
-			ctx.lineTo(_x + innerBorder, _y + innerBorder)
-			ctx.lineTo(_x + innerBorder, _y + _h - innerBorder)
-			ctx.lineTo(_x, _y + _h)
-			ctx.fill()
-			ctx.fillStyle = config.borderStyle[1]
-			ctx.beginPath()
-			ctx.moveTo(_x + _w, _y + _h)
-			ctx.lineTo(_x + _w, _y)
-			ctx.lineTo(_x + _w - innerBorder, _y + innerBorder)
-			ctx.lineTo(_x + _w - innerBorder, _y + _h - innerBorder)
 			ctx.lineTo(_x + innerBorder, _y + _h - innerBorder)
 			ctx.lineTo(_x, _y + _h)
 			ctx.fill()
 		}
+		ctx.fillStyle = config.background
+		ctx.fillRect(innerX, innerY, innerW, innerH)
 		
 		ctx.save()
 		
@@ -308,7 +299,7 @@ class CanvasDraw{
 	
 	verticalText(config){
 		var ctx = config.ctx
-		var inputText = config.text.toString()
+		var inputText = "" + config.text
 		var mul = config.fontSize / 40
 		var ura = false
 		var r = this.regex
@@ -471,8 +462,8 @@ class CanvasDraw{
 			config.selectable.innerHTML = ""
 			var scale = config.selectableScale
 			var style = config.selectable.style
-			style.left = (config.x - config.width / 2) * scale + "px"
-			style.top = config.y * scale + "px"
+			style.left = ((config.x - config.width / 2) * scale + (config.selectableX || 0)) + "px"
+			style.top = (config.y * scale + (config.selectableY || 0)) + "px"
 			style.width = config.width * scale + "px"
 			style.height = (drawnHeight+15) * scale + "px"
 			style.fontSize = 40 * mul * scale + "px"
@@ -489,8 +480,6 @@ class CanvasDraw{
 				ctx.translate(40 * mul, 0)
 				ctx.scale(strokeScaling, scaling)
 				ctx.translate(-40 * mul, 0)
-			}else if(config.align === "middle"){
-				var offsetY = drawnHeight > config.height ? 0 : (config.height - drawnHeight) / 2
 			}else{
 				strokeScaling = scaling
 				ctx.scale(1, scaling)
@@ -634,7 +623,7 @@ class CanvasDraw{
 	
 	layeredText(config, layers){
 		var ctx = config.ctx
-		var inputText = config.text.toString()
+		var inputText = "" + config.text
 		var mul = config.fontSize / 40
 		var ura = false
 		var r = this.regex
@@ -1246,7 +1235,7 @@ class CanvasDraw{
 		}
 		ctx.strokeStyle = "#000"
 		ctx.lineWidth = 7
-		if(strings.good === "良" && config.score !== "adlib"){
+		if(strings.good === "良"){
 			if(config.align === "center"){
 				ctx.translate(config.score === "bad" ? -49 / 2 : -23 / 2, 0)
 			}
@@ -1302,14 +1291,6 @@ class CanvasDraw{
 				ctx.fillStyle = grd
 				ctx.strokeText(strings.bad, 0, 4)
 				ctx.fillText(strings.bad, 0, 4)
-				}else if(config.score === "adlib"){
-				if(config.results){
-					ctx.textAlign = "right"
-				}
-				ctx.strokeStyle = "#ef9100"
-				ctx.fillStyle = "#fff"
-				ctx.strokeText(strings.adlib, 0, 4)
-				ctx.fillText(strings.adlib, 0, 4)
 			}
 		}
 		ctx.restore()
@@ -1370,15 +1351,7 @@ class CanvasDraw{
 		
 		if(config.type){
 			var grd = ctx.createLinearGradient(0, 0, 94, 0)
-			if(config.type === "rainbow"){ // TODO
-				grd.addColorStop(0,"#0000ff")
-				grd.addColorStop(0.15,"#00ffff")
-				grd.addColorStop(0.35,"#00ff88")
-				grd.addColorStop(0.5,"#ffffff")
-				grd.addColorStop(0.65,"#ffff00")
-				grd.addColorStop(0.85,"#ff8800")
-				grd.addColorStop(1,"#ff00ff")
-			}else if(config.type === "gold"){
+			if(config.type === "gold"){
 				grd.addColorStop(0, "#ffffc5")
 				grd.addColorStop(0.23, "#ffff44")
 				grd.addColorStop(0.53, "#efbd12")
@@ -1707,8 +1680,8 @@ class CanvasDraw{
 		if(amount >= 1){
 			return callback(ctx)
 		}else if(amount >= 0){
-			this.tmpCanvas.width = winW || ctx.canvas.width
-			this.tmpCanvas.height = winH || ctx.canvas.height
+			this.tmpCanvas.width = Math.max(1, winW || ctx.canvas.width)
+			this.tmpCanvas.height = Math.max(1, winH || ctx.canvas.height)
 			callback(this.tmpCtx)
 			ctx.save()
 			ctx.globalAlpha = amount

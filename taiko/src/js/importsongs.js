@@ -1,12 +1,19 @@
 class ImportSongs{
-	constructor(limited, otherFiles){
+	constructor(...args){
+		this.init(...args)
+	}
+	init(limited, otherFiles, noPlugins, pluginAmount){
 		this.limited = limited
 		this.tjaFiles = []
 		this.osuFiles = []
 		this.assetFiles = {}
+		this.pluginFiles = []
 		this.otherFiles = otherFiles || {}
+		this.noPlugins = noPlugins
+		this.pluginAmount = pluginAmount
 		this.songs = []
 		this.stylesheet = []
+		this.plugins = []
 		this.songTitle = this.otherFiles.songTitle || {}
 		this.uraRegex = /\s*[\(（]裏[\)）]$/
 		this.courseTypes = {
@@ -30,17 +37,14 @@ class ImportSongs{
 				}
 			}
 		})
-		this.assetSelectors = {
-			"bg-pattern-1": ".pattern-bg",
-			"bg_genre_0": "#song-select",
-			"title-screen": "#title-screen",
-			"dancing-don": "#loading-don",
-			"touch_drum": "#touch-drum-img",
-			"touch_fullscreen": "#touch-full-btn",
-			"touch_pause": "#touch-pause-btn",
-			"bg_stage_1": ".song-stage-1",
-			"bg_stage_2": ".song-stage-2",
-			"bg_stage_3": ".song-stage-3"
+		this.assetSelectors = {}
+		for(var selector in assets.cssBackground){
+			var filename = assets.cssBackground[selector]
+			var index = filename.lastIndexOf(".")
+			if(index !== -1){
+				filename = filename.slice(0, index)
+			}
+			this.assetSelectors[filename] = selector
 		}
 		this.comboVoices = ["v_combo_50"].concat(Array.from(Array(50), (d, i) => "v_combo_" + ((i + 1) * 100)))
 	}
@@ -57,7 +61,7 @@ class ImportSongs{
 			var file = files[i]
 			var name = file.name.toLowerCase()
 			var path = file.path.toLowerCase()
-			if(name.endsWith(".tja")){
+			if(name.endsWith(".tja") || name.endsWith(".tjf")){
 				this.tjaFiles.push({
 					file: file,
 					index: i
@@ -77,9 +81,46 @@ class ImportSongs{
 				if(!(name in this.assetFiles)){
 					this.assetFiles[name] = file
 				}
+			}else if(name.endsWith(".taikoweb.js")){
+				this.pluginFiles.push({
+					file: file,
+					index: i
+				})
 			}else{
 				this.otherFiles[path] = file
 			}
+		}
+		
+		if(!this.noPlugins && this.pluginFiles.length){
+			var pluginPromises = []
+			this.pluginFiles.forEach(fileObj => {
+				pluginPromises.push(this.addPlugin(fileObj).catch(e => console.warn(e)))
+			})
+			return Promise.all(pluginPromises).then(() => {
+				var startPromises = []
+				var pluginAmount = 0
+				if(this.plugins.length && confirm(strings.plugins.warning.replace("%s",
+					strings.plugins.plugin[strings.plural.select(this.plugins.length)].replace("%s",
+						this.plugins.length.toString()
+					)
+				))){
+					this.plugins.forEach(obj => {
+						var plugin = plugins.add(obj.data, {
+							name: obj.name,
+							raw: true
+						})
+						if(plugin){
+							pluginAmount++
+							plugin.imported = true
+							startPromises.push(plugin.start())
+						}
+					})
+				}
+				return Promise.all(startPromises).then(() => {
+					var importSongs = new ImportSongs(this.limited, this.otherFiles, true, pluginAmount)
+					return importSongs.load(files)
+				})
+			})
 		}
 		
 		var metaPromises = []
@@ -248,9 +289,9 @@ class ImportSongs{
 					if(gt === maker.length - 1){
 						var lt = maker.lastIndexOf("<")
 						if(lt !== -1 && lt !== gt - 2){
-							url = maker.slice(lt + 2, gt)
+							url = maker.slice(lt + 1, gt).trim()
 							if(url.startsWith("http://") || url.startsWith("https://")){
-								maker = maker.slice(0, lt).trim()
+								maker = maker.slice(0, lt)
 							}else{
 								url = null
 							}
@@ -408,12 +449,20 @@ class ImportSongs{
 					vectors = JSON.parse(response)
 				}))
 			}
-			if(name.endsWith(".png")){
+			if(name.endsWith(".png") || name.endsWith(".gif")){
 				let image = document.createElement("img")
 				promises.push(pageEvents.load(image).then(() => {
 					if(id in this.assetSelectors){
 						var selector = this.assetSelectors[id]
-						this.stylesheet.push(selector + '{background-image:url("' + image.src + '")}')
+						var gradient = ""
+						if(selector === "#song-search"){
+							gradient = loader.songSearchGradient
+						}
+						this.stylesheet.push(loader.cssRuleset({
+							[selector]: {
+								"background-image": gradient + "url(\"" + image.src + "\")"
+							}
+						}))
 					}
 				}))
 				image.id = name
@@ -466,6 +515,18 @@ class ImportSongs{
 	}
 	getFilename(name){
 		return name.slice(0, name.lastIndexOf("."))
+	}
+	
+	addPlugin(fileObj){
+		var file = fileObj.file
+		var filePromise = file.read()
+		return filePromise.then(dataRaw => {
+			var name = file.name.slice(0, file.name.lastIndexOf(".taikoweb.js"))
+			this.plugins.push({
+				name: name,
+				data: dataRaw
+			})
+		})
 	}
 	
 	getCategory(file, exclude){
@@ -543,10 +604,12 @@ class ImportSongs{
 				assets.otherFiles.songTitle = this.songTitle
 			}
 			return Promise.resolve(this.songs)
-		}else if(Object.keys(this.assetFiles).length){
-			return Promise.resolve()
 		}else{
-			return Promise.reject("nosongs")
+			if(this.noPlugins && this.pluginAmount || Object.keys(this.assetFiles).length){
+				return Promise.resolve()
+			}else{
+				return Promise.reject("nosongs")
+			}
 		}
 		this.clean()
 	}
