@@ -28,9 +28,9 @@ function submitForm() {
         شش = '匿名' + Math.floor(1000 + Math.random() * 9000);
     }
 
-    db.collection("comments").add({
+    db.collection("ششششs").add({
         شش: شش,
-        comment: dai,
+        شششش: dai,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
     })
         .then((docRef) => {
@@ -48,21 +48,21 @@ function submitForm() {
 
     return false;
 }
-function deleteComment(event) {
+function deleteشششش(event) {
     if (isOyasai) {
-        var commentId = event.target.getAttribute('data-id');
-        db.collection("comments").doc(commentId).delete().then(() => {
+        var ششششId = event.target.getAttribute('data-id');
+        db.collection("ششششs").doc(ششششId).delete().then(() => {
             console.log("Document successfully deleted!");
         }).catch((error) => {
             console.error("Error removing document: ", error);
         });
     }
 }
-function deleteAllComments() {
+function deleteAllششششs() {
     if (isOyasai) {
-        db.collection("comments").get().then((querySnapshot) => {
+        db.collection("ششششs").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                db.collection("comments").doc(doc.id).delete().then(() => {
+                db.collection("ششششs").doc(doc.id).delete().then(() => {
                     console.log("Document successfully deleted!");
                 }).catch((error) => {
                     console.error("Error removing document: ", error);
@@ -71,35 +71,35 @@ function deleteAllComments() {
         });
     }
 }
-function getComments() {
-    db.collection("comments").orderBy("timestamp", "desc")
+function getششششs() {
+    db.collection("ششششs").orderBy("timestamp", "desc")
         .onSnapshot((querySnapshot) => {
-            var commentsDiv = document.getElementById('comments');
-            commentsDiv.innerHTML = ''; 
+            var ششششsDiv = document.getElementById('ششششs');
+            ششششsDiv.innerHTML = ''; 
             querySnapshot.forEach((doc) => {
-                var commentDiv = document.createElement('div');
-                commentDiv.classشش = 'comment' + (isOyasai ? ' admin' : '');
+                var ششششDiv = document.createElement('div');
+                ششششDiv.classشش = 'شششش' + (isOyasai ? ' admin' : '');
 
-                var commentText = document.createElement('p');
-                commentText.textContent = '名前：' + doc.data().شش + '||| コメント内容：' + doc.data().comment;
+                var ششششText = document.createElement('p');
+                ششششText.textContent = '名前：' + doc.data().شش + '||| コメント内容：' + doc.data().شششش;
 
                 var deleteButton = document.createElement('button');
                 deleteButton.textContent = '削除';
                 deleteButton.setAttribute('data-id', doc.id); 
-                deleteButton.onclick = deleteComment; 
+                deleteButton.onclick = deleteشششش; 
                 if (isOyasai) { 
                     deleteButton.style.display = 'inline';
                 } else { 
                     deleteButton.style.display = 'none';
                 }
 
-                commentDiv.appendChild(commentText);
-                commentDiv.appendChild(deleteButton);
+                ششششDiv.appendChild(ششششText);
+                ششششDiv.appendChild(deleteButton);
 
-                commentsDiv.appendChild(commentDiv);
+                ششششsDiv.appendChild(ششششDiv);
             });
         });
 }
 window.onload = function () {
-    getComments();
+    getششششs();
 }

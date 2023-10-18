@@ -10,5 +10,5 @@ function toggleAdmin() {
     } else {
         document.getElementById('deleteButton').style.display = 'none';
     }
-    getComments(); // 管理者モードの切り替え後にコメントを再取得
+    getششششs(); // 管理者モードの切り替え後にコメントを再取得
 }
