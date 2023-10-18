@@ -1,7 +1,6 @@
 var isSubmitting = false;
-var submitWaitTime = 3000; // 送信待機時間（ミリ秒）
-var isAdmin = false;
-
+var submitWaitTime = 3000;
+var isOyasai =false
 function submitForm() {
     if (isSubmitting) {
         return false;
@@ -12,19 +11,19 @@ function submitForm() {
     var countdownInterval = setInterval(function() {
         var waitSeconds = Math.ceil((submitWaitTime - (Date.now() - isSubmitting)) / 1000);
         waitMessageElement.textContent = 'あと' + waitSeconds + '秒待ってください';
-    }, 1000); // 1秒ごとにカウントダウンを更新
+    }, 1000);
     setTimeout(function() {
         isSubmitting = false;
-        clearInterval(countdownInterval); // カウントダウンを停止
+        clearInterval(countdownInterval);
         waitMessageElement.style.display = 'none';
-    }, submitWaitTime); // submitWaitTimeミリ秒後に再送信可能にする
+    }, submitWaitTime);
 
     var dai = document.getElementById('dai').value;
     if (dai === '') {
         alert('質問内容を入力してください');
         return false;
     }
-    var name = isAdmin ? '管理者' : document.getElementById('name').value;
+    var name = isOyasai ? '管理者' : document.getElementById('name').value;
     if (name === '') {
         name = '匿名' + Math.floor(1000 + Math.random() * 9000);
     }
@@ -49,9 +48,8 @@ function submitForm() {
 
     return false;
 }
-
 function deleteComment(event) {
-    if (isAdmin) {
+    if (isOyasai) {
         var commentId = event.target.getAttribute('data-id');
         db.collection("comments").doc(commentId).delete().then(() => {
             console.log("Document successfully deleted!");
@@ -60,9 +58,8 @@ function deleteComment(event) {
         });
     }
 }
-
 function deleteAllComments() {
-    if (isAdmin) {
+    if (isOyasai) {
         db.collection("comments").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
                 db.collection("comments").doc(doc.id).delete().then(() => {
@@ -74,27 +71,25 @@ function deleteAllComments() {
         });
     }
 }
-
-
 function getComments() {
     db.collection("comments").orderBy("timestamp", "desc")
         .onSnapshot((querySnapshot) => {
             var commentsDiv = document.getElementById('comments');
-            commentsDiv.innerHTML = ''; // コメント欄をクリア
+            commentsDiv.innerHTML = ''; 
             querySnapshot.forEach((doc) => {
                 var commentDiv = document.createElement('div');
-                commentDiv.className = 'comment' + (isAdmin ? ' admin' : '');
+                commentDiv.className = 'comment' + (isOyasai ? ' admin' : '');
 
                 var commentText = document.createElement('p');
                 commentText.textContent = '名前：' + doc.data().name + '||| コメント内容：' + doc.data().comment;
 
                 var deleteButton = document.createElement('button');
                 deleteButton.textContent = '削除';
-                deleteButton.setAttribute('data-id', doc.id); // コメントのIDを保存
-                deleteButton.onclick = deleteComment; // 削除ボタンにイベントリスナーを追加
-                if (isAdmin) { // 管理者の場合のみ削除ボタンを表示
+                deleteButton.setAttribute('data-id', doc.id); 
+                deleteButton.onclick = deleteComment; 
+                if (isOyasai) { 
                     deleteButton.style.display = 'inline';
-                } else { // 管理者でない場合は削除ボタンを非表示
+                } else { 
                     deleteButton.style.display = 'none';
                 }
 
@@ -105,7 +100,6 @@ function getComments() {
             });
         });
 }
-
 window.onload = function () {
     getComments();
 }
