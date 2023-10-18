@@ -1,5 +1,13 @@
+var isSubmitting = false;
 var isAdmin = false;
 function submitForm() {
+    if (isSubmitting) {
+        return false;
+    }
+    isSubmitting = true;
+    setTimeout(function() {
+        isSubmitting = false;
+    }, 3000);
     var dai = document.getElementById('dai').value;
     if (dai === '') {
         alert('質問内容を入力してください');
