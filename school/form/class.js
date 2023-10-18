@@ -1,13 +1,24 @@
 var isSubmitting = false;
+var submitWaitTime = 3000; // 送信待機時間（ミリ秒）
 var isAdmin = false;
+
 function submitForm() {
     if (isSubmitting) {
         return false;
     }
-    isSubmitting = true;
+    isSubmitting = Date.now();
+    var waitMessageElement = document.getElementById('waitMessage');
+    waitMessageElement.style.display = 'block';
+    var countdownInterval = setInterval(function() {
+        var waitSeconds = Math.ceil((submitWaitTime - (Date.now() - isSubmitting)) / 1000);
+        waitMessageElement.textContent = 'あと' + waitSeconds + '秒待ってください';
+    }, 1000); // 1秒ごとにカウントダウンを更新
     setTimeout(function() {
         isSubmitting = false;
-    }, 3000);
+        clearInterval(countdownInterval); // カウントダウンを停止
+        waitMessageElement.style.display = 'none';
+    }, submitWaitTime); // submitWaitTimeミリ秒後に再送信可能にする
+
     var dai = document.getElementById('dai').value;
     if (dai === '') {
         alert('質問内容を入力してください');
@@ -18,7 +29,6 @@ function submitForm() {
         name = '匿名' + Math.floor(1000 + Math.random() * 9000);
     }
 
-    // Firestoreにコメントを保存
     db.collection("comments").add({
         name: name,
         comment: dai,
@@ -26,11 +36,10 @@ function submitForm() {
     })
         .then((docRef) => {
             console.log("Document written with ID: ", docRef.id);
-            // プッシュ通知の購読
+
             navigator.serviceWorker.ready.then(function(registration) {
               registration.pushManager.subscribe({userVisibleOnly: true}).then(function(subscription) {
                 console.log('Subscribed after permission granted:', subscription.endpoint);
-                // TODO: サーバーからプッシュメッセージを送信...
               });
             });
         })
@@ -41,7 +50,6 @@ function submitForm() {
     return false;
 }
 
-// コメントを削除する関数
 function deleteComment(event) {
     if (isAdmin) {
         var commentId = event.target.getAttribute('data-id');
@@ -53,7 +61,6 @@ function deleteComment(event) {
     }
 }
 
-// 全てのコメントを削除する関数
 function deleteAllComments() {
     if (isAdmin) {
         db.collection("comments").get().then((querySnapshot) => {
@@ -68,7 +75,7 @@ function deleteAllComments() {
     }
 }
 
-// コメントを取得して表示する関数
+
 function getComments() {
     db.collection("comments").orderBy("timestamp", "desc")
         .onSnapshot((querySnapshot) => {

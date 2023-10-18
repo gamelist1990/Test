@@ -1,7 +1,7 @@
 function toggleAdmin() {
     if (!isAdmin) {
         var password = prompt("パスワードを入力してください");
-        if (password === '   ') {
+        if (password === 'اist2') {
             isAdmin = true;
             document.getElementById('deleteButton').style.display = 'block';
         } else {
