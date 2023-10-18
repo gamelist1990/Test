@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>問い合わせ</title>
+<link rel="stylesheet" type="text/css" href="styles.css">
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
+<script src="main.js"></script>
+</head>
+<body>
+<h1>コメント欄</h1>
+<button id="deleteButton" style="display: none;" onclick="deleteAllComments();">全てのコメントを削除</button>
+<button style="float: right;" onclick="toggleAdmin();">管理者モード切替</button>
+<p>名前の欄には何も入力しない事で匿名としてコメントできます<br />このフォームはまだ開発中ですphp使いたい...サーバサイド．．．</p>
+<form onsubmit="return submitForm();">
+<label>名前</label>
+<input type="text" id="name" placeholder="名前を入れてね"><br>
+<label>質問内容</label>
+<input type="text" id="dai" placeholder="コメント内容を送信"><br>
+<button type="submit">送信</button>
+</form>
+<div id="comments"></div>
+<p id="adminStatus">通常モード</p>
+<p><a href="index.html">ホームへ</a></p>
+<script src="firebase.js"></script>
+</body>
+</html>

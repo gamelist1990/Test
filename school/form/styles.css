@@ -1,0 +1,15 @@
+#comments {
+    height: 200px;
+    overflow-y: scroll;
+}
+
+.comment {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border-bottom: 1px solid #000; /* 区切り線を追加 */
+}
+
+.admin {
+    background-color: yellow;
+}
