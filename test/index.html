@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>問い合わせ</title>
+<style>
+.comment { cursor: pointer; display: inline-block; }
+.hidden { display: none; }
+.admin { background-color: yellow; }
+</style>
+<script>
+var isAdmin = false;
+function submitForm() {
+    var dai = document.getElementById('dai').value;
+    if (dai === '') {
+        alert('質問内容を入力してください');
+        return false;
+    }
+    var name = isAdmin ? '管理者' : document.getElementById('name').value;
+    if (name === '') {
+        name = '匿名' + Math.floor(1000 + Math.random() * 9000);
+    }
+    var comment = document.createElement('p');
+    comment.className = 'comment' + (isAdmin ? ' admin' : '');
+    comment.textContent = '名前：' + name + '| 質問内容：' + dai;
+    document.getElementById('comments').appendChild(comment);
+    localStorage.setItem('comments', document.getElementById('comments').innerHTML);
+    return false;
+}
+function toggleAdmin() {
+     if (!isAdmin) {
+        var password = prompt("パスワードを入力してください");
+        if (password === '3120') {
+            isAdmin = true;
+            document.getElementById('deleteButton').style.display = 'block';
+        } else {
+            alert("パスワードが間違っています");
+        }
+    } else {
+        isAdmin = false;
+        document.getElementById('deleteButton').style.display = 'none';
+    }
+    var comments = document.getElementsByClassName('comment');
+    for (var i = 0; i < comments.length; i++) {
+        comments[i].style.display = 'block';
+    }
+    document.getElementById('adminStatus').textContent = isAdmin ? '管理者モード：ON' : '管理者モード：OFF';
+}
+function deleteComment(event) {
+    if (isAdmin) {
+        event.target.parentNode.removeChild(event.target);
+        localStorage.setItem('comments', document.getElementById('comments').innerHTML);
+    }
+}
+function deleteAllComments() {
+    if (isAdmin) {
+        var commentsDiv = document.getElementById('comments');
+        while (commentsDiv.firstChild) {
+            commentsDiv.removeChild(commentsDiv.firstChild);
+        }
+        localStorage.setItem('comments', '');
+    }
+}
+window.onload = function() {
+    if (localStorage.getItem('comments')) {
+        document.getElementById('comments').innerHTML = localStorage.getItem('comments');
+    }
+    document.getElementById('comments').addEventListener('click', deleteComment);
+}
+</script>
+</head>
+<body>
+<h1>コメント欄</h1>
+<button id="deleteButton" style="display: none;" onclick="deleteAllComments();">全てのコメントを削除</button>
+<button style="float: right;" onclick="toggleAdmin();">管理者モード切替</button>
+<p>名前の欄には何も入力しない事で匿名としてコメントできます</p>
+<form onsubmit="return submitForm();">
+<label>名前</label>
+<input type="text" id="name" placeholder="名前を入れてね"><br>
+<label>質問内容</label>
+<input type="text" id="dai" placeholder="質問内容を送信"><br>
+<button type="submit">送信</button>
+</form>
+<div id="comments"></div>
+<p id="adminStatus">通常モード</p>
+<p><a href="index.html">ホームへ</a></p>
+</body>
+</html>
