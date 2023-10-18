@@ -1,13 +1,15 @@
-// Firebaseを初期化
-const firebaseApp = firebase.initializeApp({
-    // APIキーをコピペする
-    apiKey: "AIzaSyDMxFGtXdclcx-kjm6cMIY2R8Zcr-DmrG0",
-    authDomain: "comment-7fe17.firebaseapp.com",
-    projectId: "comment-7fe17",
-    storageBucket: "comment-7fe17.appspot.com",
-    messagingSenderId: "407281726198",
-    appId: "1:407281726198:web:c754e86eba864488de72d7",
-    measurementId: "G-17P7B214DM"
-});
-const db = firebaseApp.firestore();
-const auth = firebaseApp.auth();
+function toggleAdmin() {
+    if (!isAdmin) {
+        var password = prompt("パスワードを入力してください");
+        if (password === '   ') {
+            isAdmin = true;
+            document.getElementById('deleteButton').style.display = 'block';
+        } else {
+            alert("パスワードが間違っています");
+        }
+    } else {
+        isAdmin = false;
+        document.getElementById('deleteButton').style.display = 'none';
+    }
+    getComments(); // 管理者モードの切り替え後にコメントを再取得
+}
