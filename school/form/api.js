@@ -1,6 +1,4 @@
-// Firebaseを初期化
 const firebaseApp = firebase.initializeApp({
-    // APIキーをコピペする
     apiKey: "AIzaSyDMxFGtXdclcx-kjm6cMIY2R8Zcr-DmrG0",
     authDomain: "comment-7fe17.firebaseapp.com",
     projectId: "comment-7fe17",

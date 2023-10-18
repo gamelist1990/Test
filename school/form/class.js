@@ -23,13 +23,13 @@ function submitForm() {
         alert('質問内容を入力してください');
         return false;
     }
-    var name = isOyasai ? '管理者' : document.getElementById('name').value;
-    if (name === '') {
-        name = '匿名' + Math.floor(1000 + Math.random() * 9000);
+    var شش = isOyasai ? '管理者' : document.getElementById('شش').value;
+    if (شش === '') {
+        شش = '匿名' + Math.floor(1000 + Math.random() * 9000);
     }
 
     db.collection("comments").add({
-        name: name,
+        شش: شش,
         comment: dai,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
     })
@@ -78,10 +78,10 @@ function getComments() {
             commentsDiv.innerHTML = ''; 
             querySnapshot.forEach((doc) => {
                 var commentDiv = document.createElement('div');
-                commentDiv.className = 'comment' + (isOyasai ? ' admin' : '');
+                commentDiv.classشش = 'comment' + (isOyasai ? ' admin' : '');
 
                 var commentText = document.createElement('p');
-                commentText.textContent = '名前：' + doc.data().name + '||| コメント内容：' + doc.data().comment;
+                commentText.textContent = '名前：' + doc.data().شش + '||| コメント内容：' + doc.data().comment;
 
                 var deleteButton = document.createElement('button');
                 deleteButton.textContent = '削除';
