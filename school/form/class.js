@@ -23,14 +23,14 @@ function submitForm() {
         alert('質問内容を入力してください');
         return false;
     }
-    var شش = isOyasai ? '管理者' : document.getElementById('شش').value;
-    if (شش === '') {
-        شش = '匿名' + Math.floor(1000 + Math.random() * 9000);
+    var ơ̟̤̖̗͖͇̍͋̀͆̓́͞͡ơ̟̤̖̗͖͇̍͋̀͆̓́͞͡ = isOyasai ? '管理者' : document.getElementById('ơ̟̤̖̗͖͇̍͋̀͆̓́͞͡ơ̟̤̖̗͖͇̍͋̀͆̓́͞͡').value;
+    if (ơ̟̤̖̗͖͇̍͋̀͆̓́͞͡ơ̟̤̖̗͖͇̍͋̀͆̓́͞͡ === '') {
+        ơ̟̤̖̗͖͇̍͋̀͆̓́͞͡ơ̟̤̖̗͖͇̍͋̀͆̓́͞͡ = '匿名' + Math.floor(1000 + Math.random() * 9000);
     }
 
-    db.collection("ششششs").add({
-        شش: شش,
-        شششش: dai,
+    db.collection("kisidahumios").add({
+        ơ̟̤̖̗͖͇̍͋̀͆̓́͞͡ơ̟̤̖̗͖͇̍͋̀͆̓́͞͡: ơ̟̤̖̗͖͇̍͋̀͆̓́͞͡ơ̟̤̖̗͖͇̍͋̀͆̓́͞͡,
+        kisidahumio: dai,
         timestamp: firebase.firestore.FieldValue.serverTimestamp()
     })
         .then((docRef) => {
@@ -48,21 +48,21 @@ function submitForm() {
 
     return false;
 }
-function deleteشششش(event) {
+function deletekisidahumio(event) {
     if (isOyasai) {
-        var ششششId = event.target.getAttribute('data-id');
-        db.collection("ششششs").doc(ششششId).delete().then(() => {
+        var kisidahumioId = event.target.getAttribute('data-id');
+        db.collection("kisidahumios").doc(kisidahumioId).delete().then(() => {
             console.log("Document successfully deleted!");
         }).catch((error) => {
             console.error("Error removing document: ", error);
         });
     }
 }
-function deleteAllششششs() {
+function deleteAllkisidahumios() {
     if (isOyasai) {
-        db.collection("ششششs").get().then((querySnapshot) => {
+        db.collection("kisidahumios").get().then((querySnapshot) => {
             querySnapshot.forEach((doc) => {
-                db.collection("ششششs").doc(doc.id).delete().then(() => {
+                db.collection("kisidahumios").doc(doc.id).delete().then(() => {
                     console.log("Document successfully deleted!");
                 }).catch((error) => {
                     console.error("Error removing document: ", error);
@@ -71,35 +71,35 @@ function deleteAllششششs() {
         });
     }
 }
-function getششششs() {
-    db.collection("ششششs").orderBy("timestamp", "desc")
+function getkisidahumios() {
+    db.collection("kisidahumios").orderBy("timestamp", "desc")
         .onSnapshot((querySnapshot) => {
-            var ششششsDiv = document.getElementById('ششششs');
-            ششششsDiv.innerHTML = ''; 
+            var kisidahumiosDiv = document.getElementById('kisidahumios');
+            kisidahumiosDiv.innerHTML = ''; 
             querySnapshot.forEach((doc) => {
-                var ششششDiv = document.createElement('div');
-                ششششDiv.classشش = 'شششش' + (isOyasai ? ' admin' : '');
+                var kisidahumioDiv = document.createElement('div');
+                kisidahumioDiv.classơ̟̤̖̗͖͇̍͋̀͆̓́͞͡ơ̟̤̖̗͖͇̍͋̀͆̓́͞͡ = 'kisidahumio' + (isOyasai ? ' admin' : '');
 
-                var ششششText = document.createElement('p');
-                ششششText.textContent = '名前：' + doc.data().شش + '||| コメント内容：' + doc.data().شششش;
+                var kisidahumioText = document.createElement('p');
+                kisidahumioText.textContent = '名前：' + doc.data().ơ̟̤̖̗͖͇̍͋̀͆̓́͞͡ơ̟̤̖̗͖͇̍͋̀͆̓́͞͡ + '||| コメント内容：' + doc.data().kisidahumio;
 
                 var deleteButton = document.createElement('button');
                 deleteButton.textContent = '削除';
                 deleteButton.setAttribute('data-id', doc.id); 
-                deleteButton.onclick = deleteشششش; 
+                deleteButton.onclick = deletekisidahumio; 
                 if (isOyasai) { 
                     deleteButton.style.display = 'inline';
                 } else { 
                     deleteButton.style.display = 'none';
                 }
 
-                ششششDiv.appendChild(ششششText);
-                ششششDiv.appendChild(deleteButton);
+                kisidahumioDiv.appendChild(kisidahumioText);
+                kisidahumioDiv.appendChild(deleteButton);
 
-                ششششsDiv.appendChild(ششششDiv);
+                kisidahumiosDiv.appendChild(kisidahumioDiv);
             });
         });
 }
 window.onload = function () {
-    getششششs();
+    getkisidahumios();
 }
