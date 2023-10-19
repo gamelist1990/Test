@@ -4,32 +4,35 @@
 <meta charset="UTF-8">
 <title>問い合わせ</title>
 <link rel="stylesheet" type="text/css" href="styles.css">
-<script src="test.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script> <!-- Realtime Databaseのライブラリを追加 -->
 <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth-compat.js"></script>
-<script src="firebase.js"></script>
-<script src="class.js"></script>
+<script src="admin.js"></script>
 <script src="main.js"></script>
-
 
 </head>
 <body>
 <h1>コメント欄</h1>
-<button id="deleteButton" style="display: none;" onclick="deleteAllkisidahumioskisidahumios();">全てのコメントを削除</button>
+<button id="deleteButton" style="display: none;" onclick="deleteAllcomments();">全てのコメントを削除</button>
 <button style="float: right;" onclick="toggleAdmin();">管理者モード切替</button>
-<p>名前の欄には何も入力しない事で匿名としてコメントできます<br />このフォームはまだ開発中ですphp使いたい...サーバサイド．．．</p>
+<p>名前の欄には何も入力しない事で匿名としてコメントできます<br />このフォームはまだ開発中です(永遠に)</p>
 <form onsubmit="return submitForm();">
 <label>名前</label>
-<input type="text" id="kisidahumio" placeholder="名前を入れてね"><br>
+<input type="text" id="name" placeholder="名前を入れてね"><br>
 <label>質問内容</label>
 <input type="text" id="dai" placeholder="コメント内容を送信"><br>
 <button type="submit">送信</button>
 <p id="waitMessage" style="display: none;"></p>
 </form>
-<div id="kisidahumioskisidahumios"></div>
+<div id="comments"></div>
 <p id="adminStatus">通常モード</p>
 <p><a href="../index.html">ホームへ</a></p>
-<script src="api.js"></script>
+
+<!-- Firebaseの設定と初期化 -->
+<script src="firebase-config.js"></script>
+
+<!-- コメント機能のスクリプト -->
+<script src="comments-script.js"></script>
+
 </body>
 </html>
