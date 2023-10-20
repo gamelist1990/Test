@@ -2103,7 +2103,7 @@ window.__require = function e(t, n, o) {
                     var GameMySuikaScoreResult = document.getElementById("GameMySuikaScoreResult");
 
                     const ip = GameMyScoreResult.dataset.ip
-                    const hostUrl = location.hostname === "localhost" || location.hostname === "127.0.0.1" ? 'http://localhost:8000' : "/suika/project/"
+                    const hostUrl = location.hostname === "localhost" || location.hostname === "127.0.0.1" ? 'http://localhost:8000' : "/suika/public"
                     const headers = {
                         'Content-type': 'Application/json',
                         'Accept': 'Application/json',
