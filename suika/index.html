@@ -50,10 +50,6 @@
     <meta name="twitter:title" content="スイカのゲームをWEBプレイ" />
     <meta name="twitter:description" content="スイカのゲームをスマホ（PC/iPhone/Android）ブラウザで無料プレイする事ができるWEBサイトです。「スイカのゲーム」ルールは、フルーツを落としてくっつけてスイカを作りつづけるだけです。スコアを競い合いましょう" />
     <meta name="twitter:image" content="https://suika-game.app/public/res/suika-ogp-ja.png">
-
-    <meta name="google-adsense-account" content="ca-pub-2934182617348947">
-	<!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1DCFKKPLP0"></script>
     <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -62,10 +58,9 @@
     gtag('config', 'G-1DCFKKPLP0');
     </script>
     
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2934182617348947"
-     crossorigin="anonymous"></script>
+   
 
-    <link rel="stylesheet" type="text/css" href="/public/style-mobile.css" />
+    <link rel="stylesheet" type="text/css" href="public/style-mobile.css" />
     <script src="public/layer/jquery.min.js"></script>
     <script src="public/layer/layer.min.js"></script>
     <link href="public/layer/layer.css" rel="stylesheet">
@@ -579,9 +574,9 @@
 
 
 
-    <script src="/public/src/settings.js" charset="utf-8"></script>
+    <script src="public/src/settings.js" charset="utf-8"></script>
 
-    <script src="/public/main.js" charset="utf-8"></script>
+    <script src="public/main.js" charset="utf-8"></script>
 
 
     <script type="text/javascript">
@@ -595,7 +590,7 @@
 
             var cocos2d = document.createElement('script');
             cocos2d.async = true;
-            cocos2d.src = window._CCSettings.debug ? '/public/cocos2d-js.js' : '/public/cocos2d-js-min.js';
+            cocos2d.src = window._CCSettings.debug ? 'public/cocos2d-js.js' : 'public/cocos2d-js-min.js';
 
             var engineLoaded = function() {
                 document.body.removeChild(cocos2d);
@@ -608,7 +603,7 @@
     </script>
 
 <add-to-home-screen></add-to-home-screen>
-<script type="module" src="/public/AddToHomeScreen.js"></script>
+<script type="module" src="public/AddToHomeScreen.js"></script>
 
 <script>
     $("add-to-home-screen").fadeIn("slow",function(){

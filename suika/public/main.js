@@ -334,7 +334,7 @@ var canvasDiv = document.getElementById("canvasDiv");
     if (false) {
         BK.Script.loadlib();
     } else {
-        var bundledScript = settings.debug ? 'src/project.dev.js' : '/public/src/project.js';
+        var bundledScript = settings.debug ? 'src/project.dev.js' : 'public/src/project.js';
         if (jsList) {
             jsList = jsList.map(function(x) {
                 return 'src/' + x;

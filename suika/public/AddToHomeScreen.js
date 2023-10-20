@@ -75,7 +75,7 @@ template.innerHTML = `
 </style>
 <div id="install">
   <div class="icon-wrap">
-    <img id="" src="/public/res/suikaicon.png" style='border-radius:8px; border:1px solid #DDD; width:45px; height:45px;'>
+    <img id="" src="public/res/suikaicon.png" style='border-radius:8px; border:1px solid #DDD; width:45px; height:45px;'>
     <span>
     <img id="share" src="data:image/png;base64,${iOSShareBase64}">
       ホーム画面に追加して<br />全画面で快適にプレイしよう！
