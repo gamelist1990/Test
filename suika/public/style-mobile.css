@@ -25,43 +25,31 @@ input::-webkit-inner-spin-button {
     margin: 0;
     /* <-- Apparently some margin are still there even though it's hidden */
 }
-#aswift_2_host {
-    height: auto !important;
-}
-#aswift_1_host {
-    /* height: auto !important; */
-}
-#aswift_0_host {
-    height: auto !important;
-}
-.adsbygoogle {
-    position: relative;
-    top: -20px;
-    /* height: auto !important; */
-    /* z-index: 999; */
-}
+
+
+
 
 #adsResultfooter {
     width:100vw !important;
     height: auto !important;
     position: absolute;
-    bottom:0px !important;
+    bottom:0 !important;
 }
 #adsResultfooter div  {
-    /* width:100vw !important;
-    height: auto !important; */
+    width:100vw !important;
+    height: auto !important;
 }
 #adsResultfooter div div {
-    /* width:100vw !important; */
-    /* height: auto !important; */
+    width:100vw !important;
+    height: auto !important;
 }
 #adsResultfooter a {
-    /* width:100vw !important;
-    height: auto !important; */
+    width:100vw !important;
+    height: auto !important;
 }
 #adsResultfooter div img{
-    /* width:100vw !important; */
-    /* height: auto !important; */
+    width:100vw !important;
+    height: auto !important;
 }
 
 #adsResult {
@@ -339,7 +327,7 @@ p.footer {
     left: 0;
     width: 100%;
     height: 100%;
-    /* background: #ffffff url(./singleColor.png) no-repeat center; */
+    background: #ffffff url(./singleColor.png) no-repeat center;
     background-size: 100%;
 }
 
@@ -534,7 +522,7 @@ p.footer {
  }
 
 
-@media screen and (min-width:431px){
+@media screen and (min-width:430px){
     #canvasDiv, #Cocos2dGameContainer, canvas, .game-area {
         width: 430px !important;
         min-width: 430px !important;
@@ -735,12 +723,6 @@ p.footer {
         left:0;
         z-index:999;
     }
-    header li a {
-        color: #7e5201 !important;
-    }
-    header li a.disabled {
-        color: #FFF !important;
-    }
     header img {
         width:40px;
         height:40px;
@@ -756,7 +738,7 @@ p.footer {
         background-color: #FFD59D;
         position: absolute;
         left: 430px;
-        top:-1px;
+        top:0;
     }
 
     .side-right {
@@ -765,7 +747,7 @@ p.footer {
         background-color: #FFD59D;
         position: absolute;
         left: -360px;
-        top:-1px;
+        top:0;
     }
     .side-right h1, .side-left h1 {
     
@@ -851,10 +833,9 @@ p.footer {
 
     #adsResultfooter {
         width:100% !important;
-        /* height: auto !important; */
+        height: auto !important;
         position: absolute;
-        bottom: -211px !important;
-        /* bottom: -84px !important; */
+        bottom: -84px !important;
         z-index: 999 !important;
     }
     #adsResultfooter div  {
@@ -873,9 +854,4 @@ p.footer {
         width:100% !important;
         height: auto !important;
     }
-
-.adsbygoogle {
-    position: relative;
-    top: 0px;
-}
 }

@@ -186,7 +186,7 @@ window.boot = function() {
         }
         var launchScene = settings.launchScene;
         
-        // console.log("landscape,", launchScene);
+        console.log("landscape,", launchScene);
         var MainManger = __require("MainManage");
         var o = MainManger.init(launchScene, cc.sys.isBrowser, canvas.style.visibility);
         
@@ -251,66 +251,49 @@ allCards.forEach(function (el) {
 });
 
 
-    var rewardedSlot;
-    var fruitsRefreshRewordInfoButton = document.getElementById("fruitsRefreshRewordInfoButton");
-    var fruitsRefreshRewordInfo = document.getElementById("fruitsRefreshRewordInfo");
-    var fruitsRefreshReword = document.getElementById("fruitsRefreshReword");
-    var fruitsRefreshRewordCloseButton = document.getElementById("fruitsRefreshRewordCloseButton");
+var fruitsRefreshRewordInfoButton = document.getElementById("fruitsRefreshRewordInfoButton");
+var fruitsRefreshRewordInfo = document.getElementById("fruitsRefreshRewordInfo");
+var fruitsRefreshRewordCloseButton = document.getElementById("fruitsRefreshRewordCloseButton");
+fruitsRefreshRewordInfoButton.addEventListener('mousedown', fruitsRefreshRewordInfoButtonAction);
+function fruitsRefreshRewordInfoButtonAction(){
+    fruitsRefreshRewordInfo.style.display = 'block';
+    fruitsRefreshRewordInfoButton.style.display = 'none';
+}
+fruitsRefreshRewordCloseButton.addEventListener('mousedown', fruitsRefreshRewordCloseButtonAction);
+function fruitsRefreshRewordCloseButtonAction(){
+    fruitsRefreshRewordInfo.style.display = 'none';
+    fruitsRefreshRewordInfoButton.style.display = 'block';
+}
 
-    googletag.cmd.push(() => {
-
-        if (window.matchMedia && window.matchMedia('(max-width: 431px)').matches) {
-            rewardedSlot = googletag.defineOutOfPageSlot('/62532913,22995500819/s_suika-game_1x1_rewarded-video_31251', googletag.enums.OutOfPageFormat.REWARDED).addService(googletag.pubads());
-            console.log('sp')
-        } else {
-            rewardedSlot = googletag.defineOutOfPageSlot('/62532913,22995500819/p_suika-game_1x1_rewarded-video_31252', googletag.enums.OutOfPageFormat.REWARDED).addService(googletag.pubads());
-            console.log('pc')
-        }
-        googletag.enableServices();
-    
-        googletag.pubads().addEventListener('rewardedSlotReady', function(evt) {
-            fruitsRefreshRewordInfoButton.style.display = 'block';
-            fruitsRefreshReword.addEventListener('mousedown', fruitsRefreshRewordAction);
-
-            function fruitsRefreshRewordAction() {
-                evt.makeRewardedVisible();
-                console.log(1)
-            }
-        });
-
-        googletag.pubads().addEventListener('rewardedSlotGranted', function(evt) {
-            console.log('報酬が提供されました。' + JSON.stringify(evt.payload));
+var spinner = document.getElementById("spinner");
+var fruitsRefreshReword = document.getElementById("fruitsRefreshReword");
+fruitsRefreshReword.addEventListener('mousedown', fruitsRefreshRewordAction);
+function fruitsRefreshRewordAction(){
+    spinner.style.display = 'block';
+    fruitsRefreshReword.disabled = true;
+    const placement_id = 'x3BexdJqxrQs';
+    const el = document.createElement('div');
+    document.body.append(el);
+    (playerPro=window.playerPro||[]).push({
+    id:placement_id,
+    after: el,  
+    init: (api) => {
+        api.on('AdStopped', function(){
             MainManger.reward()
             fruitsRefreshRewordInfo.style.display = 'none';
             fruitsRefreshRewordInfoButton.style.display = 'none';
+            spinner.style.display = 'none';
         });
-    
-        googletag.pubads().addEventListener('rewardedSlotClosed', function(evt) {
-            console.log('ユーザーにより閉じられました。');
-            // fruitsRefreshRewordInfoButton.style.display = 'block';
-                // fruitsRefreshRewordInfo.style.display = 'block';
-                // fruitsRefreshRewordInfoButton.style.display = 'block';
-            googletag.destroySlots([rewardedSlot]);
-
+        api.on('AdError', function(){
+            MainManger.reward()
+            fruitsRefreshRewordInfo.style.display = 'none';
+            fruitsRefreshRewordInfoButton.style.display = 'none';
+            spinner.style.display = 'none';
+            console.log('error reward')
         });
-
-        googletag.display(rewardedSlot);
+    }
     });
-
-
-    fruitsRefreshRewordInfoButton.addEventListener('mousedown', fruitsRefreshRewordInfoButtonAction);
-    function fruitsRefreshRewordInfoButtonAction(){
-        fruitsRefreshRewordInfo.style.display = 'block';
-        fruitsRefreshRewordInfoButton.style.display = 'none';
-    }
-    fruitsRefreshRewordCloseButton.addEventListener('mousedown', fruitsRefreshRewordCloseButtonAction);
-    function fruitsRefreshRewordCloseButtonAction(){
-        fruitsRefreshRewordInfo.style.display = 'none';
-        fruitsRefreshRewordInfoButton.style.display = 'block';
-    }
-    
-    // var spinner = document.getElementById("spinner");
-
+}
 
 var canvasDiv = document.getElementById("canvasDiv");
         // cc.find("Canvas").getComponent("MainGameJS").sceneScore.node.y = -30
@@ -334,7 +317,7 @@ var canvasDiv = document.getElementById("canvasDiv");
     if (false) {
         BK.Script.loadlib();
     } else {
-        var bundledScript = settings.debug ? 'src/project.dev.js' : 'public/src/project.js';
+        var bundledScript = settings.debug ? 'src/project.dev.js' : './public/src/project.js';
         if (jsList) {
             jsList = jsList.map(function(x) {
                 return 'src/' + x;
@@ -357,8 +340,8 @@ var canvasDiv = document.getElementById("canvasDiv");
 
     // init assets
     cc.AssetLibrary.init({
-        libraryPath: '/public/res/import',
-        rawAssetsBase: '/public/res/raw-',
+        libraryPath: './public/res/import',
+        rawAssetsBase: './public/res/raw-',
         rawAssets: settings.rawAssets,
         packedAssets: settings.packedAssets,
         md5AssetsMap: settings.md5AssetsMap,
