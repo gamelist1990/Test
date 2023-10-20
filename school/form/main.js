@@ -1,5 +1,4 @@
 // Realtime Databaseへの参照を取得
-var db = firebaseApp.database();
 // コメント送信フォーム
 function submitForm() {
     var name = document.getElementById('name').value || '匿名' + Math.floor(1000 + Math.random() * 9000);
