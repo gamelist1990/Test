@@ -1,0 +1,22 @@
+#map {
+    width: 300px;
+    height: 300px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+.cell {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.green {
+    background-color: green;
+}
+.blue {
+    background-color: blue;
+}
+.black {
+    background-color: black;
+}

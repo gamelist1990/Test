@@ -1235,7 +1235,7 @@ window.__require = function e(t, n, o) {
                             var GameMyScoreResult = document.getElementById("GameMyScoreResult");
                             const ip = GameMyScoreResult.dataset.ip
 
-                            const hostUrl = location.hostname === "localhost" || location.hostname === "127.0.0.1" ? 'http://localhost:8000' : "https://suika-game.com"
+                            const hostUrl = location.hostname === "localhost" || location.hostname === "127.0.0.1" ? 'http://localhost:8000' : "public"
                             const data = { ip: ip, suikaTime: milliseconds, score: null }
                             axios.post(hostUrl + '/scores.json', data)
                                 .then(response => {
@@ -2103,7 +2103,7 @@ window.__require = function e(t, n, o) {
                     var GameMySuikaScoreResult = document.getElementById("GameMySuikaScoreResult");
 
                     const ip = GameMyScoreResult.dataset.ip
-                    const hostUrl = location.hostname === "localhost" || location.hostname === "127.0.0.1" ? 'http://localhost:8000' : "/suika/public"
+                    const hostUrl = location.hostname === "localhost" || location.hostname === "127.0.0.1" ? 'http://localhost:8000' : "public"
                     const headers = {
                         'Content-type': 'Application/json',
                         'Accept': 'Application/json',
